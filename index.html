@@ -216,7 +216,14 @@
           </div>
           <span class="hmac-bar-title">cyberrange modes</span>
         </div>
-        <iframe class="modes-reel__frame" data-src="modes-reel.html?r=91" title="CyberRange modes, Battle, Practice, Learn, Analyze, and your AI coach" tabindex="-1" aria-hidden="true"></iframe>
+        <div class="modes-reel__wrap">
+          <img class="modes-reel__frame" id="modesGif" src="media/modes.gif" alt="CyberRange modes: Battle, Practice, Learn, and Analyze" loading="lazy" decoding="async">
+          <button class="modes-reel__replay" id="modesReplay" aria-label="Replay" title="Replay">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -703,6 +710,35 @@
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
 <script src="js/main.js?v=133"></script>
+<script>
+(function(){
+  var img = document.getElementById('modesGif');
+  var btn = document.getElementById('modesReplay');
+  if(!img || !btn) return;
+  var DURATION = 22800; // 456 frames × 50ms
+  var timer = null;
+  var started = false;
+  function showBtn(){ btn.classList.add('is-visible'); }
+  function start(){
+    if(started) return;
+    started = true;
+    timer = setTimeout(showBtn, DURATION);
+  }
+  btn.addEventListener('click', function(){
+    btn.classList.remove('is-visible');
+    clearTimeout(timer);
+    started = false;
+    var src = img.src.split('?')[0];
+    img.src = '';
+    img.src = src + '?r=' + Date.now();
+    start();
+  });
+  var io = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting){ start(); io.disconnect(); }
+  }, { threshold: 0.3 });
+  io.observe(img);
+})();
+</script>
 <!-- bot temporarily disabled while iterating — re-enable by uncommenting -->
 <!-- <script src="js/bot.js?v=97" defer></script> -->
 </body>

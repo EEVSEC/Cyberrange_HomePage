@@ -1795,6 +1795,28 @@ still   pull line 2 up to even out the optical spacing */
   display: block; width: 100%; aspect-ratio: 16 / 9;
   border: 0; background: #0a0a0a;
 }
+.modes-reel__wrap {
+  position: relative;
+}
+.modes-reel__replay {
+  position: absolute; top: 16px; right: 18px;
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  background: color-mix(in oklch, #0a0a0a 70%, transparent);
+  border: 1px solid color-mix(in oklch, white 22%, transparent);
+  color: white;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.2s ease;
+  z-index: 5;
+}
+.modes-reel__replay.is-visible {
+  opacity: 1; pointer-events: auto;
+}
+.modes-reel__replay:hover {
+  transform: scale(1.1);
+}
 
 .modecard-list {
   display: grid; gap: 1px; background: var(--line);
