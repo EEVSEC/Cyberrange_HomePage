@@ -1797,6 +1797,9 @@ still   pull line 2 up to even out the optical spacing */
 }
 .modes-reel__wrap {
   position: relative;
+  display: block;
+  width: 100%;
+  line-height: 0;
 }
 .modes-reel__replay {
   position: absolute; top: 16px; right: 18px;
@@ -1807,12 +1810,12 @@ still   pull line 2 up to even out the optical spacing */
   border: 1px solid color-mix(in oklch, white 22%, transparent);
   color: white;
   backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-  opacity: 0; pointer-events: none;
+  opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 0.4s ease, transform 0.2s ease;
   z-index: 5;
 }
 .modes-reel__replay.is-visible {
-  opacity: 1; pointer-events: auto;
+  opacity: 1; visibility: visible; pointer-events: auto;
 }
 .modes-reel__replay:hover {
   transform: scale(1.1);
