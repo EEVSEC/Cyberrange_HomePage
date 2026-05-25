@@ -1,0 +1,304 @@
+/* ── floating guide bot "Byte" — wanders viewport, no overlay panel ── */
+
+/* ── wrapper (positioned by JS; transition = the wander movement) ──── */
+.bot {
+  position: fixed;
+  z-index: 320;
+  pointer-events: none;
+  user-select: none;
+  transition:
+    left 1.6s cubic-bezier(.34, 1.4, .64, 1),
+    top  1.3s cubic-bezier(.34, 1.4, .64, 1);
+}
+.bot[hidden] { display: none; }
+
+/* ── figure — the clickable character ─────────────────────────────── */
+.bot__figure {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: bot-bob 3.8s var(--ease-in-out) infinite;
+}
+.bot__figure:focus-visible { outline: none; }
+.bot__figure:focus-visible .bot__body {
+  box-shadow:
+    0 6px 22px -6px var(--violet-glow),
+    0 0 0 2px var(--cyan-2),
+    inset 0 1px 0 oklch(100% 0 0 / 0.22);
+}
+
+/* ── antenna ───────────────────────────────────────────────────────── */
+.bot__antenna {
+  width: 3px;
+  height: 13px;
+  background: linear-gradient(to top, var(--cyan), var(--violet));
+  border-radius: 2px;
+  margin-bottom: -1px;
+  position: relative;
+}
+.bot__antenna::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 1px);
+  left: 50%; transform: translateX(-50%);
+  width: 9px; height: 9px;
+  background: var(--violet);
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px var(--violet-glow);
+  animation: antenna-glow 2.4s var(--ease-in-out) infinite;
+}
+
+/* ── torso row: left arm + body + right arm ──────────────────────── */
+.bot__torso {
+  display: flex;
+  align-items: center;
+}
+
+/* ── body ─────────────────────────────────────────────────────────── */
+.bot__body {
+  width: 52px;
+  height: 58px;
+  background: linear-gradient(150deg, var(--cyan-2) 0%, var(--violet) 100%);
+  border-radius: 50% 50% 42% 42% / 50% 50% 36% 36%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow:
+    0 6px 22px -6px var(--violet-glow),
+    0 0 0 1px var(--line-2),
+    inset 0 1px 0 oklch(100% 0 0 / 0.22);
+  transition: box-shadow var(--dur-fast);
+}
+/* glossy sheen */
+.bot__body::before {
+  content: '';
+  position: absolute;
+  top: 5px; left: 6px; right: 6px;
+  height: 38%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 42% 38%,
+    oklch(100% 0 0 / 0.42), transparent 62%);
+  pointer-events: none;
+}
+.bot__figure:hover .bot__body {
+  box-shadow:
+    0 10px 32px -6px var(--violet-glow),
+    0 0 0 1px var(--line-3),
+    inset 0 1px 0 oklch(100% 0 0 / 0.3);
+}
+
+/* ── eyes ─────────────────────────────────────────────────────────── */
+.bot__eyes {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+.bot__eye {
+  width: 8px; height: 10px;
+  background: oklch(11% 0 0);
+  border-radius: 50%;
+  box-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.35);
+  animation: bot-blink 5s ease-in-out infinite;
+  transition: height var(--dur-fast);
+}
+.bot__eye:nth-child(2) { animation-delay: .09s; }
+.bot__figure:hover .bot__eye { height: 12px; }
+.bot.is-speaking .bot__eye { animation-duration: 2.2s; }
+
+/* ── mouth ─────────────────────────────────────────────────────────── */
+.bot__mouth {
+  width: 18px; height: 6px;
+  border-bottom: 2.5px solid oklch(10% 0 0 / 0.5);
+  border-left:   2px   solid oklch(10% 0 0 / 0.35);
+  border-right:  2px   solid oklch(10% 0 0 / 0.35);
+  border-radius: 0 0 8px 8px;
+}
+
+/* ── arms ─────────────────────────────────────────────────────────── */
+.bot__arm {
+  width: 22px; height: 10px;
+  background: linear-gradient(150deg, var(--cyan-2), var(--violet));
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 2px 8px -3px var(--violet-glow);
+}
+.bot__arm--l {
+  border-radius: 5px 3px 3px 5px;
+  margin-right: -3px;
+  transform-origin: right center;
+  animation: arm-l-idle 3.8s var(--ease-in-out) infinite;
+}
+.bot__arm--r {
+  border-radius: 3px 5px 5px 3px;
+  margin-left: -3px;
+  transform-origin: left center;
+  animation: arm-r-idle 3.8s var(--ease-in-out) infinite;
+}
+
+/* hands — round blobs at end of each arm */
+.bot__hand {
+  position: absolute;
+  width: 12px; height: 12px;
+  background: linear-gradient(150deg, var(--cyan-2), var(--violet));
+  border-radius: 50%;
+  top: 50%; transform: translateY(-50%);
+  box-shadow: 0 2px 6px -2px var(--violet-glow);
+}
+.bot__arm--l .bot__hand { left:  -5px; }
+.bot__arm--r .bot__hand { right: -5px; }
+
+/* ── wave state ───────────────────────────────────────────────────── */
+.bot.is-waving .bot__arm--l { animation: arm-wave 0.72s var(--ease-in-out) 2 !important; }
+
+/* ── speech bubble ────────────────────────────────────────────────── */
+.bot__speech {
+  position: absolute;
+  /* default: above the character */
+  bottom: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px) scale(0.94);
+  width: clamp(155px, 44vw, 215px);
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  padding: 10px 13px 10px;
+  box-shadow: 0 8px 28px -8px oklch(0% 0 0 / 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity .25s var(--ease-out),
+    transform .25s var(--ease-out);
+  white-space: normal;
+}
+.bot__speech.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+/* tail pointing down toward character */
+.bot__speech::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: var(--bg-1);
+}
+
+/* ── flip bubble below when bot is near top of viewport ─────────── */
+.bot.is-high .bot__speech {
+  bottom: auto;
+  top: calc(100% + 16px);
+  transform: translateX(-50%) translateY(-8px) scale(0.94);
+}
+.bot.is-high .bot__speech.is-visible {
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+.bot.is-high .bot__speech::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: var(--bg-1);
+}
+
+/* ── nudge bubble left/right when near viewport edges ────────────── */
+.bot.edge-left  .bot__speech { left: 0;    transform: translateX(0) translateY(8px) scale(0.94); }
+.bot.edge-left  .bot__speech.is-visible { transform: translateX(0) translateY(0) scale(1); }
+.bot.edge-left  .bot__speech::after { left: 20%; }
+
+.bot.edge-right .bot__speech { left: auto; right: 0; transform: translateX(0) translateY(8px) scale(0.94); }
+.bot.edge-right .bot__speech.is-visible { transform: translateX(0) translateY(0) scale(1); }
+.bot.edge-right .bot__speech::after { left: auto; right: 16%; transform: none; }
+
+/* is-high + edge-left/right also needs flip on tail */
+.bot.is-high.edge-left .bot__speech  { transform: translateX(0) translateY(-8px) scale(0.94); }
+.bot.is-high.edge-left  .bot__speech.is-visible { transform: translateX(0) translateY(0) scale(1); }
+.bot.is-high.edge-right .bot__speech { transform: translateX(0) translateY(-8px) scale(0.94); }
+.bot.is-high.edge-right .bot__speech.is-visible { transform: translateX(0) translateY(0) scale(1); }
+
+.bot__text {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  line-height: 1.52;
+  color: var(--ink);
+  font-weight: 300;
+  margin: 0;
+}
+
+/* ── reduced motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bot                               { transition: none !important; }
+  .bot__figure,
+  .bot__arm--l,
+  .bot__arm--r,
+  .bot__antenna::before,
+  .bot__eye                          { animation: none !important; }
+  .bot__speech                       { transition: opacity .12s linear !important; transform: translateX(-50%) !important; }
+  .bot.edge-left  .bot__speech       { transform: none !important; }
+  .bot.edge-right .bot__speech       { transform: none !important; }
+}
+
+/* ── keyframes ──────────────────────────────────────────────────── */
+@keyframes bot-bob {
+  0%, 100% { transform: translateY(0);    }
+  50%      { transform: translateY(-9px); }
+}
+@keyframes bot-blink {
+  0%, 90%, 100% { transform: scaleY(1);   }
+  95%           { transform: scaleY(0.1); }
+}
+@keyframes arm-l-idle {
+  0%, 100% { transform: rotate(14deg);  }
+  50%      { transform: rotate(-5deg);  }
+}
+@keyframes arm-r-idle {
+  0%, 100% { transform: rotate(-14deg); }
+  50%      { transform: rotate(5deg);   }
+}
+@keyframes arm-wave {
+  0%   { transform: rotate(14deg);  }
+  25%  { transform: rotate(-38deg); }
+  55%  { transform: rotate(8deg);   }
+  80%  { transform: rotate(-28deg); }
+  100% { transform: rotate(14deg);  }
+}
+@keyframes antenna-glow {
+  0%, 100% { box-shadow: 0 0 6px 1px var(--violet-glow);  opacity: .75; }
+  50%      { box-shadow: 0 0 14px 4px var(--violet-glow); opacity: 1;   }
+}
+
+/* ── mobile/tablet: pin the bot to the bottom-left corner and shrink its
+   speech bubble so neither covers page content (overrides the JS wander) ── */
+@media (max-width: 820px) {
+  .bot {
+    left: 6px !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 12px !important;
+  }
+  .bot__speech {
+    width: clamp(108px, 32vw, 138px) !important;
+    padding: 7px 10px !important;
+    border-radius: 10px;
+    /* always sit above the bot, anchored to its left edge, extending right */
+    left: 0 !important;
+    right: auto !important;
+    bottom: calc(100% + 13px) !important;
+    top: auto !important;
+    transform: translateX(0) translateY(0) scale(1) !important;
+  }
+  .bot__text { font-size: 0.66rem; line-height: 1.4; }
+  .bot__speech::after {
+    left: 22px !important;
+    right: auto !important;
+    top: 100% !important;
+    bottom: auto !important;
+    border-top-color: var(--bg-1) !important;
+    border-bottom-color: transparent !important;
+  }
+}
