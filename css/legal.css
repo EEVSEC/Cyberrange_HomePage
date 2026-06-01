@@ -1,0 +1,76 @@
+/* ============================================================
+   CyberRange — legal / document pages (privacy, terms, returns)
+   Builds on tokens.css + styles.css (nav, footer, btn, field, grain).
+   ============================================================ */
+
+.legal {
+  max-width: 880px;
+  padding-top: clamp(116px, 15vw, 156px);
+  padding-bottom: var(--space-2xl);
+}
+
+/* ── page header ── */
+.legal__head { margin-bottom: var(--space-xl); }
+.legal__head h1 {
+  font-family: var(--font-display); font-weight: 700; color: var(--ink);
+  font-size: var(--text-xxl); line-height: 1.0; letter-spacing: -0.04em;
+  margin-bottom: var(--space-md);
+}
+.legal__intro {
+  font-size: var(--text-md); color: var(--ink-2);
+  max-width: 64ch; line-height: 1.65;
+}
+.legal__dates {
+  display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: var(--space-md);
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-4);
+}
+
+/* ── body ── */
+.legal__body { display: flex; flex-direction: column; gap: var(--space-xl); }
+.legal__body section { scroll-margin-top: 100px; }
+.legal__body h2 {
+  font-family: var(--font-display); font-weight: 700; color: var(--ink);
+  font-size: var(--text-lg); line-height: 1.12; letter-spacing: -0.02em;
+  margin-bottom: var(--space-sm);
+}
+.legal__body h3 {
+  font-family: var(--font-body); font-weight: 600; color: var(--ink);
+  font-size: var(--text-md); margin: var(--space-md) 0 var(--space-2xs);
+}
+.legal__body p,
+.legal__body li {
+  font-size: var(--text-base); color: var(--ink-2); line-height: 1.72;
+}
+.legal__body p + p { margin-top: var(--space-sm); }
+.legal__body ul {
+  margin: var(--space-sm) 0; padding-left: 1.25em;
+  display: flex; flex-direction: column; gap: 9px;
+}
+.legal__body li::marker { color: var(--violet); }
+.legal__body a {
+  color: var(--violet); text-decoration: underline;
+  text-underline-offset: 2px; text-decoration-thickness: 1px;
+  transition: opacity var(--dur-fast);
+}
+.legal__body a:hover { opacity: 0.75; }
+.legal__body strong { color: var(--ink); font-weight: 600; }
+
+/* callout / contact block */
+.legal__note {
+  border: 1px solid var(--line-2); border-left: 3px solid var(--violet);
+  border-radius: var(--r-sm); background: var(--bg-1);
+  padding: var(--space-md); font-size: var(--text-sm); color: var(--ink-2);
+}
+.legal__note strong { color: var(--ink); }
+.legal__contact {
+  margin-top: var(--space-sm); padding: var(--space-md);
+  border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg-1);
+  font-size: var(--text-sm); line-height: 1.8;
+}
+.legal__contact a { color: var(--cyan); text-decoration: none; }
+.legal__contact a:hover { text-decoration: underline; }
+
+@media (max-width: 600px) {
+  .legal__body { gap: var(--space-lg); }
+}

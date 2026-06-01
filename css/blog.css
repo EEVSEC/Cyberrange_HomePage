@@ -1,0 +1,147 @@
+/* ============================================================
+   CyberRange: Cyber Warfare Academy (blog) page styles.
+   Builds on tokens.css + styles.css. Page-specific only.
+   ============================================================ */
+
+/* ── listing: article card grid ── */
+.acad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.2vw, 28px);
+  max-width: 1080px;
+  margin-inline: auto;
+}
+@media (max-width: 880px) {
+  .acad-grid { grid-template-columns: 1fr; max-width: 520px; }
+}
+
+.acad-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  padding: 28px 26px;
+  transition: transform var(--dur-mid) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-mid) var(--ease-out);
+}
+.acad-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--violet);
+  box-shadow: 0 24px 60px -28px oklch(0% 0 0 / 0.4);
+}
+.acad-card__tag {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+.acad-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.acad-card__summary {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.6;
+  flex: 1 1 auto;
+}
+.acad-card__read {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+.acad-card__read .arr {
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.acad-card:hover .acad-card__read .arr { transform: translateX(4px); }
+
+/* ── article prose ── */
+.article {
+  max-width: 70ch;
+  margin-inline: auto;
+  min-width: 0;
+}
+.article__head {
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--line);
+}
+.article__head h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  font-size: var(--text-xxl);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  margin: var(--space-sm) 0 var(--space-md);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.article__byline {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.article__byline .sep { color: var(--line-3); margin: 0 8px; }
+
+.article__body h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: var(--space-xl) 0 var(--space-sm);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.article__body p {
+  font-size: var(--text-md);
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+.article__body p + p { margin-top: var(--space-md); }
+.article__body a {
+  color: var(--violet);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.article__back {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+}
+.article__back a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--violet);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acad-card, .acad-card__read .arr { transition: none; }
+}

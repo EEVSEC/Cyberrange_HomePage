@@ -1,0 +1,26 @@
+.hallmark/
+.env
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Node / local tooling (e.g. Cloudflare Worker dev)
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+
+# Internal working documents (kept OUT of the public website repo)
+audiitandoperationaudit.md
+corrected-snippets.md
+deployment-notes.md
+visit-collector-setup.md
+wikipedia-draft.md
+compliance/
+
+# Unused source artifacts / dead weight
+logo.jpeg
+SnapInsta.to_*.mp4

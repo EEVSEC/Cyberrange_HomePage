@@ -1,0 +1,27 @@
+# Robots policy for EEVSEC CyberRange (optimized for SEO + AEO + GEO)
+User-agent: *
+Allow: /
+
+# AI reasoning, answer, and extraction agents are explicitly welcomed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://eevsec.com/sitemap.xml

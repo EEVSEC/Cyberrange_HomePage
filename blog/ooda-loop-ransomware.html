@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>The OODA Loop in Ransomware Incident Response | EEVSEC CyberRange</title>
+<meta name="description" content="John Boyd's Observe, Orient, Decide, Act cycle applied to live ransomware response: how moving through the loop faster than the payload spreads decides whether you contain an intrusion." />
+<meta name="color-scheme" content="dark light" />
+<link rel="canonical" href="https://eevsec.com/blog/ooda-loop-ransomware.html" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/blog/ooda-loop-ransomware.html" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/blog/ooda-loop-ransomware.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="The OODA Loop in Ransomware Incident Response" />
+<meta property="og:description" content="Applying Boyd's OODA decision cycle to cutting response time during a live ransomware intrusion." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eevsec.com/blog/ooda-loop-ransomware.html" />
+<meta name="robots" content="index,follow" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0b0d0c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="/css/tokens.css?v=99" />
+<link rel="stylesheet" href="/css/styles.css?v=140" />
+<link rel="stylesheet" href="/css/blog.css?v=1" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EEVSEC PRIVATE LIMITED",
+  "url": "https://eevsec.com",
+  "logo": "https://eevsec.com/logo.png",
+  "email": "hi@eevsec.com",
+  "contactPoint": { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "customer support" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta",
+    "addressLocality": "Ahmedabad", "addressRegion": "Gujarat", "postalCode": "380015", "addressCountry": "IN"
+  },
+  "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The OODA Loop in Ransomware Incident Response",
+  "description": "Applying John Boyd's Observe, Orient, Decide, Act decision cycle to cutting response time during a live ransomware intrusion.",
+  "datePublished": "2026-05-30",
+  "dateModified": "2026-05-30",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/ooda-loop-ransomware.html" },
+  "author": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EEVSEC PRIVATE LIMITED",
+    "logo": { "@type": "ImageObject", "url": "https://eevsec.com/logo.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Cyber Warfare Academy", "item": "https://eevsec.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "The OODA Loop in Ransomware Incident Response", "item": "https://eevsec.com/blog/ooda-loop-ransomware.html" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="field" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <nav class="nav__inner" aria-label="Primary">
+    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <div class="nav__links">
+      <a href="/#how">How it works</a>
+      <a href="/#coach">AI Coach</a>
+      <a href="/#scenarios">Scenarios</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">Team</a>
+    </div>
+    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="page wrap">
+  <article class="article">
+    <header class="article__head">
+      <span class="eyebrow">Incident response</span>
+      <h1>The OODA Loop in Ransomware Incident Response</h1>
+      <p class="article__byline">EEVSEC <span class="sep" aria-hidden="true">/</span> 30 May 2026</p>
+    </header>
+
+    <div class="article__body">
+      <p>Ransomware does not wait for your runbook. From the moment a payload begins to execute, encryption races outward across shares and reachable hosts, and every second of hesitation is measured in files locked and machines lost. Incident response under those conditions is not a checklist you complete at your own pace. It is a contest of tempo against an adversary, and a fighter pilot turned theorist gave us the clearest model for winning that contest.</p>
+
+      <h2>Military foundation</h2>
+      <p>John Boyd, an American fighter pilot and military strategist, described decision making in conflict as a repeating cycle of four steps: Observe, Orient, Decide, and Act. You observe what is happening, orient yourself by interpreting those observations against your knowledge and the situation, decide on a course of action, and then act, after which the cycle begins again with fresh observation of the changed situation. Boyd called this the OODA loop.</p>
+      <p>His central insight was about speed and relevance, not about the diagram. In a duel between two adversaries each running their own loop, the one who can move through the cycle more quickly, and orient more accurately, gets inside the other's decision cycle. The slower party finds that the situation has already changed by the time they decide, so their actions answer a reality that no longer exists. The faster party imposes confusion and forces the opponent to react rather than initiate. Tempo, in Boyd's framing, is itself a weapon.</p>
+
+      <h2>Cyber application</h2>
+      <p>A live ransomware intrusion is a race of competing loops, and the payload's loop is automated and fast. Your job is to run yours faster and more accurately than the malware can spread. The four steps map cleanly onto the work in front of you.</p>
+      <p>Observe is triage from the evidence in front of you: endpoint alerts, sudden spikes in file modification, unfamiliar processes, authentication anomalies, and the logs that show where activity started and where it is reaching. Orient is making sense of that evidence under pressure. You scope the intrusion, asking which hosts are affected, which accounts are compromised, how the attacker is moving, and whether what you see is the whole picture or only the part that tripped an alert. Orientation is where most responses succeed or fail, because a wrong mental model sends every later decision in the wrong direction.</p>
+      <p>Decide is committing to a containment action while the picture is still incomplete, because waiting for certainty hands tempo to the payload. You choose what to isolate, what to disable, and what to preserve for later analysis. Act is execution: cutting compromised machines off the network, disabling abused accounts, and severing the paths the payload needs before it reaches the next set of targets. Then the loop restarts. You observe the effect of your action, reorient to the changed state, and decide again, repeating the cycle faster than the encryption can outrun you. The aim is to get inside the malware's loop, to act on the spread before it completes rather than after.</p>
+
+      <h2>What you practise</h2>
+      <p>In the range, this is rehearsed against a clock and against a thinking opponent rather than a static scenario. You practise cutting the time between first signal and first decisive action, because that interval is where damage accumulates. You learn to orient from partial evidence without freezing, to recognise when your model of the intrusion is wrong and correct it mid-incident, and to commit to containment before you have full certainty, because certainty arrives too late to matter.</p>
+      <p>You also build the discipline of looping rather than acting once and hoping. Isolating one machine is rarely the end; the next observation tells you whether the spread is checked or whether it has found another route, and you cycle again. Repetition under live pressure is what turns the four steps from a tidy diagram into a reflex. When a real intrusion arrives, the team that has drilled the loop moves while the slower team is still trying to understand what it is seeing, and in a contest of tempo, the side that moves first and accurately is the side that contains the damage.</p>
+    </div>
+
+    <div class="article__back">
+      <a href="/blog/index.html"><span class="arr" aria-hidden="true">←</span> Back to the Academy</a>
+    </div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+
+      <!-- brand -->
+      <div class="foot__col foot__col--brand">
+        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__tag">Live-fire cybersecurity training</div>
+        <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
+        <div class="foot__social">
+          <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="foot__link" href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="foot__link" href="mailto:hi@eevsec.com" aria-label="Email hi@eevsec.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- platform -->
+      <nav class="foot__col" aria-label="Platform">
+        <h2 class="foot__col-title">Platform</h2>
+        <div class="foot__links">
+          <a href="/#how">How it works</a>
+          <a href="/#coach">AI Coach</a>
+          <a href="/#scenarios">Scenarios</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/about.html">Team</a>
+          <a href="mailto:hi@eevsec.com" data-byte-contact>Contact</a>
+        </div>
+      </nav>
+
+      <!-- company -->
+      <div class="foot__col foot__col--org">
+        <h2 class="foot__col-title">Company</h2>
+        <div class="foot__logo-row">
+          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
+          <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
+        </div>
+        <address class="foot__addr">
+          401, Garud Apartment, Opp: Mahabaleshwar Flat,<br>
+          Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
+        </address>
+        <div class="foot__cin">CIN: U62013GJ2026PTC177190</div>
+        <div class="foot__contact">
+          <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> ·
+          <a href="tel:+919265359476">+91 92653 59476</a>
+        </div>
+      </div>
+
+      <!-- legal -->
+      <nav class="foot__col" aria-label="Legal">
+        <h2 class="foot__col-title">Legal</h2>
+        <div class="foot__links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/returns.html">Refund Policy</a>
+          <a href="/cookies.html">Cookie Policy</a>
+          <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
+          <a href="/security.html">Security</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="foot__bottom">
+      <span>© <span id="year">2026</span> EEVSEC PRIVATE LIMITED. All rights reserved.</span>
+      <span class="foot__bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/returns.html">Refund</a>
+        <a href="/cookies.html">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/page.js?v=1"></script>
+<script src="/js/cookies.js?v=1" defer></script>
+<script src="/js/consent.js?v=7" defer></script>
+<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/recaptcha.js?v=1" defer></script>
+<script src="/js/faqbot.js?v=15" defer></script>
+</body>
+</html>

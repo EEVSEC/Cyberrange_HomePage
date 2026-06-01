@@ -1,0 +1,44 @@
+# EEVSEC CyberRange: Full Reference
+
+> EEVSEC CyberRange is a competitive, live-fire cybersecurity training arena. Two people enter one live scenario on separate isolated virtual machines (one attacks, one defends) in real time, with a state-aware AI Coach watching each side. It is not a course and not a CTF: there are no scripted walkthroughs, no fake boxes, and no passive videos. Operated by EEVSEC PRIVATE LIMITED, Ahmedabad, India (CIN U62013GJ2026PTC177190).
+
+## Status
+CyberRange is in pre-launch. Access is currently by waitlist (request access on the site); the description below reflects how the product works at launch. Joining the waitlist is free and collects only your name and email.
+
+## What it is
+CyberRange replaces passive lectures and predictable Capture-the-Flag puzzles with real-time, high-pressure defensive and offensive simulations on isolated virtual machines, guided by an AI Coach. The platform is browser-based with zero setup.
+
+## Match flow
+1. Pick your side: attack the system or defend it.
+2. Pick a scenario: choose the mission you want to fight in.
+3. Enter your VM: each player gets a separate, isolated machine.
+4. Battle live: react to a real human opponent in real time; no resets.
+5. Review with AI: see what happened, what worked, and what to improve.
+
+## The AI Coach
+- Side-aware: gives role-specific help for attack or defense.
+- Command context: reads your last action and suggests the next concrete step plus why.
+- Ask the coach: get unstuck with targeted hints.
+- Isolated sessions: each side's guidance stays private to that account.
+
+## Scenarios
+- IoT & Semiconductor (device-layer): firmware, hardware, and chip-level attack surfaces.
+- Digital Forensics (post-breach): reconstruct or cover memory, network, and disk evidence.
+- Cloud & Zero Trust (enterprise): misconfigurations and lateral movement across AWS, Azure, and GCP.
+- Adversarial AI (AI vs AI): AI agents attack and defend; the richest signal.
+- Red & Blue Automation (generative): novel attack and defense chains from real sessions.
+- SCADA / ICS (nation-state): power grids, water, and industrial controls.
+
+## Who it's for
+Corporate security teams, SOC analysts, recruiters and evaluators, learners, universities, and workforce trainers: anyone who needs hands-on practice that builds real skill under pressure.
+
+## Why it works
+Most labs test memory; CyberRange tests decisions. A live human opponent reacts to every move, full kill-chain scenarios run on real machines, and AI coaching is built into every round rather than bolted on.
+
+## Company
+EEVSEC PRIVATE LIMITED. Registered office: 401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India. CIN U62013GJ2026PTC177190. Contact: hi@eevsec.com.
+
+## Legal
+- Privacy Policy: https://eevsec.com/privacy.html. Personal-data processing under India's DPDPA 2023 & DPDP Rules 2025, the UAE PDPL (Decree-Law 45/2021), the UAE Child Digital Safety Law (Decree-Law 26/2025), CCPA, and GDPR.
+- Terms of Service: https://eevsec.com/terms.html. Rules of engagement, sandbox isolation, liability limits, governing law (Ahmedabad, India).
+- Refund Policy: https://eevsec.com/returns.html. Digital-goods nature, 7-day non-activated refunds, technical-outage credits, and cancellation rules.

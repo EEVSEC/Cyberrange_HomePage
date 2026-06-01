@@ -1,0 +1,17 @@
+# EEVSEC CyberRange
+
+> A competitive, live-fire cybersecurity training arena: real-time PvP battles on isolated virtual machines, a state-aware AI Coach, and deep attack/defense simulations. Currently in pre-launch; the waitlist is open. Operated by EEVSEC PRIVATE LIMITED (Ahmedabad, India).
+
+## Core
+- [How it works](https://eevsec.com/#how): Two players enter one live scenario, one attacks and one defends, across isolated virtual machines.
+- [AI Coach](https://eevsec.com/#coach): Side-aware, in-match guidance that tracks your actions and explains the next move; each side's session is private.
+- [Modes](https://eevsec.com/#modes): Battle, Practice, Learn, and Analyze.
+- [Scenarios](https://eevsec.com/#scenarios): IoT & semiconductor, digital forensics, cloud & zero-trust, adversarial AI, red/blue automation, and SCADA/ICS.
+
+## Company
+- [EEVSEC PRIVATE LIMITED](https://eevsec.com/): Registered in Ahmedabad, Gujarat, India (CIN U62013GJ2026PTC177190). Contact: hi@eevsec.com.
+
+## Legal
+- [Privacy Policy](https://eevsec.com/privacy.html): Data processing under DPDPA 2023, UAE PDPL, CCPA, and GDPR.
+- [Terms of Service](https://eevsec.com/terms.html): Rules of engagement, liability limits, and governing law.
+- [Refund Policy](https://eevsec.com/returns.html): Subscription, cancellation, and refund rules.

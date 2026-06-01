@@ -1,0 +1,155 @@
+/* Hallmark · macrostructure: Asymmetric Command · tone: editorial-aesthetic
+ * theme: soft mesh gradient (teal/emerald/lime) + emerald accent
+ * bg-light: oklch(98% 0 0) · bg-dark: oklch(10% 0 0) · accent: emerald
+ * headings: Instrument Serif · body: Geist 300 · mono: Geist Mono
+ * axes: dual-mode · serif-display · sans-body · gradient-bg
+ */
+:root {
+  /* ── surfaces — neutral grayscale (light mode) ── */
+  --bg:        oklch(98%   0 0);
+  --bg-1:      oklch(96%   0 0);
+  --bg-2:      oklch(93%   0 0);
+  --bg-3:      oklch(88%   0 0);
+  --bg-inset:  oklch(100%  0 0);
+
+  /* ── borders — pure neutral ── */
+  --line:    oklch(0% 0 0 / 0.08);
+  --line-2:  oklch(0% 0 0 / 0.14);
+  --line-3:  oklch(0% 0 0 / 0.22);
+
+  /* ── ink — neutral grayscale ── */
+  --ink:     oklch(14%  0 0);
+  --ink-2:   oklch(34%  0 0);
+  --ink-3:   oklch(54%  0 0);
+  --ink-4:   oklch(68%  0 0);
+
+  /* ── accent (emerald — harmonizes with mesh gradient) ──
+   * legacy token name --violet retained for backwards compat. */
+  --violet:       oklch(58%  0.180 150);
+  --violet-2:     oklch(64%  0.190 145);
+  --violet-ink:   oklch(99%  0 0);
+  --violet-soft:  oklch(58%  0.180 150 / 0.10);
+  --violet-glow:  oklch(58%  0.180 150 / 0.18);
+
+  /* ── secondary tone (teal — for "defender"/cool accents) ──
+   * legacy token name --cyan retained. */
+  --cyan:         oklch(55%  0.140 205);
+  --cyan-2:       oklch(62%  0.150 200);
+  --cyan-ink:     oklch(99%  0 0);
+  --cyan-soft:    oklch(55%  0.140 205 / 0.10);
+  --cyan-glow:    oklch(55%  0.140 205 / 0.18);
+
+  --warn:         oklch(58%  0.180 30);
+
+  /* ── how-it-works diagram tokens ── */
+  --how-surface:       oklch(97% 0.008 75 / 0.72);
+  --how-surface-2:     oklch(100% 0 0 / 0.82);
+  --how-terminal:      oklch(18% 0.008 260);
+  --how-terminal-bar:  oklch(24% 0.008 260);
+  --how-atk:           oklch(58% 0.215 27);
+  --how-def:           oklch(52% 0.145 142);
+  --how-line-atk:      oklch(58% 0.215 27 / 0.62);
+  --how-line-def:      oklch(52% 0.145 142 / 0.62);
+  --how-card-shadow:   oklch(0% 0 0 / 0.07);
+
+  /* ── guide-bot spotlight scrim ── */
+  --scrim:        oklch(28%  0.02  262 / 0.42);
+
+  /* ── mesh gradient stops (used by .field) ── */
+  --mesh-1: oklch(55% 0.150 200 / 0.35);  /* teal,    top-left   */
+  --mesh-2: oklch(65% 0.180 160 / 0.30);  /* emerald, right      */
+  --mesh-3: oklch(82% 0.200 130 / 0.28);  /* lime,    bottom     */
+
+  /* ── type ── */
+  --font-display: 'Instrument Serif', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-body:    'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:    'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* fluid type scale */
+  --text-hero:  clamp(2.9rem, 1.4rem + 6.5vw, 7.2rem);
+  --text-xxl:   clamp(2.2rem, 1.3rem + 3.6vw, 4.5rem);
+  --text-xl:    clamp(1.7rem, 1.2rem + 2.0vw, 3.0rem);
+  --text-lg:    clamp(1.3rem, 1.05rem + 1.0vw, 1.9rem);
+  --text-md:    clamp(1.05rem, 0.98rem + 0.35vw, 1.22rem);
+  --text-base:  1rem;
+  --text-sm:    0.9rem;
+  --text-xs:    0.8rem;
+  --text-2xs:   0.7rem;
+  --text-mono:  0.78rem;
+
+  /* ── spacing — 4pt scale ── */
+  --space-2xs: 4px;
+  --space-xs:  8px;
+  --space-sm:  12px;
+  --space-md:  20px;
+  --space-lg:  32px;
+  --space-xl:  56px;
+  --space-2xl: 92px;
+  --space-3xl: 148px;
+  --section-pad: clamp(22px, 2.6vw, 44px);
+  --gutter:    clamp(20px, 5vw, 80px);
+  --maxw:      1240px;
+
+  /* ── motion ── */
+  --ease-out:    cubic-bezier(.16, 1, .3, 1);
+  --ease-in:     cubic-bezier(.55, 0, 1, .45);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-fast: .22s;
+  --dur-mid:  .45s;
+  --dur-slow: .8s;
+
+  /* ── radii ── */
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   22px;
+  --r-pill: 999px;
+}
+
+/* ── dark mode ────────────────────────────────────────────── */
+[data-theme="dark"] {
+  --bg:       oklch(10%   0 0);
+  --bg-1:     oklch(13%   0 0);
+  --bg-2:     oklch(16%   0 0);
+  --bg-3:     oklch(21%   0 0);
+  --bg-inset: oklch(7%    0 0);
+
+  --line:     oklch(100% 0 0 / 0.08);
+  --line-2:   oklch(100% 0 0 / 0.14);
+  --line-3:   oklch(100% 0 0 / 0.22);
+
+  --ink:      oklch(97%  0 0);
+  --ink-2:    oklch(78%  0 0);
+  --ink-3:    oklch(60%  0 0);
+  --ink-4:    oklch(45%  0 0);
+
+  --violet:       oklch(72%  0.180 150);
+  --violet-2:     oklch(78%  0.180 148);
+  --violet-ink:   oklch(10%  0 0);
+  --violet-soft:  oklch(72%  0.180 150 / 0.14);
+  --violet-glow:  oklch(72%  0.180 150 / 0.24);
+
+  --cyan:         oklch(70%  0.140 200);
+  --cyan-2:       oklch(76%  0.140 198);
+  --cyan-ink:     oklch(10%  0 0);
+  --cyan-soft:    oklch(70%  0.140 200 / 0.14);
+  --cyan-glow:    oklch(70%  0.140 200 / 0.24);
+
+  --scrim:        oklch(2%   0.010 262 / 0.74);
+
+  /* mesh stops a touch more luminous so they read on dark */
+  --mesh-1: oklch(60% 0.160 200 / 0.32);
+  --mesh-2: oklch(70% 0.190 160 / 0.28);
+  --mesh-3: oklch(80% 0.190 130 / 0.22);
+
+  --warn:         oklch(76%  0.150 75);
+
+  --how-surface:       oklch(13% 0.010 205 / 0.62);
+  --how-surface-2:     oklch(10% 0.010 205 / 0.72);
+  --how-terminal:      oklch(4% 0.006 260);
+  --how-terminal-bar:  oklch(10% 0.006 260);
+  --how-atk:           oklch(70% 0.200 27);
+  --how-def:           var(--violet);
+  --how-line-atk:      oklch(70% 0.200 27 / 0.68);
+  --how-line-def:      oklch(72% 0.180 150 / 0.62);
+  --how-card-shadow:   oklch(0% 0 0 / 0.46);
+}

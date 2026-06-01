@@ -1,0 +1,32 @@
+# GitHub Pages (Jekyll) build configuration.
+#
+# Purpose: keep internal / working files in the repository but OUT of the
+# published site. Excluded files are NOT deleted and stay version-controlled;
+# they are simply not copied into the deployed output, so they are not reachable
+# by URL on eevsec.com. (A .gitignore entry cannot do this for files that are
+# already committed; Jekyll's `exclude` list is the correct mechanism for
+# GitHub Pages.)
+
+exclude:
+  # Internal docs / planning / drafts — not for public consumption
+  - audiitandoperationaudit.md
+  - corrected-snippets.md
+  - deployment-notes.md
+  - wikipedia-draft.md
+  - visit-collector-setup.md
+  - compliance/
+  # Dead / non-deployable code (static site has no Node backend)
+  - server.js
+  - shot.js
+  # Unreferenced source asset
+  - "SnapInsta.to_AQOyWo6i1Jr-dK0B7Hsr9i6qpIalVE8f3J2jAM-QZDe4-DqIvtYppuF7WjL6wFk4w_KHLIpEc2OjmFIAfMR2Ehew614v0sIhdgOsNz4.mp4"
+  # Standard build artefacts, should they ever appear
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# Jekyll hides dot-folders by default; security.html links to security.txt, so
+# make sure the .well-known folder is still published.
+include:
+  - ".well-known"

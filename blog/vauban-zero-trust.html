@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Vauban's Fortress Geometry in Zero-Trust Architecture | EEVSEC CyberRange</title>
+<meta name="description" content="Sebastien Le Prestre de Vauban's star-fort geometry, with overlapping fields of fire and no single point of failure, as a model for micro-segmentation and zero-trust access control across AWS, Azure, and GCP." />
+<meta name="color-scheme" content="dark light" />
+<link rel="canonical" href="https://eevsec.com/blog/vauban-zero-trust.html" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/blog/vauban-zero-trust.html" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/blog/vauban-zero-trust.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Vauban's Fortress Geometry in Zero-Trust Architecture" />
+<meta property="og:description" content="Reading Vauban's star-fort design as a blueprint for micro-segmentation and lateral-movement control across multi-cloud." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eevsec.com/blog/vauban-zero-trust.html" />
+<meta name="robots" content="index,follow" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0b0d0c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="/css/tokens.css?v=99" />
+<link rel="stylesheet" href="/css/styles.css?v=140" />
+<link rel="stylesheet" href="/css/blog.css?v=1" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EEVSEC PRIVATE LIMITED",
+  "url": "https://eevsec.com",
+  "logo": "https://eevsec.com/logo.png",
+  "email": "hi@eevsec.com",
+  "contactPoint": { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "customer support" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta",
+    "addressLocality": "Ahmedabad", "addressRegion": "Gujarat", "postalCode": "380015", "addressCountry": "IN"
+  },
+  "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Vauban's Fortress Geometry in Zero-Trust Architecture",
+  "description": "Reading Vauban's star-fort geometry as a model for micro-segmentation and zero-trust access control across multi-cloud.",
+  "datePublished": "2026-05-30",
+  "dateModified": "2026-05-30",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/vauban-zero-trust.html" },
+  "author": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EEVSEC PRIVATE LIMITED",
+    "logo": { "@type": "ImageObject", "url": "https://eevsec.com/logo.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Cyber Warfare Academy", "item": "https://eevsec.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Vauban's Fortress Geometry in Zero-Trust Architecture", "item": "https://eevsec.com/blog/vauban-zero-trust.html" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="field" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <nav class="nav__inner" aria-label="Primary">
+    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <div class="nav__links">
+      <a href="/#how">How it works</a>
+      <a href="/#coach">AI Coach</a>
+      <a href="/#scenarios">Scenarios</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/about.html">Team</a>
+    </div>
+    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="page wrap">
+  <article class="article">
+    <header class="article__head">
+      <span class="eyebrow">Architecture</span>
+      <h1>Vauban's Fortress Geometry in Zero-Trust Architecture</h1>
+      <p class="article__byline">EEVSEC <span class="sep" aria-hidden="true">/</span> 30 May 2026</p>
+    </header>
+
+    <div class="article__body">
+      <p>Look at the plan of a seventeenth century fortress and you are looking at a security architecture diagram. The jagged points, the layered walls, the deliberate angles: none of it is decoration. Every line answers a question about where an attacker could approach and what would stop them. The engineer who refined that geometry into a discipline has a great deal to teach anyone designing a network that assumes the enemy is already inside.</p>
+
+      <h2>Military foundation</h2>
+      <p>Sebastien Le Prestre de Vauban was a French military engineer whose name became synonymous with fortification. His designs replaced the tall, flat walls of earlier strongholds with low, angled, star-shaped works built from projecting bastions. The shape was not aesthetic. The high walls of older castles offered defenders dead ground at their own feet, places an attacker at the base could not be fired upon. Vauban's geometry eliminated those blind spots. Each bastion projected outward so that the ground in front of every wall fell under fire from neighbouring positions.</p>
+      <p>Two ideas sit at the heart of this design. The first is overlapping coverage: every approach is watched by more than one position, so a force advancing toward one section is met by fire from the sections beside it. The second is layered depth with no single point of failure. A fortress was not one wall but a sequence of works, outer and inner, each independently defensible. Taking the first line did not hand the attacker the place. It dropped them into a new zone, already covered, with another barrier ahead and the cost of the assault mounting at every step.</p>
+
+      <h2>Cyber application</h2>
+      <p>Zero-trust architecture inherits Vauban's premises almost directly. The old network perimeter behaved like a high castle wall: hard on the outside, soft within, so that anyone past the gate could move freely. That model gave attackers the very dead ground Vauban designed away. Once inside, an intruder could traverse the interior unobserved and unchallenged, because trust was granted by location rather than verified at each step.</p>
+      <p>Micro-segmentation rebuilds the interior as a field of bastions. The environment is divided into small, independently defended zones, and movement between them is neither implicit nor free. Strict access control governs every request: identity and authorisation are checked at each boundary, so reaching one segment grants nothing automatically about the next. This is Vauban's layered depth expressed in policy. An attacker who compromises a single container or workload lands in one zone, covered by its own controls, with another barrier ahead rather than open ground.</p>
+      <p>The same geometry holds across AWS, Azure, and GCP, where workloads are spread over several providers and a flat trust model would be a gift to an intruder. Consistent segmentation and access control across all three keep a compromise contained to where it began. One breached container cannot move laterally into the next service, because the path between them is a checked boundary, not an open corridor, and the controls on either side overlap so that suspicious movement is observed from more than one vantage point. There is no single point of failure whose fall opens the rest, because each zone stands on its own and the loss of one does not surrender its neighbours.</p>
+
+      <h2>What you practise</h2>
+      <p>In the range, this is where defence-in-depth stops being a slogan and becomes a map you have to draw and defend. You practise mapping a multi-cloud estate into segments, deciding where the boundaries belong, and writing the access rules that let legitimate traffic through while denying the lateral paths an attacker needs. You learn to hunt for the dead ground in your own design: the over-trusted service account, the flat subnet that quietly connects two zones, the boundary that checks identity in one direction but not the other.</p>
+      <p>Working both sides sharpens the lesson. As the attacker, you probe for the single weak wall that opens everything behind it, and you feel directly how segmentation turns a quick traversal into a slow grind of separately defended zones. As the defender, you confirm that compromising one workload yields one zone and nothing more, and that overlapping controls catch the movement a single control would miss. The instinct you are building is Vauban's: never present a flat wall an attacker can walk past, and never let the fall of one position cost you the rest. Design so that getting in is only the beginning of the problem, not the end of your defence.</p>
+    </div>
+
+    <div class="article__back">
+      <a href="/blog/index.html"><span class="arr" aria-hidden="true">←</span> Back to the Academy</a>
+    </div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+
+      <!-- brand -->
+      <div class="foot__col foot__col--brand">
+        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__tag">Live-fire cybersecurity training</div>
+        <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
+        <div class="foot__social">
+          <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="foot__link" href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="foot__link" href="mailto:hi@eevsec.com" aria-label="Email hi@eevsec.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- platform -->
+      <nav class="foot__col" aria-label="Platform">
+        <h2 class="foot__col-title">Platform</h2>
+        <div class="foot__links">
+          <a href="/#how">How it works</a>
+          <a href="/#coach">AI Coach</a>
+          <a href="/#scenarios">Scenarios</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/about.html">Team</a>
+          <a href="mailto:hi@eevsec.com" data-byte-contact>Contact</a>
+        </div>
+      </nav>
+
+      <!-- company -->
+      <div class="foot__col foot__col--org">
+        <h2 class="foot__col-title">Company</h2>
+        <div class="foot__logo-row">
+          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
+          <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
+        </div>
+        <address class="foot__addr">
+          401, Garud Apartment, Opp: Mahabaleshwar Flat,<br>
+          Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
+        </address>
+        <div class="foot__cin">CIN: U62013GJ2026PTC177190</div>
+        <div class="foot__contact">
+          <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> ·
+          <a href="tel:+919265359476">+91 92653 59476</a>
+        </div>
+      </div>
+
+      <!-- legal -->
+      <nav class="foot__col" aria-label="Legal">
+        <h2 class="foot__col-title">Legal</h2>
+        <div class="foot__links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/returns.html">Refund Policy</a>
+          <a href="/cookies.html">Cookie Policy</a>
+          <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
+          <a href="/security.html">Security</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="foot__bottom">
+      <span>© <span id="year">2026</span> EEVSEC PRIVATE LIMITED. All rights reserved.</span>
+      <span class="foot__bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/returns.html">Refund</a>
+        <a href="/cookies.html">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/page.js?v=1"></script>
+<script src="/js/cookies.js?v=1" defer></script>
+<script src="/js/consent.js?v=7" defer></script>
+<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/recaptcha.js?v=1" defer></script>
+<script src="/js/faqbot.js?v=15" defer></script>
+</body>
+</html>

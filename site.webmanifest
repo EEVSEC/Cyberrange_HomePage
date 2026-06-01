@@ -1,0 +1,13 @@
+{
+  "name": "EEVSEC CyberRange",
+  "short_name": "CyberRange",
+  "description": "Live-fire cybersecurity training arena: attack and defend real systems against a real opponent, with a state-aware AI Coach.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0d0c",
+  "theme_color": "#0b0d0c",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
