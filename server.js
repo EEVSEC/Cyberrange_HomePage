@@ -207,6 +207,16 @@ http.createServer(async (req, res) => {
       return fs.createReadStream(fullPath, { start, end }).pipe(res);
     }
 
+    if (ext === ".html") {
+      // Local dev over plain HTTP: the inline CSP's `upgrade-insecure-requests`
+      // forces subresources to https (no TLS here) → strip it so CSS/JS load.
+      let html = fs.readFileSync(fullPath, "utf8")
+        .replace(/\s*;?\s*upgrade-insecure-requests/g, "");
+      const buf = Buffer.from(html, "utf8");
+      res.writeHead(200, { "Content-Type": contentType, "Content-Length": buf.length, "Cache-Control": cc });
+      return res.end(buf);
+    }
+
     res.writeHead(200, { "Content-Type": contentType, "Content-Length": stat.size, "Cache-Control": cc });
     fs.createReadStream(fullPath).pipe(res);
   });

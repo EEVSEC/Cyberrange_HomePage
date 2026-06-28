@@ -1,0 +1,15 @@
+{
+  "name": "eevsec-sentinel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EEVSEC CyberRange front-of-site AI assistant (Cloudflare Worker + Groq, free).",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

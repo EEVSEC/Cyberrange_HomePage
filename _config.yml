@@ -9,15 +9,26 @@
 
 exclude:
   # Internal docs / planning / drafts — not for public consumption
+  - AUDIT_TASKS.md
+  - KEYWORD_PLAN.md
+  - HANDOFF.md
+  - EEVSEC_Website_Audit_v2.pdf
   - audiitandoperationaudit.md
   - corrected-snippets.md
   - deployment-notes.md
   - wikipedia-draft.md
   - visit-collector-setup.md
   - compliance/
+  # Temporarily hidden from the public site (2026-06-15) — unlink + noindex + not built.
+  # To re-enable: remove this line AND delete the Cloudflare redirect rule for /about.
+  - about.html
   # Dead / non-deployable code (static site has no Node backend)
   - server.js
   - shot.js
+  - make_og.py   # build tool: regenerates media/og/*.png (run locally, commit output)
+  - CLOUDFLARE_SETUP.md   # internal ops runbook
+  # Sentinel AI assistant — deployed separately to Cloudflare Workers, not GH Pages
+  - worker/
   # Unreferenced source asset
   - "SnapInsta.to_AQOyWo6i1Jr-dK0B7Hsr9i6qpIalVE8f3J2jAM-QZDe4-DqIvtYppuF7WjL6wFk4w_KHLIpEc2OjmFIAfMR2Ehew614v0sIhdgOsNz4.mp4"
   # Standard build artefacts, should they ever appear

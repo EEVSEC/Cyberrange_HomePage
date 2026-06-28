@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Terms of Service | EEVSEC CyberRange</title>
 <meta name="description" content="The Terms of Service for the EEVSEC CyberRange platform, operated by EEVSEC PRIVATE LIMITED. Eligibility, acceptable use, subscriptions, liability, and governing law, applicable worldwide." />
@@ -16,6 +16,12 @@
 <meta property="og:description" content="Rules of engagement, use restrictions, liability limits, and governing law for the EEVSEC CyberRange." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://eevsec.com/terms.html" />
+<meta property="og:image" content="https://eevsec.com/media/og-eev.png" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="2000" />
+<meta property="og:image:alt" content="EEVSEC" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eevsec.com/media/og-eev.png" />
 <meta name="robots" content="index,follow" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -26,10 +32,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600&text=%E0%A4%88%E0%A4%B5&display=swap" rel="stylesheet" />
 <script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="css/tokens.css?v=99" />
-<link rel="stylesheet" href="css/styles.css?v=140" />
-<link rel="stylesheet" href="css/legal.css?v=1" />
+<link rel="stylesheet" href="css/styles.css?v=155" />
+<link rel="stylesheet" href="css/legal.css?v=3" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,7 +73,7 @@
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
     <div class="nav__links">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
@@ -114,7 +121,7 @@
 
     <section id="engagement">
       <h2>4. Acceptable use and rules of engagement</h2>
-      <p>The Platform is an educational training environment that simulates offensive and defensive cybersecurity scenarios. To keep it safe and lawful for everyone, you agree to the following.</p>
+      <p>The Platform is an educational training environment that simulates offensive and defensive cybersecurity scenarios. To keep it safe and lawful for everyone, you agree to the following. These rules of engagement are also published in full as a standalone <a href="/aup.html">Acceptable Use Policy</a>, which is incorporated into these Terms by reference.</p>
       <h3>Sandbox isolation</h3>
       <p>All simulations run inside isolated, single-use environments. You must not attempt to escape a simulation container, compromise the underlying infrastructure or hypervisor, access other users' sessions or data, or launch denial-of-service or other attacks against our systems. Any such attempt may lead to immediate suspension or termination and, where warranted, referral to the relevant authorities.</p>
       <h3>No off-platform misuse</h3>
@@ -152,6 +159,7 @@
     <section id="data">
       <h2>10. Privacy and your data</h2>
       <p>Our <a href="/privacy.html">Privacy Policy</a> explains what personal data we collect and how we use, share, and protect it, and it forms part of these Terms. The Platform stores a small number of first-party cookies and local-storage values: an essential cookie that records your cookie choice and a theme preference, and, only with your consent, analytics (a first-party visit cookie and, where enabled, Google Analytics) to understand how the site is used. You can accept, decline, or withdraw consent at any time through the cookie notice. By using the Platform you acknowledge the Privacy Policy and the processing of your data as described there.</p>
+      <p>For enterprise customers who require a data-processing agreement, our <a href="/legal/dpa.html">Data Processing Addendum</a> (covering GDPR Article&nbsp;28 obligations, sub-processors, Standard Contractual Clauses, and breach notification) is incorporated into these Terms when executed; a PDF or DOCX version is available on request.</p>
     </section>
 
     <section id="disclaimer">
@@ -206,7 +214,7 @@
 
       <!-- brand -->
       <div class="foot__col foot__col--brand">
-        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__brand"><span class="foot__deva" title="ईव — the EEVSEC mark">ईव</span>Cyber<span class="br">Range</span></div>
         <div class="foot__tag">Live-fire cybersecurity training</div>
         <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
         <div class="foot__social">
@@ -229,8 +237,13 @@
           <a href="/#how">How it works</a>
           <a href="/#coach">AI Coach</a>
           <a href="/#scenarios">Scenarios</a>
+          <a href="/doctrine.html">Doctrine</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="mailto:hi@eevsec.com" data-byte-contact>Contact</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/news.html">Newsroom</a>
+          <a href="/careers.html">Careers</a>
+          <a href="/blog/index.html">Academy</a>
+          <a href="/faq.html">FAQ</a>
         </div>
       </nav>
 
@@ -258,6 +271,7 @@
         <div class="foot__links">
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Service</a>
+          <a href="/aup.html">Acceptable Use</a>
           <a href="/returns.html">Refund Policy</a>
           <a href="/cookies.html">Cookie Policy</a>
           <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
@@ -280,11 +294,13 @@
   </div>
 </footer>
 
-<script src="js/page.js?v=1"></script>
+<script src="js/page.js?v=2"></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/faqbot.js?v=15" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>
 </html>

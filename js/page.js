@@ -14,11 +14,13 @@
   const html = document.documentElement;
   const meta = $('meta[name="color-scheme"]');
   if (btn) {
+    btn.setAttribute('aria-pressed', html.dataset.theme === 'light' ? 'true' : 'false');
     btn.addEventListener('click', () => {
       const t = html.dataset.theme === 'dark' ? 'light' : 'dark';
       html.dataset.theme = t;
       try { localStorage.setItem('cr-theme', t); } catch (e) {}
       if (meta) meta.content = t === 'dark' ? 'dark light' : 'light dark';
+      btn.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');  // G-04
     });
   }
 

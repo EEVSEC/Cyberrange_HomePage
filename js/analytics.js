@@ -55,4 +55,19 @@
   }
   loadGA();                                        // returning visitor who already accepted
   window.addEventListener('cr:consent', loadGA);   // when they Accept now
+
+  /* ── T-14: consent-gated event tracking ──────────────────────
+     Public API: window.track('event_name', { ...params }).
+     Event names are snake_case for GA4. Fires only after the visitor
+     has consented to analytics; otherwise it is a silent no-op.
+     Standard events: waitlist_submit, waitlist_role_chosen, pricing_view,
+     contact_message_sent, contact_email_click, ai_bot_open,
+     ai_bot_message_sent, ai_bot_handoff_to_human, currency_changed,
+     lang_switcher_clicked. */
+  window.track = function (name, params) {
+    if (!name) return;
+    if (!(window.crConsent && window.crConsent.allows('analytics'))) return;
+    loadGA();
+    if (typeof window.gtag === 'function') window.gtag('event', name, params || {});
+  };
 })();

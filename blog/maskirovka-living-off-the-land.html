@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions | EEVSEC CyberRange</title>
+<meta name="description" content="How maskirovka — the Soviet doctrine of military deception — explains living-off-the-land intrusions like Volt Typhoon, and why detection has to shift from signature to behaviour." />
+<meta name="color-scheme" content="dark light" />
+<link rel="canonical" href="https://eevsec.com/blog/maskirovka-living-off-the-land.html" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/blog/maskirovka-living-off-the-land.html" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/blog/maskirovka-living-off-the-land.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions" />
+<meta property="og:description" content="A doctrine study mapping military deception onto living-off-the-land tradecraft, and what it means for detection." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eevsec.com/blog/maskirovka-living-off-the-land.html" />
+<meta property="og:image" content="https://eevsec.com/media/og-eev.png" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="2000" />
+<meta property="og:image:alt" content="EEVSEC" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eevsec.com/media/og-eev.png" />
+<meta name="robots" content="index,follow" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0b0d0c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="/css/tokens.css?v=99" />
+<link rel="stylesheet" href="/css/styles.css?v=155" />
+<link rel="stylesheet" href="/css/blog.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EEVSEC PRIVATE LIMITED",
+  "url": "https://eevsec.com",
+  "logo": "https://eevsec.com/logo.png",
+  "email": "hi@eevsec.com",
+  "contactPoint": { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "customer support" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta",
+    "addressLocality": "Ahmedabad", "addressRegion": "Gujarat", "postalCode": "380015", "addressCountry": "IN"
+  },
+  "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions",
+  "description": "How maskirovka, the Soviet doctrine of military deception, explains living-off-the-land intrusions and why detection must move from signature to behaviour.",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/maskirovka-living-off-the-land.html" },
+  "author": {
+    "@type": "Person",
+    "name": "Ishaan Sharma",
+    "jobTitle": "Co-Founder & CTO",
+    "worksFor": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EEVSEC PRIVATE LIMITED",
+    "logo": { "@type": "ImageObject", "url": "https://eevsec.com/logo.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Cyber Warfare Academy", "item": "https://eevsec.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions", "item": "https://eevsec.com/blog/maskirovka-living-off-the-land.html" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="field" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <nav class="nav__inner" aria-label="Primary">
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
+    <div class="nav__links">
+      <a href="/#how">How it works</a>
+      <a href="/#coach">AI Coach</a>
+      <a href="/#scenarios">Scenarios</a>
+      <a href="/pricing.html">Pricing</a>
+    </div>
+    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="page wrap">
+  <article class="article">
+    <header class="article__head">
+      <span class="eyebrow">Threat intelligence</span>
+      <h1>Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions</h1>
+      <p class="article__byline">Ishaan Sharma <span class="sep" aria-hidden="true">/</span> 15 June 2026</p>
+    </header>
+
+    <div class="article__body">
+      <p>The intrusions that keep defenders awake are not the loud ones. A ransomware note on every screen is a failure that announces itself; you know the day it happened. The dangerous adversary is the one who has been inside for months and looks, on every dashboard you own, exactly like your own administrators going about their work. That is not a new problem. It is the oldest idea in the deception playbook, and the Soviets gave it a name.</p>
+
+      <h2>Military foundation</h2>
+      <p>Maskirovka is the Russian and Soviet doctrine of military deception &mdash; but the word is broader than the English term. It is not a single ruse; it is a system that runs from camouflaging a tank up to deceiving an entire theatre command about where and when an offensive will fall. Its aim is to deny the adversary an accurate picture of reality until acting on the truth is no longer possible. It works on two faces at once: <em>concealment</em>, hiding what is real, and <em>simulation</em>, showing what is false. Done well, the two merge, and the genuine becomes indistinguishable from the routine.</p>
+      <p>The decisive move in maskirovka is rarely a clever fake. It is making the real thing look like nothing worth a second glance. A unit that moves at the same tempo as ordinary traffic, on the same roads, in the same patterns, is hidden not because it cannot be seen but because seeing it tells the observer nothing. The deception is in the <em>interpretation</em>, not the photograph. An analyst who has everything in front of them and still draws the wrong conclusion has been defeated more completely than one who was simply kept in the dark.</p>
+
+      <h2>Cyber application</h2>
+      <p>Living-off-the-land is maskirovka rendered in code. Instead of dropping custom malware that a scanner can fingerprint, the intruder operates with the tools already present and trusted on the host: PowerShell, WMI, <code>certutil</code>, <code>netsh</code>, scheduled tasks, signed system binaries. Nothing foreign is introduced, so there is no malicious file to flag and little that stands out as an artifact. The operator&rsquo;s activity is camouflaged by being, technically, the same activity your own staff perform every day.</p>
+      <p>The clearest public example is Volt Typhoon, the state-sponsored actor that US agencies have described conducting long-dwell intrusions into critical-infrastructure networks using almost entirely living-off-the-land tradecraft. The point of that approach is not stealth for its own sake; it is to deny defenders an accurate picture. There is no signature to write, because the &ldquo;weapon&rdquo; is your own toolset. The deception, exactly as in maskirovka, lives in the interpretation: a SOC analyst can have every relevant log in front of them and still read the session as ordinary administration.</p>
+      <p>This is why signature-based detection loses against a competent living-off-the-land operator, and why the answer is behaviour and context rather than indicators. You cannot ask &ldquo;is this binary malicious&rdquo; when the binary is signed by the operating-system vendor. You have to ask whether <em>this</em> use of it fits the baseline: PowerShell spawned by a process that has no business launching it, <code>certutil</code> reaching out to the internet, a service account suddenly behaving interactively, a scheduled task created at an hour no human keeps. The relevant <a href="/doctrine.html#ethical-hacking">techniques</a> map cleanly onto MITRE ATT&amp;CK &mdash; signed binary proxy execution (T1218), command and scripting interpreters (T1059), and account manipulation among them &mdash; and the contest reduces to a single question: can the defender tell the staged from the genuine before it matters?</p>
+
+      <h2>What you practise</h2>
+      <p>In the range this stops being a reading exercise and becomes a match. On the offensive side you run the living-off-the-land playbook against a defended host: accomplish the objective using only what is already there, minimise the artifacts you leave, and keep your activity inside the shape of normal traffic. On the defensive side you do the harder work &mdash; build the baseline first, because you cannot detect a deviation from a normal you never characterised, then hunt the anomaly while a live opponent is actively trying to look ordinary. The <a href="/#coach">AI Coach</a> maps each move to ATT&amp;CK as it happens and shows you, afterwards, the exact moment the genuine and the staged diverged.</p>
+      <p>It is the whole doctrine in one scenario. The <a href="/doctrine.html">three layers</a> are all present: a real adversary&rsquo;s tradecraft drawn from the world (Cyber Crime), the hands-on craft of blending in and of catching what blends in (Ethical Hacking), and above both the strategic contest of deception against counter-deception (WAR). The habit you are building is the analyst&rsquo;s discipline maskirovka was designed to defeat &mdash; refusing to accept that <em>looks routine</em> means <em>is routine</em>, and learning to read the picture instead of the file. Against an opponent whose entire method is to be unremarkable, the defender who has practised seeing through it wins the only contest that counts.</p>
+    </div>
+
+    <div class="article__back">
+      <a href="/blog/index.html"><span class="arr" aria-hidden="true">←</span> Back to the Academy</a>
+    </div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+
+      <!-- brand -->
+      <div class="foot__col foot__col--brand">
+        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__tag">Live-fire cybersecurity training</div>
+        <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
+        <div class="foot__social">
+          <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="foot__link" href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="foot__link" href="mailto:hi@eevsec.com" aria-label="Email hi@eevsec.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- platform -->
+      <nav class="foot__col" aria-label="Platform">
+        <h2 class="foot__col-title">Platform</h2>
+        <div class="foot__links">
+          <a href="/#how">How it works</a>
+          <a href="/#coach">AI Coach</a>
+          <a href="/#scenarios">Scenarios</a>
+          <a href="/doctrine.html">Doctrine</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/news.html">Newsroom</a>
+          <a href="/careers.html">Careers</a>
+          <a href="/blog/index.html">Academy</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+      </nav>
+
+      <!-- company -->
+      <div class="foot__col foot__col--org">
+        <h2 class="foot__col-title">Company</h2>
+        <div class="foot__logo-row">
+          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
+          <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
+        </div>
+        <address class="foot__addr">
+          401, Garud Apartment, Opp: Mahabaleshwar Flat,<br>
+          Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
+        </address>
+        <div class="foot__cin">CIN: U62013GJ2026PTC177190</div>
+        <div class="foot__contact">
+          <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> ·
+          <a href="tel:+919265359476">+91 92653 59476</a>
+        </div>
+      </div>
+
+      <!-- legal -->
+      <nav class="foot__col" aria-label="Legal">
+        <h2 class="foot__col-title">Legal</h2>
+        <div class="foot__links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/aup.html">Acceptable Use</a>
+          <a href="/returns.html">Refund Policy</a>
+          <a href="/cookies.html">Cookie Policy</a>
+          <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
+          <a href="/security.html">Security</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="foot__bottom">
+      <span>© <span id="year">2026</span> EEVSEC PRIVATE LIMITED. All rights reserved.</span>
+      <span class="foot__bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/returns.html">Refund</a>
+        <a href="/cookies.html">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/page.js?v=2"></script>
+<script src="/js/cookies.js?v=1" defer></script>
+<script src="/js/consent.js?v=7" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
+<script src="/js/recaptcha.js?v=1" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
+</body>
+</html>

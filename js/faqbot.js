@@ -37,7 +37,7 @@
 
   const css = document.createElement('link');
   css.rel = 'stylesheet';
-  css.href = '/css/faqbot.css?v=10';
+  css.href = '/css/faqbot.css?v=11';
   document.head.appendChild(css);
 
   const root = document.createElement('div');
@@ -45,6 +45,7 @@
   root.innerHTML =
     '<button class="faqbot__bubble" id="faqbotBubble" type="button" aria-label="Open Byte, frequently asked questions" aria-expanded="false">' +
       '<span class="faqbot__glyph" aria-hidden="true">&gt;<i>_</i></span>' +
+      '<span class="faqbot__badge" id="faqbotBadge" aria-hidden="true"></span>' +
     '</button>' +
     '<div class="faqbot__panel" id="faqbotPanel" role="dialog" aria-label="Byte, frequently asked questions" aria-hidden="true">' +
       '<div class="faqbot__head">' +
@@ -70,7 +71,33 @@
   const bubble = $('#faqbotBubble'), panel = $('#faqbotPanel'), closeBtn = $('#faqbotClose'),
         body = $('#faqbotBody'), footMsg = $('#faqbotFootMsg'), stopBtn = $('#faqbotStop'),
         compose = $('#faqbotCompose'), field = $('#faqbotField'), sendBtn = $('#faqbotSend'),
-        cancelBtn = $('#faqbotCancel'), contactLink = $('#faqbotContactLink');
+        cancelBtn = $('#faqbotCancel'), contactLink = $('#faqbotContactLink'),
+        badge = $('#faqbotBadge');
+
+  /* ── B-03: proactive nudge — a quiet unread dot after a delay (or sooner on
+     /pricing), once per session, never an auto-open. */
+  let nudgeTimer = 0;
+  const NUDGE_KEY = 'byte_nudged';
+  const clearNudge = () => {
+    if (nudgeTimer) { clearTimeout(nudgeTimer); nudgeTimer = 0; }
+    if (badge) badge.classList.remove('is-on');
+    try { sessionStorage.setItem(NUDGE_KEY, '1'); } catch (e) {}
+  };
+  const showNudge = () => {
+    if (root.dataset.open === 'true') return;
+    let seen = false;
+    try { seen = sessionStorage.getItem(NUDGE_KEY) === '1'; } catch (e) {}
+    if (seen) return;
+    if (badge) badge.classList.add('is-on');
+    bubble.setAttribute('aria-label', 'Open Byte — questions about CyberRange? (1 new)');
+  };
+  (function scheduleNudge() {
+    let seen = false;
+    try { seen = sessionStorage.getItem(NUDGE_KEY) === '1'; } catch (e) {}
+    if (seen || reduced) return;
+    const onPricing = /\/pricing\.html$/.test(location.pathname);
+    nudgeTimer = setTimeout(showNudge, onPricing ? 8000 : 15000);
+  })();
   let built = false, stopGo = null, contactStep = null, currentMenu = null, settleRAF = 0;
   const contact = { name: '', email: '', message: '' };
 
@@ -145,7 +172,7 @@
       return b;
     };
 
-    FAQ.forEach((item, i) => make(item.q, () => answer(i, list), { num: i + 1 }));
+    FAQ.forEach((item, i) => make(item.q, () => { if (window.track) window.track('ai_bot_message_sent'); answer(i, list); }, { num: i + 1 }));
     make('Talk to the team', startContact, { contact: true });
 
     const opts = Array.prototype.slice.call(list.querySelectorAll('.faqbot__q'));
@@ -219,6 +246,7 @@
   /* ── in-chat contact flow ── */
   function startContact() {
     buildOnce();
+    if (window.track) window.track('ai_bot_handoff_to_human');   // T-14
     if (window.crRecaptcha && window.crRecaptcha.enabled) window.crRecaptcha.prime();
     if (stopGo) stopGo();
     contactStep = 'name';
@@ -304,6 +332,8 @@
     buildOnce();
     root.dataset.open = 'true';
     panel.classList.add('is-open'); panel.setAttribute('aria-hidden', 'false'); bubble.setAttribute('aria-expanded', 'true');
+    clearNudge();                                    // B-03: dismiss the proactive badge
+    if (window.track) window.track('ai_bot_open');   // T-14
     requestSettle();
   };
   const close = () => {

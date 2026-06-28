@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>Pricing | EEVSEC CyberRange</title>
-<meta name="description" content="CyberRange for enterprise, government, and academic teams: custom scenarios, dedicated infrastructure, and cohort dashboards. Contact us for pricing." />
+<title>CyberRange Pricing — Free &amp; Custom | EEVSEC</title>
+<meta name="description" content="CyberRange pricing while we are in pre-launch: a free tier to get on the range, and custom enterprise terms for teams and organisations. Join the waitlist for early access." />
 <meta name="color-scheme" content="dark light" />
 <link rel="canonical" href="https://eevsec.com/pricing.html" />
 <link rel="alternate" hreflang="en" href="https://eevsec.com/pricing.html" />
@@ -16,6 +16,12 @@
 <meta property="og:description" content="Enterprise CyberRange: custom scenarios, dedicated infrastructure, and cohort dashboards. Contact us for pricing." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://eevsec.com/pricing.html" />
+<meta property="og:image" content="https://eevsec.com/media/og/pricing.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="EEVSEC" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eevsec.com/media/og/pricing.png" />
 <meta name="robots" content="index,follow" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -26,10 +32,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600&text=%E0%A4%88%E0%A4%B5&display=swap" rel="stylesheet" />
+<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';var c=localStorage.getItem('cr_currency');document.documentElement.dataset.currency=(c==='INR'||c==='AED')?c:'USD';document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="css/tokens.css?v=99" />
-<link rel="stylesheet" href="css/styles.css?v=140" />
-<link rel="stylesheet" href="css/pages.css?v=5" />
+<link rel="stylesheet" href="css/styles.css?v=155" />
+<link rel="stylesheet" href="css/pages.css?v=11" />
+<style>
+  .pricing__grid--two { grid-template-columns: repeat(2, 1fr); max-width: 720px; gap: clamp(14px, 1.8vw, 24px); }
+  .pricing__grid--two .ptier { padding: 30px 26px; }
+  @media (max-width: 620px) { .pricing__grid--two { grid-template-columns: 1fr; max-width: 420px; } }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -47,6 +59,28 @@
   "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "EEVSEC CyberRange",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Web",
+  "url": "https://eevsec.com/",
+  "description": "Live-fire 1v1 cybersecurity training arena with a state-aware AI Coach. Attack and defend real systems against a real opponent across six scenario domains.",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "0",
+    "highPrice": "0",
+    "offerCount": "2",
+    "offers": [
+      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "Free — live matches to feel the format. Available at launch." },
+      { "@type": "Offer", "name": "Custom", "priceCurrency": "USD", "description": "Enterprise & teams — dedicated infrastructure and custom scenarios. Contact for pricing.", "availability": "https://schema.org/PreOrder" }
+    ]
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -56,7 +90,7 @@
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
     <div class="nav__links">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
@@ -74,26 +108,48 @@
 <main id="main" class="page pricing wrap">
   <header class="page__head">
     <span class="eyebrow eyebrow--center">Pricing</span>
-    <h1>Enterprise <em>war games.</em></h1>
-    <p>CyberRange is built for security teams, government agencies, and universities. Custom scenarios, dedicated infrastructure, and cohort dashboards, priced to your deployment.</p>
+    <h1>Free to start. <em>Custom to scale.</em></h1>
+    <p>While we are in pre-launch, pricing is simple: a free tier to get on the range, and custom enterprise terms for teams and organisations. Join the waitlist to lock in early access — enterprise is available now.</p>
   </header>
 
-  <div class="pricing__grid pricing__grid--single">
-    <article class="ptier ptier--featured">
-      <div class="ptier__name">Enterprise</div>
-      <div class="ptier__price ptier__price--custom">Custom</div>
-      <p class="ptier__desc">For enterprise teams, government agencies, and academic organizations that need live-fire training at scale.</p>
+  <div class="pricing__grid pricing__grid--two">
+
+    <!-- Free -->
+    <article class="ptier">
+      <div class="ptier__name">Free</div>
+      <div class="ptier__price"><span class="ptier__free">$0</span></div>
+      <p class="ptier__desc">Everything you need to step into the arena &mdash; real 1v1 matches against a live opponent, on real isolated machines, with the AI Coach reviewing every move. No card, no catch.</p>
       <ul class="ptier__feats">
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Live 1v1 PvP arena and every scenario world</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom scenarios (SCADA/ICS, cloud, adversarial AI)</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated, isolated hypervisor clusters</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>State-aware AI Coach with post-match breakdowns</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cohort performance dashboards</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority support and onboarding</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 live 1v1 match every week</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Core scenario domains</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real, single-use isolated machines — no simulators</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Post-match AI Coach review, mapped to MITRE ATT&amp;CK</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Community matchmaking against live opponents</li>
       </ul>
-      <a class="btn btn--primary ptier__cta" href="mailto:hi@eevsec.com?subject=CyberRange%20Enterprise%20enquiry" data-byte-contact>Contact us <span class="arr" aria-hidden="true">→</span></a>
+      <span class="ptier__status ptier__status--soon">At launch</span>
+      <a class="btn btn--ghost ptier__cta" href="/#join">Join waitlist <span class="arr" aria-hidden="true">&rarr;</span></a>
     </article>
+
+    <!-- Custom -->
+    <article class="ptier">
+      <div class="ptier__name">Custom</div>
+      <div class="ptier__price ptier__price--custom"><span class="ptier__free">Let&rsquo;s talk</span></div>
+      <p class="ptier__desc">Built for SOCs, universities, and enterprises that need scale, integration, and control &mdash; run on dedicated infrastructure and shaped to your environment.</p>
+      <ul class="ptier__feats">
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated hypervisor clusters</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited matches &amp; seats</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom &amp; private scenarios built to your environment</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>SSO + SIEM / log streaming</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Team &amp; cohort dashboards, scenario assignment</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority support, onboarding &amp; an SLA</li>
+      </ul>
+      <span class="ptier__status ptier__status--now">Available now</span>
+      <a class="btn btn--primary ptier__cta" href="mailto:hi@eevsec.com?subject=CyberRange%20enquiry">Contact us <span class="arr" aria-hidden="true">&rarr;</span></a>
+    </article>
+
   </div>
+
+  <p class="pricing__note">Pricing is intentionally simple while we are in pre-launch &mdash; a free tier and custom enterprise terms set by contract. More plans may arrive at general availability. Questions? <a href="/contact.html">Talk to us</a>.</p>
 </main>
 
 <footer class="foot">
@@ -102,7 +158,7 @@
 
       <!-- brand -->
       <div class="foot__col foot__col--brand">
-        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__brand"><span class="foot__deva" title="ईव — the EEVSEC mark">ईव</span>Cyber<span class="br">Range</span></div>
         <div class="foot__tag">Live-fire cybersecurity training</div>
         <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
         <div class="foot__social">
@@ -125,8 +181,13 @@
           <a href="/#how">How it works</a>
           <a href="/#coach">AI Coach</a>
           <a href="/#scenarios">Scenarios</a>
+          <a href="/doctrine.html">Doctrine</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="mailto:hi@eevsec.com" data-byte-contact>Contact</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/news.html">Newsroom</a>
+          <a href="/careers.html">Careers</a>
+          <a href="/blog/index.html">Academy</a>
+          <a href="/faq.html">FAQ</a>
         </div>
       </nav>
 
@@ -154,6 +215,7 @@
         <div class="foot__links">
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Service</a>
+          <a href="/aup.html">Acceptable Use</a>
           <a href="/returns.html">Refund Policy</a>
           <a href="/cookies.html">Cookie Policy</a>
           <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
@@ -176,11 +238,14 @@
   </div>
 </footer>
 
-<script src="js/page.js?v=1"></script>
+<script src="js/page.js?v=2"></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/faqbot.js?v=15" defer></script>
+<script src="/js/pricing.js?v=2" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>
 </html>

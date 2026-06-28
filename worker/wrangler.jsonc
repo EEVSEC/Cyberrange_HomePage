@@ -1,0 +1,35 @@
+{
+  // Cloudflare Worker config for the EEVSEC Sentinel AI assistant.
+  // Deploy with: npx wrangler deploy   (after `npm install` + setting the secret)
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eevsec-sentinel",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-14",
+  // No SDK — the Worker calls Groq's OpenAI-compatible REST API with the built-in
+  // fetch(), so no nodejs_compat flag is needed.
+
+  "observability": { "enabled": true },
+
+  // ── Routing ───────────────────────────────────────────────────────────────
+  // Put eevsec.com behind Cloudflare, then route /api/sentinel to this Worker so
+  // the frontend can call a same-origin "/api/sentinel" (no CORS / no extra CSP).
+  // Uncomment and set your zone:
+  // "routes": [
+  //   { "pattern": "eevsec.com/api/sentinel", "zone_name": "eevsec.com" }
+  // ],
+
+  // ── Secret (do NOT put the key here) ──────────────────────────────────────
+  // Free Groq key: https://console.groq.com/keys
+  // Set it once with:  npx wrangler secret put GROQ_API_KEY
+  // For local dev, copy .dev.vars.example to .dev.vars and fill it in.
+
+  // ── Optional: native rate limiting ────────────────────────────────────────
+  // The Worker uses env.SENTINEL_RATELIMIT only if present (it's optional).
+  // The binding syntax has changed across Wrangler versions — verify the current
+  // form with `npx wrangler --help` / the Cloudflare Rate Limiting docs before
+  // enabling, or just use a Cloudflare dashboard WAF rate-limiting rule instead.
+  // Example (verify before use):
+  // "ratelimits": [
+  //   { "name": "SENTINEL_RATELIMIT", "namespace_id": 1001, "simple": { "limit": 20, "period": 60 } }
+  // ]
+}

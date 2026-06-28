@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Page not found | EEVSEC CyberRange</title>
 <meta name="description" content="The page you are looking for does not exist or has moved." />
@@ -18,10 +18,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600&text=%E0%A4%88%E0%A4%B5&display=swap" rel="stylesheet" />
 <script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="/css/tokens.css?v=99" />
-<link rel="stylesheet" href="/css/styles.css?v=140" />
-<link rel="stylesheet" href="/css/legal.css?v=1" />
+<link rel="stylesheet" href="/css/styles.css?v=155" />
+<link rel="stylesheet" href="/css/legal.css?v=3" />
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -31,7 +32,7 @@
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
     <div class="nav__links">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
@@ -52,10 +53,24 @@
     <h1>This sector is off the grid.</h1>
     <p class="legal__intro">The page you are looking for does not exist or has moved. Let us get you back to safe ground.</p>
     <p class="legal__dates">
-      <a class="btn btn--primary" href="/">Back to home <span class="arr" aria-hidden="true">→</span></a>
-      <a class="btn btn--ghost" href="/blog/">Read the Academy</a>
+      <a class="btn btn--primary" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="/">Back to home</a>
     </p>
   </header>
+
+  <article class="legal__body">
+    <section>
+      <h2>Popular destinations</h2>
+      <ul>
+        <li><a href="/">Home</a> — what CyberRange is and how a live match works.</li>
+        <li><a href="/pricing.html">Pricing</a> — a free tier and custom enterprise plans.</li>
+        <li><a href="/#join">Join the waitlist</a> — reserve your spot before the arena opens.</li>
+        <li><a href="/#scenarios">Scenarios</a> — IoT, forensics, cloud, adversarial AI, automation, SCADA/ICS.</li>
+        <li><a href="/doctrine.html">Doctrine</a> · <a href="/news.html">Newsroom</a> · <a href="/contact.html">Contact</a></li>
+      </ul>
+      <p>Still stuck? Ask <strong>Sentinel</strong>, our assistant in the bottom-right corner — it answers questions about the platform and can put you in touch with a human.</p>
+    </section>
+  </article>
 </main>
 
 <footer class="foot">
@@ -72,11 +87,13 @@
   </div>
 </footer>
 
-<script src="/js/page.js?v=1"></script>
+<script src="/js/page.js?v=2"></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="/js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/faqbot.js?v=15" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>
 </html>

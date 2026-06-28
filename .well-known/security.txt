@@ -1,5 +1,10 @@
 Contact: mailto:hi@eevsec.com
+Contact: https://eevsec.com/security.html
 Expires: 2027-06-01T00:00:00.000Z
-Preferred-Languages: en
+Preferred-Languages: en, hi
 Canonical: https://eevsec.com/.well-known/security.txt
 Policy: https://eevsec.com/security.html
+Acknowledgments: https://eevsec.com/security.html
+Hiring: https://eevsec.com/careers.html
+# Encryption: a PGP key is not yet published. Until one is, email us first and
+# we will agree an encrypted channel for any sensitive details.

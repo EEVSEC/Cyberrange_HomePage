@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<title>The Trojan Horse: Ancient Deception and the Modern Software Supply Chain | EEVSEC CyberRange</title>
+<meta name="description" content="From the gates of Troy to SolarWinds and XZ Utils: why the most dangerous attacks don't break the perimeter, they're invited through it — and what supply-chain defence really takes." />
+<meta name="color-scheme" content="dark light" />
+<link rel="canonical" href="https://eevsec.com/blog/trojan-horse-supply-chain.html" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/blog/trojan-horse-supply-chain.html" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/blog/trojan-horse-supply-chain.html" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="The Trojan Horse: Ancient Deception and the Modern Software Supply Chain" />
+<meta property="og:description" content="A doctrine study on supply-chain compromise — trust as the attack surface, from Troy to XZ Utils." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://eevsec.com/blog/trojan-horse-supply-chain.html" />
+<meta property="og:image" content="https://eevsec.com/media/og-eev.png" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="2000" />
+<meta property="og:image:alt" content="EEVSEC" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eevsec.com/media/og-eev.png" />
+<meta name="robots" content="index,follow" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0b0d0c" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="/css/tokens.css?v=99" />
+<link rel="stylesheet" href="/css/styles.css?v=155" />
+<link rel="stylesheet" href="/css/blog.css?v=2" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EEVSEC PRIVATE LIMITED",
+  "url": "https://eevsec.com",
+  "logo": "https://eevsec.com/logo.png",
+  "email": "hi@eevsec.com",
+  "contactPoint": { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "customer support" },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta",
+    "addressLocality": "Ahmedabad", "addressRegion": "Gujarat", "postalCode": "380015", "addressCountry": "IN"
+  },
+  "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The Trojan Horse: Ancient Deception and the Modern Software Supply Chain",
+  "description": "Why the most dangerous attacks bypass the perimeter by exploiting trust — from the Trojan Horse to SolarWinds and XZ Utils — and what supply-chain defence takes.",
+  "datePublished": "2026-06-15",
+  "dateModified": "2026-06-15",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/trojan-horse-supply-chain.html" },
+  "author": {
+    "@type": "Person",
+    "name": "Vedant Brahmbhatt",
+    "jobTitle": "Co-Founder & CEO",
+    "worksFor": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" },
+    "sameAs": [ "https://www.linkedin.com/in/vedant-brahmbhatt-0451ab71" ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EEVSEC PRIVATE LIMITED",
+    "logo": { "@type": "ImageObject", "url": "https://eevsec.com/logo.png" }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Cyber Warfare Academy", "item": "https://eevsec.com/blog/" },
+    { "@type": "ListItem", "position": 3, "name": "The Trojan Horse: Ancient Deception and the Modern Software Supply Chain", "item": "https://eevsec.com/blog/trojan-horse-supply-chain.html" }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="field" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <nav class="nav__inner" aria-label="Primary">
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
+    <div class="nav__links">
+      <a href="/#how">How it works</a>
+      <a href="/#coach">AI Coach</a>
+      <a href="/#scenarios">Scenarios</a>
+      <a href="/pricing.html">Pricing</a>
+    </div>
+    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<main id="main" class="page wrap">
+  <article class="article">
+    <header class="article__head">
+      <span class="eyebrow">Supply chain</span>
+      <h1>The Trojan Horse: Ancient Deception and the Modern Software Supply Chain</h1>
+      <p class="article__byline">Vedant Brahmbhatt <span class="sep" aria-hidden="true">/</span> 15 June 2026</p>
+    </header>
+
+    <div class="article__body">
+      <p>The walls of Troy held for ten years. No army broke them. What finally took the city was a gift the defenders carried inside themselves, past every fortification they had spent a decade trusting. The lesson has not aged: the hardest target is rarely beaten head-on. It is beaten by something it already trusts and invites in. Every modern security team that has hardened its perimeter to a mirror finish, and then run a routine software update, has re-enacted the same evening at the gates.</p>
+
+      <h2>Military foundation</h2>
+      <p>The Trojan Horse is the oldest deception in the Western canon, and its genius is not the hollow wood. It is the framing. The Greeks did not present a weapon; they presented a tribute and a withdrawal, a story the Trojans wanted to believe because it meant the war was over. The defenders did the attackers' work for them &mdash; they inspected the horse, debated it, and chose to bring it through a gap they opened in their own wall. The threat did not defeat the perimeter. It was escorted past it by the people the perimeter was built to protect.</p>
+      <p>The principle generalises to a single hard idea: where force meets a strong defence and fails, deception turns that defence into a delivery mechanism. You do not need to be stronger than the wall if you can become something the wall is built to let through. Trust, not the gate, is the real surface &mdash; and trust is granted by the defender, which means the defender is always a participant in their own breach.</p>
+
+      <h2>Cyber application</h2>
+      <p>The software supply chain is the horse, industrialised. A modern application is assembled from thousands of components nobody on the team wrote &mdash; open-source libraries, build tools, container images, vendor updates &mdash; each one trusted enough to run with real privilege. An attacker who cannot get through your defences directly does not have to. They compromise something you have already decided to trust and install, and your own pipeline carries it inside.</p>
+      <p>The case studies are recent and severe. In 2020, SUNBURST rode a signed SolarWinds Orion update into roughly eighteen thousand organisations; the malicious code arrived through the exact channel those organisations used to stay secure. In 2024, the XZ Utils backdoor (CVE-2024-3094) was planted in a core Linux compression library after a patient, multi-year social-engineering campaign won a malicious contributor the maintainer's trust &mdash; a backdoor caught, almost by accident, days before it reached the world's servers. Dependency-confusion and typosquatting attacks on npm and PyPI run the same play at smaller scale every week: publish a package the build system will trust by name, and wait for it to be pulled in.</p>
+      <p>What unites them is that no perimeter was breached. The update was signed. The dependency resolved. The maintainer was &ldquo;trusted.&rdquo; The defence performed exactly as designed and delivered the payload, because the attack targeted the one thing a firewall cannot inspect: the decision to trust. This is the <a href="/doctrine.html#cyber-crime">threat layer</a> at its most patient, and it maps cleanly onto MITRE ATT&amp;CK as Supply Chain Compromise (T1195).</p>
+
+      <h2>What you practise</h2>
+      <p>You cannot perimeter your way out of an invited threat, so the defensive craft shifts from keeping things out to verifying what you let in. In the range you build and defend a pipeline: establish provenance for every artifact (signed, reproducible builds; an SBOM you can actually query), give build systems the least privilege they can survive on, and watch what a dependency <em>does</em> at runtime rather than trusting what it claims to be. On the offensive side you plant the horse &mdash; a poisoned package, a tampered build step &mdash; and learn precisely where a team's trust silently becomes its attack surface. The <a href="/#coach">AI Coach</a> traces each move to ATT&amp;CK and shows you the moment a trusted component stopped being trustworthy.</p>
+      <p>It is the doctrine in miniature. The strategy is the contest of trust against verification (WAR); the craft is the hands-on work of planting and of catching the plant (Ethical Hacking); the threat is the real campaign your build pipeline actually faces (Cyber Crime). The habit you are training is the one the Trojans lacked &mdash; to treat a gift with the same suspicion as an assault, and to verify provenance before you open the gate. Against an adversary whose whole method is to be welcomed in, the defender who has practised distrusting the invited is the only one still standing in the morning.</p>
+    </div>
+
+    <div class="article__back">
+      <a href="/blog/index.html"><span class="arr" aria-hidden="true">←</span> Back to the Academy</a>
+    </div>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+
+      <!-- brand -->
+      <div class="foot__col foot__col--brand">
+        <div class="foot__brand">Cyber<span class="br">Range</span></div>
+        <div class="foot__tag">Live-fire cybersecurity training</div>
+        <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
+        <div class="foot__social">
+          <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <a class="foot__link" href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a class="foot__link" href="mailto:hi@eevsec.com" aria-label="Email hi@eevsec.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- platform -->
+      <nav class="foot__col" aria-label="Platform">
+        <h2 class="foot__col-title">Platform</h2>
+        <div class="foot__links">
+          <a href="/#how">How it works</a>
+          <a href="/#coach">AI Coach</a>
+          <a href="/#scenarios">Scenarios</a>
+          <a href="/doctrine.html">Doctrine</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/news.html">Newsroom</a>
+          <a href="/careers.html">Careers</a>
+          <a href="/blog/index.html">Academy</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+      </nav>
+
+      <!-- company -->
+      <div class="foot__col foot__col--org">
+        <h2 class="foot__col-title">Company</h2>
+        <div class="foot__logo-row">
+          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
+          <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
+        </div>
+        <address class="foot__addr">
+          401, Garud Apartment, Opp: Mahabaleshwar Flat,<br>
+          Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
+        </address>
+        <div class="foot__cin">CIN: U62013GJ2026PTC177190</div>
+        <div class="foot__contact">
+          <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> ·
+          <a href="tel:+919265359476">+91 92653 59476</a>
+        </div>
+      </div>
+
+      <!-- legal -->
+      <nav class="foot__col" aria-label="Legal">
+        <h2 class="foot__col-title">Legal</h2>
+        <div class="foot__links">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms of Service</a>
+          <a href="/aup.html">Acceptable Use</a>
+          <a href="/returns.html">Refund Policy</a>
+          <a href="/cookies.html">Cookie Policy</a>
+          <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
+          <a href="/security.html">Security</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+      </nav>
+
+    </div>
+
+    <div class="foot__bottom">
+      <span>© <span id="year">2026</span> EEVSEC PRIVATE LIMITED. All rights reserved.</span>
+      <span class="foot__bottom-links">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/returns.html">Refund</a>
+        <a href="/cookies.html">Cookies</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/page.js?v=2"></script>
+<script src="/js/cookies.js?v=1" defer></script>
+<script src="/js/consent.js?v=7" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
+<script src="/js/recaptcha.js?v=1" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
+</body>
+</html>

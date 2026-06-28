@@ -339,9 +339,11 @@ html { scroll-padding-top: 88px; }
 .brand {
   font-family: var(--font-display); font-size: 2rem; font-weight: 400;
   letter-spacing: -0.015em; color: var(--ink);
-  display: flex; align-items: baseline; margin-right: auto;
+  display: flex; align-items: center; margin-right: auto;
 }
 .brand .br { color: var(--violet); }
+.brand__mark { height: 28px; width: auto; flex-shrink: 0; margin-right: 10px; }
+[data-theme="dark"] .brand__mark { filter: invert(1); }
 
 /* plain text links (single-pill nav) */
 .nav__links {
@@ -1848,26 +1850,66 @@ still   pull line 2 up to even out the optical spacing */
 }
 @media (max-width: 880px){ .scen { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 @media (max-width: 560px){ .scen { grid-template-columns: 1fr; } }
+
+/* doctrine triptych on the home page (BIG-1 / X-01) — mirrors the .scen gridlines */
+.dtri {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  border-radius: var(--r-md); overflow: hidden;
+}
+@media (max-width: 760px){ .dtri { grid-template-columns: 1fr; } }
+.dtri__card { background: var(--bg-1); padding: clamp(24px, 2.4vw, 34px); transition: background var(--dur-mid) var(--ease-out); }
+.dtri__card:hover { background: var(--bg-2); }
+.dtri__tag { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.08em; color: var(--violet); margin: 0; }
+.dtri__title { font-family: var(--font-display); font-size: var(--text-xl); letter-spacing: -0.02em; line-height: 1.1; margin: 10px 0 3px; }
+.dtri__role { font-family: var(--font-mono); font-size: var(--text-2xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-3); margin: 0; }
+.dtri__body { margin: 14px 0 0; font-size: var(--text-sm); line-height: 1.6; color: var(--ink-2); }
+.dtri__more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-lg);
+  font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.04em; color: var(--violet);
+}
+.dtri__more .arr { transition: transform var(--dur-fast) var(--ease-out); }
+.dtri__more:hover .arr { transform: translateX(4px); }
+
+/* testimonials / social proof (M-03) — scaffold; mirrors the .scen gridlines.
+   Card fields are placeholders until real, permission-cleared quotes are added. */
+.tmon {
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px;
+  background: var(--line); border: 1px solid var(--line);
+  border-radius: var(--r-md); overflow: hidden;
+}
+@media (max-width: 780px){ .tmon { grid-template-columns: 1fr; } }
+.tmon__card { background: var(--bg-1); padding: clamp(26px, 2.6vw, 36px); margin: 0; display: flex; flex-direction: column; gap: 22px; min-height: 220px; }
+.tmon__quote { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); line-height: 1.45; letter-spacing: -0.01em; color: var(--ink-2); }
+.tmon__by { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+.tmon__avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; background: var(--bg-2); border: 1px solid var(--line-2); display: grid; place-items: center; overflow: hidden; }
+.tmon__avatar img { width: 28px; height: 28px; object-fit: contain; }
+.tmon__meta { display: flex; flex-direction: column; gap: 2px; }
+.tmon__name { font-weight: 600; font-size: var(--text-sm); color: var(--ink); }
+.tmon__role { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.04em; color: var(--ink-3); }
+
 .scen__card {
   background: var(--bg-1); padding: clamp(24px, 2.4vw, 34px);
   transition: background var(--dur-mid) var(--ease-out); position: relative;
 }
-.scen__card:hover { background: var(--bg-2); }
+.scen__card:hover, .scen__card:focus-within { background: var(--bg-2); }
 .scen__ic { width: 62px; height: 62px; color: var(--ink-3); margin-bottom: 16px; object-fit: contain; transition: color var(--dur-fast), filter var(--dur-fast); }
 /* Adversarial-AI robot art reads better larger */
 .scen__ic--robot { width: 92px; height: 92px; margin-bottom: 10px; }
-.scen__card:hover .scen__ic { color: var(--violet); }
+.scen__card:hover .scen__ic, .scen__card:focus-within .scen__ic { color: var(--violet); }
 /* env-* PNGs are dark-grey line art — lighten on the dark theme; on hover keep the
    icon as-is and just add a soft green glow behind it (no full-image recolor) */
 [data-theme="dark"] img.scen__ic { filter: invert(1) brightness(0.78); }
-[data-theme="dark"] .scen__card:hover img.scen__ic {
+[data-theme="dark"] .scen__card:hover img.scen__ic,
+[data-theme="dark"] .scen__card:focus-within img.scen__ic {
   filter: invert(1) brightness(0.95)
           drop-shadow(0 0 8px var(--violet)) drop-shadow(0 0 18px var(--violet-glow));
 }
 /* light theme: show the icon as drawn (dark outline + light fill) — don't
    silhouette it; brightness(0) was collapsing the fill+outline into a solid blob */
 img.scen__ic { filter: none; }
-.scen__card:hover img.scen__ic {
+.scen__card:hover img.scen__ic,
+.scen__card:focus-within img.scen__ic {
   filter: drop-shadow(0 0 8px var(--violet)) drop-shadow(0 0 18px var(--violet-glow));
 }
 .scen__eyebrow {
@@ -1902,7 +1944,7 @@ img.scen__ic { filter: none; }
   border-radius: var(--r-md); padding: clamp(22px, 2vw, 30px);
   transition: background var(--dur-mid) var(--ease-out), border-color var(--dur-mid) var(--ease-out);
 }
-.who__cell:hover { background: var(--bg-2); border-color: var(--line-2); }
+.who__cell:hover, .who__cell:focus-within { background: var(--bg-2); border-color: var(--line-2); }
 .who__side {
   display: flex; flex-direction: column; align-items: flex-start;
   justify-content: space-between; gap: clamp(20px, 2.2vw, 34px);
@@ -1941,7 +1983,7 @@ img.scen__ic { filter: none; }
   position: relative; overflow: hidden; isolation: isolate;
   text-align: center;
   padding-top: clamp(16px, 2vw, 36px);
-  padding-bottom: clamp(28px, 3.5vw, 56px);
+  padding-bottom: clamp(16px, 2vw, 30px);
 }
 /* faint accent glow centered behind the content — fades out before the edges
    so the section blends smoothly into the dark section above it */
@@ -2007,7 +2049,15 @@ img.scen__ic { filter: none; }
 }
 .wait__submit { margin-top: 4px; width: 100%; justify-content: center; padding: 14px 26px; }
 .wait__submit:hover { box-shadow: 0 1px 0 oklch(0% 0 0 / 0.08), 0 0 32px -6px var(--violet-glow); }
-.wait__submit.loading { opacity: .7; pointer-events: none; }
+.wait__submit.loading { opacity: .85; pointer-events: none; }
+.wait__submit.loading::before {
+  content: ""; width: 14px; height: 14px; margin-right: 9px; flex: none;
+  border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%;
+  display: inline-block; vertical-align: -2px; animation: spin .7s linear infinite;
+}
+/* U-07: fade the form out before the confirmation rises in */
+.wait { transition: opacity .2s ease, transform .2s ease; }
+.wait.is-out { opacity: 0; transform: translateY(-6px); pointer-events: none; }
 @keyframes waitShake {
   10%,90%{transform:translateX(-1px);} 20%,80%{transform:translateX(2px);}
   30%,50%,70%{transform:translateX(-4px);} 40%,60%{transform:translateX(4px);}
@@ -2223,3 +2273,67 @@ img.scen__ic { filter: none; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .intro { display: none !important; }
 }
+
+/* ── cited-by trust strip (home, above footer) ───────────── */
+.cited {
+  margin-block: clamp(6px, 0.8vw, 14px);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.cited__eyebrow {
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-4);
+  margin-bottom: var(--space-lg);
+}
+.cited__row {
+  list-style: none; padding: 0; margin: 0 auto var(--space-lg);
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 3vw, 40px); max-width: 1040px;
+}
+@media (max-width: 760px) { .cited__row { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; } }
+.cited__item { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.cited__big {
+  font-family: var(--font-display); font-weight: 700; color: var(--ink);
+  font-size: clamp(2rem, 1.4rem + 2.2vw, 3rem); line-height: 1; letter-spacing: -0.03em;
+}
+.cited__cap { font-size: var(--text-sm); color: var(--ink-2); line-height: 1.4; }
+.cited__src {
+  font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.06em;
+  color: var(--ink-4); margin-top: 2px;
+}
+.cited__src:hover { color: var(--violet); }
+.cited__more {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.04em;
+  color: var(--violet);
+}
+.cited__more:hover .arr { transform: translateX(4px); }
+.cited__more .arr { transition: transform var(--dur-fast) var(--ease-out); }
+
+/* scenario card → deep-page link */
+.scen__more {
+  display: inline-flex; align-items: center; gap: 6px; margin-top: 16px;
+  font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.04em;
+  color: var(--violet);
+}
+.scen__more .arr { transition: transform var(--dur-fast) var(--ease-out); }
+.scen__more:hover .arr { transform: translateX(4px); }
+
+/* G-03: Devanagari ईव brand mark in the footer lock-up */
+.foot__deva {
+  font-family: "Noto Sans Devanagari", var(--font-deva, sans-serif);
+  font-weight: 600; color: var(--violet);
+  font-size: 0.82em; line-height: 1; margin-right: 10px;
+  padding: 3px 8px 4px; border: 1px solid var(--line-2); border-radius: 7px;
+  display: inline-block; vertical-align: 3px; letter-spacing: 0.02em;
+}
+
+/* who cell → "For X" landing-page link */
+.who__more {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
+  font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: 0.04em;
+  color: var(--violet);
+}
+.who__more .arr { transition: transform var(--dur-fast) var(--ease-out); }
+.who__more:hover .arr { transform: translateX(4px); }

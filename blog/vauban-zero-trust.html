@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Vauban's Fortress Geometry in Zero-Trust Architecture | EEVSEC CyberRange</title>
 <meta name="description" content="Sebastien Le Prestre de Vauban's star-fort geometry, with overlapping fields of fire and no single point of failure, as a model for micro-segmentation and zero-trust access control across AWS, Azure, and GCP." />
@@ -16,6 +16,12 @@
 <meta property="og:description" content="Reading Vauban's star-fort design as a blueprint for micro-segmentation and lateral-movement control across multi-cloud." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eevsec.com/blog/vauban-zero-trust.html" />
+<meta property="og:image" content="https://eevsec.com/media/og-eev.png" />
+<meta property="og:image:width" content="2000" />
+<meta property="og:image:height" content="2000" />
+<meta property="og:image:alt" content="EEVSEC" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://eevsec.com/media/og-eev.png" />
 <meta name="robots" content="index,follow" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -28,8 +34,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="/css/tokens.css?v=99" />
-<link rel="stylesheet" href="/css/styles.css?v=140" />
-<link rel="stylesheet" href="/css/blog.css?v=1" />
+<link rel="stylesheet" href="/css/styles.css?v=155" />
+<link rel="stylesheet" href="/css/blog.css?v=2" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -56,7 +62,12 @@
   "datePublished": "2026-05-30",
   "dateModified": "2026-05-30",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/vauban-zero-trust.html" },
-  "author": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" },
+  "author": {
+    "@type": "Person",
+    "name": "Ishaan Sharma",
+    "jobTitle": "Co-Founder & CTO",
+    "worksFor": { "@type": "Organization", "name": "EEVSEC PRIVATE LIMITED", "url": "https://eevsec.com" }
+  },
   "publisher": {
     "@type": "Organization",
     "name": "EEVSEC PRIVATE LIMITED",
@@ -84,7 +95,7 @@
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/">Cyber<span class="br">Range</span></a>
+    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
     <div class="nav__links">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
@@ -104,7 +115,7 @@
     <header class="article__head">
       <span class="eyebrow">Architecture</span>
       <h1>Vauban's Fortress Geometry in Zero-Trust Architecture</h1>
-      <p class="article__byline">EEVSEC <span class="sep" aria-hidden="true">/</span> 30 May 2026</p>
+      <p class="article__byline">Ishaan Sharma <span class="sep" aria-hidden="true">/</span> 30 May 2026</p>
     </header>
 
     <div class="article__body">
@@ -160,7 +171,9 @@
           <a href="/#coach">AI Coach</a>
           <a href="/#scenarios">Scenarios</a>
           <a href="/pricing.html">Pricing</a>
-          <a href="mailto:hi@eevsec.com" data-byte-contact>Contact</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/blog/index.html">Academy</a>
+          <a href="/faq.html">FAQ</a>
         </div>
       </nav>
 
@@ -188,6 +201,7 @@
         <div class="foot__links">
           <a href="/privacy.html">Privacy Policy</a>
           <a href="/terms.html">Terms of Service</a>
+          <a href="/aup.html">Acceptable Use</a>
           <a href="/returns.html">Refund Policy</a>
           <a href="/cookies.html">Cookie Policy</a>
           <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
@@ -210,11 +224,13 @@
   </div>
 </footer>
 
-<script src="/js/page.js?v=1"></script>
+<script src="/js/page.js?v=2"></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="/js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=3" defer></script>
+<script src="/js/analytics.js?v=4" defer></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/faqbot.js?v=15" defer></script>
+<script src="/js/sentinel.js?v=6" defer></script>
+<!-- Cloudflare Web Analytics (RUM) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>
 </html>

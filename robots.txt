@@ -25,4 +25,11 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# Pre-empt private areas if they ever exist (none today). Do NOT add /ar/ here —
+# Arabic pages must stay crawlable when they launch.
+User-agent: *
+Disallow: /admin/
+Disallow: /preview/
+Disallow: /api/
+
 Sitemap: https://eevsec.com/sitemap.xml

@@ -7,11 +7,15 @@
 - [AI Coach](https://eevsec.com/#coach): Side-aware, in-match guidance that tracks your actions and explains the next move; each side's session is private.
 - [Modes](https://eevsec.com/#modes): Battle, Practice, Learn, and Analyze.
 - [Scenarios](https://eevsec.com/#scenarios): IoT & semiconductor, digital forensics, cloud & zero-trust, adversarial AI, red/blue automation, and SCADA/ICS.
+- [Doctrine](https://eevsec.com/doctrine.html): Every scenario runs on three layers — WAR (strategy), Ethical Hacking (craft), and Cyber Crime (the real-world threat).
 
 ## Company
 - [EEVSEC PRIVATE LIMITED](https://eevsec.com/): Registered in Ahmedabad, Gujarat, India (CIN U62013GJ2026PTC177190). Contact: hi@eevsec.com.
+- [Contact](https://eevsec.com/contact.html): Named paths for general, sales, security, privacy, and press, with published response targets.
 
 ## Legal
 - [Privacy Policy](https://eevsec.com/privacy.html): Data processing under DPDPA 2023, UAE PDPL, CCPA, and GDPR.
 - [Terms of Service](https://eevsec.com/terms.html): Rules of engagement, liability limits, and governing law.
+- [Acceptable Use Policy](https://eevsec.com/aup.html): Sandbox isolation, no off-platform misuse, and the rules of engagement (incorporated into the Terms).
 - [Refund Policy](https://eevsec.com/returns.html): Subscription, cancellation, and refund rules.
+- [Security & Responsible Disclosure](https://eevsec.com/security.html): How to report a vulnerability; see also /.well-known/security.txt.

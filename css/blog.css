@@ -3,6 +3,21 @@
    Builds on tokens.css + styles.css. Page-specific only.
    ============================================================ */
 
+/* ── page shell: clear the fixed nav + centre the listing header.
+   The blog loads blog.css (not pages.css), so these must live here too. ── */
+.page {
+  padding-top: clamp(116px, 15vw, 156px);
+  padding-bottom: var(--space-2xl);
+}
+.page__head { max-width: 64ch; margin: 0 auto var(--space-2xl); text-align: center; }
+.page__head h1 {
+  font-family: var(--font-display); font-weight: 700; color: var(--ink);
+  font-size: var(--text-xxl); line-height: 1.0; letter-spacing: -0.04em;
+  margin-bottom: var(--space-md);
+}
+.page__head h1 em { font-style: normal; color: var(--violet); }
+.page__head p { font-size: var(--text-md); color: var(--ink-2); margin-inline: auto; max-width: 56ch; }
+
 /* ── listing: article card grid ── */
 .acad-grid {
   display: grid;

@@ -24,3 +24,13 @@ compliance/
 # Unused source artifacts / dead weight
 logo.jpeg
 SnapInsta.to_*.mp4
+
+# Internal-only files — kept on local disk, NEVER committed to the public repo.
+# (Jekyll `exclude` only unpublishes from the served site; gitignore keeps them
+# out of the repository altogether so they can't leak on a public GitHub repo.)
+EEVSEC_Website_Audit_v2.pdf
+AUDIT_TASKS.md
+HANDOFF.md
+KEYWORD_PLAN.md
+CLOUDFLARE_SETUP.md
+Screenshot*.png

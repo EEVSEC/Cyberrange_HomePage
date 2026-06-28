@@ -110,9 +110,12 @@
       html.dataset.theme = theme;
       localStorage.setItem('cr-theme', theme);
       if (meta) meta.content = theme === 'dark' ? 'dark light' : 'light dark';
+      // G-04: expose toggle state to assistive tech (pressed === light mode)
+      btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
       const reel = document.querySelector('.modes-reel__frame');
       if (reel && reel.contentWindow) reel.contentWindow.postMessage({ crTheme: theme }, '*');
     };
+    btn.setAttribute('aria-pressed', html.dataset.theme === 'light' ? 'true' : 'false');
     btn.addEventListener('click', () => {
       apply(html.dataset.theme === 'dark' ? 'light' : 'dark');
     });
@@ -486,6 +489,19 @@
       const e = $('#' + errId); if (e) e.textContent = text || '';
       setTimeout(() => { el.removeAttribute('aria-invalid'); if (e) e.textContent = ''; }, 3200);
     };
+
+    // U-07: inline email validation on blur (persists until corrected)
+    emailEl.addEventListener('blur', () => {
+      const v = emailEl.value.trim();
+      if (v && !validEmail(v)) {
+        emailEl.setAttribute('aria-invalid', 'true');
+        const e = $('#waitEmailErr'); if (e) e.textContent = 'Enter a valid email address.';
+      }
+    });
+    emailEl.addEventListener('input', () => {
+      emailEl.removeAttribute('aria-invalid');
+      const e = $('#waitEmailErr'); if (e) e.textContent = '';
+    });
     const resetBtn = () => {
       btn.disabled = false; btn.classList.remove('loading');
       if (label) label.textContent = 'Request access';
@@ -531,10 +547,15 @@
         const data = await res.json();
 
         if (data.success) {
+          if (window.track) { window.track('waitlist_submit', { role: role }); window.track('waitlist_role_chosen', { role: role }); }
           if (successName) successName.textContent = firstName;
-          form.hidden = true; form.style.display = 'none';
-          if (success) { success.hidden = false; }
-          launchConfetti();
+          // U-07: fade the form out, then reveal the confirmation
+          form.classList.add('is-out');
+          setTimeout(() => {
+            form.hidden = true; form.style.display = 'none';
+            if (success) success.hidden = false;
+            launchConfetti();
+          }, 220);
         } else if (data.message && /duplicate|already/i.test(data.message)) {
           msg.textContent = "You're already on the list."; resetBtn();
         } else {

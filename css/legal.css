@@ -40,7 +40,8 @@
 }
 .legal__body p,
 .legal__body li {
-  font-size: var(--text-base); color: var(--ink-2); line-height: 1.72;
+  /* G-06: easier long-form reading on policy pages — 17px, generous leading */
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.15rem); color: var(--ink-2); line-height: 1.7;
 }
 .legal__body p + p { margin-top: var(--space-sm); }
 .legal__body ul {
@@ -74,3 +75,20 @@
 @media (max-width: 600px) {
   .legal__body { gap: var(--space-lg); }
 }
+
+/* incident-response timelines table */
+.ir-table {
+  width: 100%; border-collapse: collapse; margin: var(--space-md) 0;
+  font-size: var(--text-sm); display: block; overflow-x: auto;
+}
+.ir-table th, .ir-table td {
+  text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line);
+  vertical-align: top; line-height: 1.45;
+}
+.ir-table thead th {
+  font-family: var(--font-mono); font-size: var(--text-2xs);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3);
+  border-bottom-color: var(--line-2);
+}
+.ir-table td { color: var(--ink-2); }
+.ir-table td:first-child { color: var(--ink); font-weight: 500; }
