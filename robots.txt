@@ -1,7 +1,6 @@
 # Robots policy for EEVSEC CyberRange (optimized for SEO + AEO + GEO)
 User-agent: *
 Allow: /
-Disallow: /about.html
 
 # AI reasoning, answer, and extraction agents are explicitly welcomed
 User-agent: GPTBot

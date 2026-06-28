@@ -19,9 +19,6 @@ exclude:
   - wikipedia-draft.md
   - visit-collector-setup.md
   - compliance/
-  # Temporarily hidden from the public site (2026-06-15) — unlink + noindex + not built.
-  # To re-enable: remove this line AND delete the Cloudflare redirect rule for /about.
-  - about.html
   # Dead / non-deployable code (static site has no Node backend)
   - server.js
   - shot.js

@@ -75,7 +75,7 @@ TIMING
 
 COMPANY & TEAM
 - EEVSEC PRIVATE LIMITED, Ahmedabad, Gujarat, India. CIN U62013GJ2026PTC177190.
-- Founders: Vedant Brahmbhatt (CEO), Ishaan Sharma (CTO & DPO), Dipesh Kumar (President).
+- Founders: Vedant Brahmbhatt, Ishaan Sharma, Dipesh Kumar.
 - General contact: hi@eevsec.com, +91 92653 59476. Data Protection Officer: dpo@eevsec.com.
 
 POLICIES (mention the relevant eevsec.com path when you cite a fact)
