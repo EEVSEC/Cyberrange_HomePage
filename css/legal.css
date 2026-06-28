@@ -6,7 +6,7 @@
 .legal {
   max-width: 880px;
   padding-top: clamp(116px, 15vw, 156px);
-  padding-bottom: var(--space-2xl);
+  padding-bottom: 0;
 }
 
 /* ── page header ── */

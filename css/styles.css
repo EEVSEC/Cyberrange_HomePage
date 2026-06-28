@@ -1983,7 +1983,7 @@ img.scen__ic { filter: none; }
   position: relative; overflow: hidden; isolation: isolate;
   text-align: center;
   padding-top: clamp(16px, 2vw, 36px);
-  padding-bottom: clamp(16px, 2vw, 30px);
+  padding-bottom: 0;
 }
 /* faint accent glow centered behind the content — fades out before the edges
    so the section blends smoothly into the dark section above it */
@@ -2134,7 +2134,7 @@ img.scen__ic { filter: none; }
   position: relative;
   border-top: 1px solid var(--line);
   padding-block: clamp(20px, 2.5vw, 36px) clamp(18px, 2vw, 30px);
-  margin-top: clamp(12px, 1.5vw, 24px);
+  margin-top: 0;
 }
 .foot__grid {
   display: grid;

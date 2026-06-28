@@ -6,7 +6,7 @@
 /* ── shared sub-page header ── */
 .page {
   padding-top: clamp(116px, 15vw, 156px);
-  padding-bottom: var(--space-2xl);
+  padding-bottom: 0;
 }
 .page__head { max-width: 64ch; margin: 0 auto var(--space-2xl); text-align: center; }
 .page__head h1 {
