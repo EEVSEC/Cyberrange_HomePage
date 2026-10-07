@@ -381,6 +381,7 @@ html { scroll-padding-top: 88px; }
   55%       { box-shadow: 0 0 0 5px transparent; }
 }
 .nav .btn--primary { padding: 8px 16px; font-size: 0.7rem; }
+.nav .btn--ghost   { padding: 8px 16px; font-size: 0.7rem; }
 
 /* hamburger — hidden on desktop */
 .nav__burger { display: none; }
@@ -391,6 +392,7 @@ html { scroll-padding-top: 88px; }
 @media (max-width: 760px) {
   .nav__links { display: none; }
   .nav__cta   { display: none; }              /* moves into the menu */
+  .nav__login--menu { display: none; }        /* pages with a hamburger: moves into the menu */
   .nav__inner { padding: 6px 8px 6px 18px; gap: 8px; }
 
   .nav__burger {
@@ -432,6 +434,9 @@ html { scroll-padding-top: 88px; }
   .nav__menu .btn--primary {
     justify-content: center; margin-top: 8px; padding: 14px 16px; font-size: 0.8rem;
     color: #000;   /* black label on the green button */
+  }
+  .nav__menu .btn--ghost {
+    justify-content: center; margin-top: 8px; padding: 14px 16px; font-size: 0.8rem;
   }
 }
 
