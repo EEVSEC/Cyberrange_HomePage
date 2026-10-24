@@ -282,6 +282,18 @@ html:not(.intro-done) .brand { opacity: 1; }
 .hiw__nots-accent { color: var(--navy); }
 
 /* ── 9 · AI coach ── */
+/* Two columns of equal height starting at the same line: the label, the dialog's top edge, the card
+   grid and the dialog + caption all share top and bottom edges (the dialog was centred, which left it
+   sticking out above the left column). Cards and dialog stretch to fill. */
+@media (min-width: 941px) {
+  .coach__grid { align-items: stretch; }
+  .coach__copy { display: flex; flex-direction: column; }
+  .coach__copy .coach__feats { flex: 1; }
+  .coach__right { justify-content: flex-start; }
+  .coach__right .coach__panel { flex: 1; display: flex; flex-direction: column; }
+  .coach__right .coach__panel .panel { flex: 1; display: flex; flex-direction: column; }
+  .coach__right .panel__body { flex: 1; }
+}
 .coach__copy h2 .c-blue { color: var(--navy); }
 .coach__copy p { color: var(--muted); }
 .coach__feat { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-md); }
