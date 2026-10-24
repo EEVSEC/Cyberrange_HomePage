@@ -242,18 +242,51 @@
     revs.forEach(el => el.classList.add('in'));
   }
 
-  /* ── scroll engine: parallax layers (rAF). The old progress bar and hero scrub are gone:
-        the EEVSEC hero is static. ── */
+  /* ── scroll engine: progress bar + hero scrub + parallax (rAF, cross-browser) ── */
   (() => {
     if (reduced) return;
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
+
+    const hero      = $('.hero');
+    const heroTitle = $('#heroTitle');
+    const heroText  = $('.hero__text');
+    const mockup    = $('#heroMockup');
     // elements that drift at their own speed: data-parallax = px moved per 100px scrolled
     const layers = $$('[data-parallax]').map(el => ({ el, speed: parseFloat(el.dataset.parallax) || 0 }));
-    if (!layers.length) return;
 
     let ticking = false;
     const update = () => {
       ticking = false;
+      const y   = window.scrollY;
       const vh  = window.innerHeight;
+      const max = document.documentElement.scrollHeight - vh;
+
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, y / max) : 0})`;
+
+      // hero scrub — desktop only; on mobile the content stays fixed in place
+      if (hero) {
+        if (window.innerWidth > 1024) {
+          if (y < vh * 1.3) {
+            const p = Math.min(1, y / vh);          // 0 → 1 across first viewport
+            if (heroTitle) {
+              heroTitle.style.transform = `translateY(${y * -0.06}px)`;
+              heroTitle.style.opacity   = `${1 - p * 0.75}`;
+            }
+            if (heroText) {
+              heroText.style.transform = `translateY(${y * -0.03}px)`;
+              heroText.style.opacity   = `${1 - p * 0.9}`;
+            }
+            if (mockup) mockup.style.transform = `translateY(${y * 0.10}px) scale(${1 - p * 0.05})`;
+          }
+        } else {
+          // clear any transforms/opacity left over from a wider layout
+          if (heroTitle) { heroTitle.style.transform = ''; heroTitle.style.opacity = ''; }
+          if (heroText)  { heroText.style.transform = '';  heroText.style.opacity = ''; }
+          if (mockup)    { mockup.style.transform = ''; }
+        }
+      }
 
       // generic parallax layers throughout the page
       for (const { el, speed } of layers) {

@@ -103,16 +103,16 @@
   --font-code:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* fluid type scale (brand hero is 72-160px; section titles 36-68px) */
-  --text-hero:  clamp(3.4rem, 1.2rem + 8.4vw, 9rem);
-  --text-xxl:   clamp(2.3rem, 1.4rem + 3.4vw, 4.25rem);
-  --text-xl:    clamp(1.8rem, 1.25rem + 2vw, 3rem);
-  --text-lg:    clamp(1.4rem, 1.1rem + 1vw, 2rem);
-  --text-md:    clamp(1.1rem, 1.02rem + 0.35vw, 1.25rem);
-  --text-base:  1.0625rem;
-  --text-sm:    1rem;
-  --text-xs:    0.9rem;
-  --text-2xs:   0.8125rem;
-  --text-mono:  0.9rem;
+  --text-hero:  clamp(2.9rem, 1.4rem + 6.5vw, 7.2rem);
+  --text-xxl:   clamp(2.2rem, 1.3rem + 3.2vw, 3.75rem);
+  --text-xl:    clamp(1.7rem, 1.2rem + 2.0vw, 3.0rem);
+  --text-lg:    clamp(1.3rem, 1.05rem + 1.0vw, 1.9rem);
+  --text-md:    clamp(1.05rem, 0.98rem + 0.35vw, 1.22rem);
+  --text-base:  1rem;
+  --text-sm:    0.9rem;
+  --text-xs:    0.8rem;
+  --text-2xs:   0.72rem;
+  --text-mono:  0.78rem;
 
   /* ── spacing — 4pt scale ── */
   --space-2xs: 4px;
@@ -123,9 +123,9 @@
   --space-xl:  56px;
   --space-2xl: 92px;
   --space-3xl: 148px;
-  --section-pad: clamp(40px, 5vw, 84px);
-  --gutter:    clamp(20px, 5vw, 48px);
-  --maxw:      1280px;
+  --section-pad: clamp(22px, 2.6vw, 44px);
+  --gutter:    clamp(20px, 5vw, 80px);
+  --maxw:      1240px;
 
   /* ── motion ── */
   --ease-in:     cubic-bezier(.55, 0, 1, .45);
