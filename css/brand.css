@@ -475,33 +475,36 @@ html.menu-open .snt-fab { opacity: 0; pointer-events: none; }
 .cited__src { font-family: var(--sans); letter-spacing: 0; color: var(--muted); }
 .cited__src:hover { color: var(--navy); }
 
-/* ── 14 · footer: original grid and spacing, charcoal band with the cream symbol ── */
-.foot { background: #1f2022; color: #f2f1ed; border-top: 0; }
+/* ── 14 · footer: the eevsec.com footer (kit: .footer-wrap / .site-footer / .footer-grid) ──
+   Charcoal band; the cream symbol stacked above the EEVSEC. signature and tagline; small uppercase
+   column titles; one quiet copyright row. Platform links are this site's own. */
+.foot { background: #1f2022; color: #f2f1ed; border-top: 0; margin: 0; padding-block: clamp(32px, 4vw, 52px) clamp(14px, 1.5vw, 22px); }
 .foot a { color: inherit; }
-.foot__brand { display: flex; flex-direction: row; align-items: center; gap: 12px; font-size: inherit; letter-spacing: 0; color: #f2f1ed; }
-.foot__mark { display: block; width: 40px; height: auto; flex-shrink: 0; }
-.foot__word { font-family: "Times New Roman", Times, serif; font-size: 32px; line-height: 1; color: #f2f1ed; letter-spacing: 0; }
-.foot__tagline { margin: 10px 0 0; font-family: var(--display); font-size: 1.6rem; font-style: italic; line-height: 1.2; color: #f2f1ed; }
-.foot__tag { font-family: var(--sans); font-size: 0.9rem; letter-spacing: 0; color: rgb(242 241 237 / 60%); margin-top: 8px; }
-.foot__motto { font-family: var(--sans); font-size: 1rem; color: rgb(242 241 237 / 85%); margin: 14px 0 18px; letter-spacing: 0; }
-.foot__motto .accent-c { color: inherit; }
-.foot__col-title { font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.1em; color: rgb(242 241 237 / 55%); }
-.foot__links a { font-family: var(--sans); font-size: 0.92rem; color: #f2f1ed; }
-.foot__links a:hover { color: #fff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
-.foot__legal-name { font-family: var(--sans); font-size: 1rem; color: #f2f1ed; letter-spacing: 0; }
-.foot__addr { font-size: 0.85rem; color: rgb(242 241 237 / 68%); line-height: 1.7; }
-.foot__cin { font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.04em; color: rgb(242 241 237 / 55%); }
-.foot__contact { font-size: 0.9rem; color: rgb(242 241 237 / 68%); }
-.foot__contact a, .foot__email { color: #f2f1ed; }
-.foot__contact a:hover, .foot__email:hover { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
-.foot__link { border-color: rgb(242 241 237 / 24%); border-radius: 50%; color: #f2f1ed; }
-.foot__link:hover { color: #fff; border-color: rgb(242 241 237 / 60%); background: rgb(255 255 255 / 8%); }
-.foot__bottom {
-  border-top-color: rgb(242 241 237 / 16%);
-  font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0; color: rgb(242 241 237 / 60%);
+.foot__grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1fr; gap: clamp(24px, 3vw, 40px);
+  padding-bottom: clamp(16px, 2vw, 24px); border-bottom: 1px solid rgb(242 241 237 / 16%);
 }
-.foot__bottom-links a { color: rgb(242 241 237 / 60%); }
-.foot__bottom-links a:hover { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
+.foot__col { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; font-size: 17px; line-height: 1.3; }
+.foot__col--brand { gap: 0; }
+.foot__mark { display: block; width: clamp(72px, 50%, 104px); height: auto; }
+.foot__word {
+  display: block; margin-top: 10px;
+  font-family: "Times New Roman", Times, serif; font-size: clamp(32px, 3vw, 44px); line-height: 1.1; color: #f2f1ed;
+}
+.foot__tagline { margin: 2px 0 0; font-family: var(--sans); font-size: clamp(22px, 2.1vw, 28px); font-style: italic; line-height: 1.2; color: #f2f1ed; }
+.foot__col-title {
+  margin: 0 0 4px; color: rgb(242 241 237 / 55%); font-family: var(--sans); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.foot__org { margin: 0; }
+.foot__addr { margin: 0; font-style: normal; font-size: 15px; line-height: 1.5; color: rgb(242 241 237 / 68%); }
+.foot__cin { margin: 0; font-size: 14px; letter-spacing: 0.03em; color: rgb(242 241 237 / 55%); }
+.foot__social { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+.foot__social a { display: inline-flex; align-items: center; gap: 8px; }
+.foot__social a:hover { opacity: .8; text-decoration: none; }
+.foot a:hover { color: #fff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.foot__bottom { padding-top: clamp(14px, 1.5vw, 20px); color: rgb(242 241 237 / 60%); font-family: var(--sans); font-size: 15px; letter-spacing: 0; border: 0; margin: 0; }
+@media (max-width: 860px) { .foot__grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; } .foot__col--brand { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .foot__grid { grid-template-columns: 1fr; } }
 
 /* ── 15 · cookie notice + Sentinel chat (its CSS is injected by sentinel.js, so beat it on specificity) ── */
 .consent__inner {
