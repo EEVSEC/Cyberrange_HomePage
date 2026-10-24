@@ -115,73 +115,95 @@ html:not(.intro-done) .brand { opacity: 1; }
 .btn[data-state="loading"]::after { border-color: var(--white); border-top-color: transparent; }
 .btn:disabled { opacity: .45; }
 
-/* ── 4 · header: the original floating pill (placement unchanged), EEVSEC lockup and paper skin ── */
-.nav__inner {
-  background: rgb(246 244 239 / 84%);
-  -webkit-backdrop-filter: blur(28px) saturate(1.6); backdrop-filter: blur(28px) saturate(1.6);
-  box-shadow: 0 0 0 1px var(--line), 0 2px 4px rgb(27 53 87 / 5%), 0 14px 40px -12px rgb(27 53 87 / 16%);
+/* ── 4 · header: the eevsec.com bar (logo left; Ecosystem, Pricing and the Menu pill right) ──
+   Source: brand kit index.css .brand-header / .menu-trigger / .brand-menu. Fixed (not sticky) so the
+   page content keeps the positions it already has. */
+.brand-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: transparent;
+  transition: background-color .3s var(--ease-out), box-shadow .3s var(--ease-out);
 }
-.nav.is-stuck .nav__inner {
-  background: rgb(246 244 239 / 96%);
-  box-shadow: 0 0 0 1px var(--line), 0 16px 48px -16px rgb(27 53 87 / 22%);
+.brand-header[data-scrolled="true"] {
+  background: rgb(246 244 239 / 62%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 1px 0 var(--line);
 }
-.brand {
-  display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; margin-right: auto;
-  font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1;
-  letter-spacing: 0; color: #000;
+.brand-header-inner {
+  width: min(1280px, calc(100% - 96px)); height: 64px; margin: auto;
+  display: flex; align-items: center; gap: 32px;
 }
-.brand__mark {
-  width: 36px; height: 36px; margin: 0; flex-shrink: 0;
-  background: #000; border-radius: 7px; object-fit: contain; filter: none;
-}
-.brand__word { font-family: inherit; }
-.brand__product { display: none; }   /* the pill has no room; the hero names the product */
-
-.nav__links { gap: 24px; }
-.nav__links a {
-  font-family: var(--sans); font-size: 15px; letter-spacing: 0; color: var(--ink-3);
-  transition: color .2s;
-}
-.nav__links a:hover, .nav__links a.active {
+.brand-signature { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; color: #000; }
+.brand-signature img { width: 38px; height: 38px; background: #000; border-radius: 7px; object-fit: contain; }
+.brand-signature span { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
+.header-links { display: flex; align-items: center; gap: 28px; margin-left: auto; font-size: 18px; }
+.header-links a { padding-block: 12px; color: var(--ink); }
+.header-links a:hover, .header-links a[aria-current] {
   color: var(--navy); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px;
 }
-.nav .btn { padding: 8px 18px; font-size: 15px; }
-.nav .btn--primary, .nav .btn--ghost { font-size: 15px; }
-.btn-theme { display: none; }
+.menu-trigger {
+  display: inline-flex; align-items: center; justify-content: center; gap: 20px;
+  height: 44px; min-width: 112px; padding: 0 20px;
+  border: 1px solid var(--navy); border-radius: 50px; color: var(--navy); background: transparent;
+  font-family: var(--sans); font-size: 17px; line-height: 1;
+  transition: background-color .2s, color .2s;
+}
+.menu-trigger:hover, .menu-trigger[aria-expanded="true"] { color: var(--white); background: var(--navy); }
+.menu-lines { width: 15px; display: grid; gap: 4px; }
+.menu-lines i { display: block; height: 1px; background: currentColor; }
 
-@media (max-width: 1040px) { .nav__cta { display: none; } }
-@media (max-width: 760px) {
-  .brand { font-size: 25px; gap: 8px; }
-  .brand__mark { width: 31px; height: 31px; border-radius: 6px; }
+/* slide-in panel */
+.menu-scrim {
+  position: fixed; inset: 0; z-index: 60; background: rgb(27 53 87 / 28%);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  opacity: 0; transition: opacity .35s var(--ease-out);
+}
+.menu-scrim[hidden] { display: none; }
+.menu-scrim.is-open { opacity: 1; }
+.brand-menu {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 70;
+  width: min(520px, 100%); padding: 38px 42px 32px; overflow-y: auto;
+  display: flex; flex-direction: column; background: var(--white); color: var(--ink);
+  transform: translateX(100%); visibility: hidden;
+  transition: transform .4s var(--ease-out), visibility 0s linear .4s;
+}
+.brand-menu.is-open { transform: none; visibility: visible; transition: transform .4s var(--ease-out), visibility 0s; }
+.menu-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.menu-title { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
+.menu-close {
+  width: 44px; height: 44px; display: grid; place-items: center; color: var(--navy);
+  border: 1px solid var(--line); border-radius: 50%; background: none;
+}
+.menu-close:hover { background: var(--navy); color: var(--white); }
+.brand-menu .eyebrow { margin-bottom: 0; }
+.menu-products { margin-top: 20px; }
+.menu-products > a {
+  display: flex; align-items: center; gap: 16px; min-height: 57px; border-bottom: 1px solid var(--line);
+  font-family: var(--sans); font-size: 27px; line-height: 1.15; color: var(--ink);
+}
+.menu-products > a:hover { color: var(--navy); }
+.menu-number { font-family: var(--sans); font-size: 10px; color: var(--muted); min-width: 22px; }
+.menu-products > a svg { margin-left: auto; color: var(--navy); }
+.menu-secondary { display: grid; gap: 16px; padding-block: 24px; font-size: 21px; }
+.menu-secondary a { display: flex; align-items: center; justify-content: space-between; color: var(--ink); }
+.menu-secondary a:hover { color: var(--navy); }
+.menu-contact { margin-top: auto; flex-shrink: 0; justify-content: center; font-size: 17px; padding: 13px 26px; }
+html.menu-open { overflow: hidden; }
+/* the chat button must not sit above the open panel */
+html.menu-open .snt-fab { opacity: 0; pointer-events: none; }
 
-  /* the brand's "Menu" pill replaces the old three-line burger */
-  .nav .nav__burger {
-    display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 14px;
-    width: auto; min-width: 92px; height: 42px; padding: 0 16px;
-    border: 1px solid var(--navy); border-radius: 50px;
-    color: var(--navy); background: transparent; font-size: 16px;
-    transition: background-color .2s, color .2s;
-  }
-  .nav .nav__burger:hover, .nav .nav__burger[aria-expanded="true"] { background: var(--navy); color: var(--white); }
-  .nav .nav__burger span { height: auto; width: auto; background: none; border-radius: 0; transform: none; opacity: 1; transition: none; }
-  .nav .nav__burger[aria-expanded="true"] span:nth-child(n) { transform: none; opacity: 1; }
-  .menu-lines { display: grid; width: 15px; gap: 4px; }
-  .nav .nav__burger .menu-lines i { display: block; height: 1px; background: currentColor; transition: transform .3s var(--ease-out); }
-  .nav__burger[aria-expanded="true"] .menu-lines i:nth-child(1) { transform: translateY(2.5px) rotate(45deg); }
-  .nav__burger[aria-expanded="true"] .menu-lines i:nth-child(2) { transform: translateY(-2.5px) rotate(-45deg); }
-
-  .nav__menu {
-    border-radius: 18px;
-    background: rgb(246 244 239 / 94%);
-    -webkit-backdrop-filter: blur(28px) saturate(1.6); backdrop-filter: blur(28px) saturate(1.6);
-    box-shadow: 0 0 0 1px var(--line), 0 24px 60px -24px rgb(27 53 87 / 40%);
-  }
-  .nav__menu a { font-family: var(--sans); font-size: 19px; color: var(--ink); border-radius: var(--r-sm); }
-  .nav__menu a:hover, .nav__menu a:active { background: rgb(27 53 87 / 7%); color: var(--navy); }
-  .nav__menu .btn { font-size: 16px; justify-content: center; }
-  .nav__menu .btn--primary { color: var(--white); }
-  .nav__menu .btn:hover { background: #3a5576; background: color-mix(in srgb, var(--navy) 86%, var(--white)); }
-  .nav__menu .btn--ghost:hover { background: rgb(255 255 255 / 55%); color: var(--navy); }
+@media (max-width: 1050px) { .brand-header-inner { width: calc(100% - 64px); } }
+@media (max-width: 700px) {
+  .brand-header-inner { width: calc(100% - 40px); gap: 12px; }
+  .brand-signature { gap: 9px; }
+  .brand-signature img { width: 31px; height: 31px; border-radius: 6px; }
+  .brand-signature span { font-size: 25px; }
+  .header-links { display: none; }
+  .menu-trigger { margin-left: auto; height: 42px; min-width: 100px; padding: 0 18px; font-size: 16px; }
+  .brand-menu { padding: 26px 22px 24px; }
+  .menu-products > a { font-size: 24px; min-height: 54px; }
+  .menu-secondary { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-menu, .menu-scrim { transition: none; }
 }
 
 /* ── 5 · reveal: a short settle, no blur ── */

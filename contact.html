@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="css/tokens.css?v=105" />
 <link rel="stylesheet" href="css/styles.css?v=158" />
 <link rel="stylesheet" href="css/pages.css?v=13" />
-<link rel="stylesheet" href="css/brand.css?v=17" />
+<link rel="stylesheet" href="css/brand.css?v=19" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,19 +75,45 @@
 <div class="field" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="nav" id="nav">
-  <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/" aria-label="EEVSEC home"><img class="brand__mark" src="/brand/eevsec-icon-512.png" alt="" aria-hidden="true" width="38" height="38" /><span class="brand__word">EEVSEC.</span><span class="brand__product">CyberRange</span></a>
-    <div class="nav__links">
-      <a href="/#how">How it works</a>
-      <a href="/#coach">AI Coach</a>
-      <a href="/#scenarios">Scenarios</a>
+<header class="brand-header" id="siteHeader" data-scrolled="false">
+  <div class="brand-header-inner">
+    <a class="brand-signature" href="/" aria-label="EEVSEC CyberRange home">
+      <img src="/brand/eevsec-icon-512.png" alt="" width="38" height="38" />
+      <span>EEVSEC.</span>
+    </a>
+    <nav class="header-links" aria-label="Main navigation">
+      <a href="https://eevsec.com/#products">Ecosystem</a>
       <a href="/pricing.html">Pricing</a>
-    </div>
-    <a class="btn btn--ghost nav__login" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
-    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
-  </nav>
+    </nav>
+    <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
+      Menu
+      <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
 </header>
+
+<div class="menu-scrim" id="menuScrim" hidden></div>
+<aside class="brand-menu" id="siteMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" tabindex="-1">
+  <div class="menu-top">
+    <span class="menu-title">EEVSEC.</span>
+    <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <p class="eyebrow">CyberRange</p>
+  <nav class="menu-products" aria-label="CyberRange">
+    <a href="/#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </nav>
+  <div class="menu-secondary">
+    <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="https://cyberrange.eevsec.com/" rel="noopener">Log in <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+  <a class="btn btn--primary menu-contact" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+</aside>
 
 <main id="main" class="page wrap">
   <header class="page__head">
@@ -285,6 +311,7 @@
   </div>
 </footer>
 
+<script src="js/nav.js?v=2" defer></script>
 <script src="js/silk.js?v=1" defer></script>
 <script src="js/page.js?v=3"></script>
 <script src="/js/cookies.js?v=1" defer></script>
