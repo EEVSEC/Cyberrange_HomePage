@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>FAQ | EEVSEC CyberRange</title>
 <meta name="description" content="Answers about EEVSEC CyberRange: what it is, how live PvP matches work, the AI Coach, scenarios, who it is for, access, data, and refunds." />
-<meta name="color-scheme" content="dark light" />
+<meta name="color-scheme" content="light" />
+<link rel="preload" href="/fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="canonical" href="https://eevsec.com/faq.html" />
 <link rel="alternate" hreflang="en" href="https://eevsec.com/faq.html" />
 <link rel="alternate" hreflang="x-default" href="https://eevsec.com/faq.html" />
@@ -28,15 +29,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta name="theme-color" content="#0b0d0c" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600&text=%E0%A4%88%E0%A4%B5&display=swap" rel="stylesheet" />
-<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
-<link rel="stylesheet" href="css/tokens.css?v=99" />
-<link rel="stylesheet" href="css/styles.css?v=156" />
-<link rel="stylesheet" href="css/pages.css?v=12" />
+<meta name="theme-color" content="#f6f4ef" />
+<script>(function(){document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="css/tokens.css?v=100" />
+<link rel="stylesheet" href="css/styles.css?v=158" />
+<link rel="stylesheet" href="css/pages.css?v=13" />
+<link rel="stylesheet" href="css/brand.css?v=2" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -82,7 +80,7 @@
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
+    <a class="brand" href="/" aria-label="EEVSEC home"><img class="brand__mark" src="/brand/eevsec-icon-512.png" alt="" aria-hidden="true" width="38" height="38" /><span class="brand__word">EEVSEC.</span><span class="brand__product">CyberRange</span></a>
     <div class="nav__links">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
@@ -91,10 +89,6 @@
     </div>
     <a class="btn btn--ghost nav__login" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
     <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
-    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-    </button>
   </nav>
 </header>
 
@@ -196,8 +190,9 @@
 
       <!-- brand -->
       <div class="foot__col foot__col--brand">
-        <div class="foot__brand"><span class="foot__deva" title="ईव — the EEVSEC mark">ईव</span>Cyber<span class="br">Range</span></div>
-        <div class="foot__tag">Live-fire cybersecurity training</div>
+        <div class="foot__brand"><img class="foot__mark" src="/brand/eevsec-mark.svg" alt="" width="297" height="268" /><a class="foot__word" href="/" aria-label="EEVSEC home">EEVSEC.</a></div>
+        <p class="foot__tagline">Security, made visible.</p>
+        <div class="foot__tag">CyberRange · Live-fire cybersecurity training</div>
         <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
         <div class="foot__social">
           <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -233,7 +228,6 @@
       <div class="foot__col foot__col--org">
         <h2 class="foot__col-title">Company</h2>
         <div class="foot__logo-row">
-          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
           <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
         </div>
         <address class="foot__addr">
@@ -273,12 +267,13 @@
   </div>
 </footer>
 
-<script src="js/page.js?v=2"></script>
+<script src="js/silk.js?v=1" defer></script>
+<script src="js/page.js?v=3"></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=7" defer></script>
 <script src="/js/analytics.js?v=4" defer></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/sentinel.js?v=6" defer></script>
+<script src="/js/sentinel.js?v=7" defer></script>
 <!-- Cloudflare Web Analytics (RUM) -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>

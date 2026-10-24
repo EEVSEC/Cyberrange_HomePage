@@ -27,52 +27,52 @@
   style.textContent = `
   .snt-panel,.snt-panel *,.snt-fab,.snt-fab *{box-sizing:border-box}
   .snt-fab{position:fixed;right:24px;bottom:24px;width:56px;height:56px;border-radius:50%;
-    border:1px solid var(--line-2,rgba(255,255,255,.14));background:var(--bg-1,#161616);
-    color:var(--violet,#5fe0a0);cursor:pointer;z-index:9000;display:grid;place-items:center;
+    border:1px solid var(--line-2,rgba(27,53,87,.2));background:var(--bg-1,#fbfaf7);
+    color:var(--violet,#1b3557);cursor:pointer;z-index:9000;display:grid;place-items:center;
     box-shadow:0 10px 26px -12px rgba(0,0,0,.6);transition:transform .2s,box-shadow .2s}
   .snt-fab:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(0,0,0,.7)}
-  .snt-fab:focus-visible{outline:2px solid var(--violet,#5fe0a0);outline-offset:3px}
+  .snt-fab:focus-visible{outline:2px solid var(--violet,#1b3557);outline-offset:3px}
   .snt-fab svg{width:26px;height:26px}
   .snt-badge{position:absolute;top:-3px;right:-3px;width:13px;height:13px;border-radius:50%;
-    background:var(--warn,#e0a24a);border:2px solid var(--bg,#0b0d0c);opacity:0;transform:scale(.4);
+    background:var(--warn,#b42318);border:2px solid var(--bg,#f6f4ef);opacity:0;transform:scale(.4);
     transition:opacity .2s,transform .2s}
   .snt-badge.on{opacity:1;transform:scale(1)}
   .snt-panel{position:fixed;right:24px;bottom:92px;width:min(400px,calc(100vw - 32px));
-    height:min(560px,calc(100vh - 120px));background:var(--bg-1,#161616);
-    color:var(--ink,#f2f2f2);border:1px solid var(--line-2,rgba(255,255,255,.14));
+    height:min(560px,calc(100vh - 120px));background:var(--bg-1,#fbfaf7);
+    color:var(--ink,#000000);border:1px solid var(--line-2,rgba(27,53,87,.2));
     border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.5);z-index:9001;overflow:hidden;
     font:400 14px/1.5 var(--font-body,system-ui);
     display:none;grid-template-rows:auto minmax(0,1fr) auto auto}
   .snt-panel.open{display:grid}
-  .snt-head{padding:16px 18px;border-bottom:1px solid var(--line,rgba(255,255,255,.08));
+  .snt-head{padding:16px 18px;border-bottom:1px solid var(--line,rgba(27,53,87,.12));
     display:flex;justify-content:space-between;align-items:center;gap:12px}
   .snt-head h3{margin:0;font:600 16px/1.2 var(--font-body,system-ui)}
-  .snt-head p{margin:2px 0 0;font:400 12px/1.4 var(--font-body,system-ui);color:var(--ink-3,#9a9a9a)}
+  .snt-head p{margin:2px 0 0;font:400 12px/1.4 var(--font-body,system-ui);color:var(--ink-3,#515b67)}
   .snt-close{background:none;border:0;color:inherit;cursor:pointer;font-size:20px;line-height:1;padding:4px}
   .snt-log{min-height:0;overflow-y:auto;padding:16px 18px;margin:0;list-style:none;display:flex;flex-direction:column;gap:12px}
   .snt-msg{font:400 14px/1.55 var(--font-body,system-ui);max-width:85%}
-  .snt-msg.snt-bot{color:var(--ink,#f2f2f2)}
-  .snt-msg.snt-user{align-self:flex-end;background:var(--violet,#5fe0a0);color:var(--violet-ink,#06140c);
+  .snt-msg.snt-bot{color:var(--ink,#000000)}
+  .snt-msg.snt-user{align-self:flex-end;background:var(--violet,#1b3557);color:var(--violet-ink,#ffffff);
     padding:8px 12px;border-radius:14px 14px 4px 14px}
   .snt-src{margin-top:6px;font:400 12px/1.4 var(--font-mono,monospace)}
-  .snt-src a{color:var(--violet,#5fe0a0)}
+  .snt-src a{color:var(--violet,#1b3557)}
   .snt-sugg{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
-  .snt-sugg button{font:400 12px/1 var(--font-body,system-ui);color:var(--ink-2,#cfcfcf);
-    background:var(--bg-2,#1e1e1e);border:1px solid var(--line-2,rgba(255,255,255,.14));
+  .snt-sugg button{font:400 12px/1 var(--font-body,system-ui);color:var(--ink-2,#2d3744);
+    background:var(--bg-2,#f1f4f7);border:1px solid var(--line-2,rgba(27,53,87,.2));
     border-radius:999px;padding:7px 12px;cursor:pointer}
-  .snt-sugg button:hover{border-color:var(--violet,#5fe0a0);color:var(--ink,#fff)}
-  .snt-faqlink{display:inline-block;margin-top:10px;font:400 12px/1 var(--font-body,system-ui);color:var(--violet,#5fe0a0);text-decoration:none}
+  .snt-sugg button:hover{border-color:var(--violet,#1b3557);color:var(--ink,#fff)}
+  .snt-faqlink{display:inline-block;margin-top:10px;font:400 12px/1 var(--font-body,system-ui);color:var(--violet,#1b3557);text-decoration:none}
   .snt-faqlink:hover{text-decoration:underline}
-  .snt-form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line,rgba(255,255,255,.08))}
-  .snt-form input{flex:1;background:var(--bg-2,#1e1e1e);border:1px solid var(--line-2,rgba(255,255,255,.14));
-    border-radius:10px;color:var(--ink,#f2f2f2);padding:10px 12px;font:400 14px var(--font-body,system-ui)}
-  .snt-form input:focus{outline:none;border-color:var(--violet,#5fe0a0)}
-  .snt-form button{background:var(--violet,#5fe0a0);color:var(--violet-ink,#06140c);border:0;
+  .snt-form{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line,rgba(27,53,87,.12))}
+  .snt-form input{flex:1;background:var(--bg-2,#f1f4f7);border:1px solid var(--line-2,rgba(27,53,87,.2));
+    border-radius:10px;color:var(--ink,#000000);padding:10px 12px;font:400 14px var(--font-body,system-ui)}
+  .snt-form input:focus{outline:none;border-color:var(--violet,#1b3557)}
+  .snt-form button{background:var(--violet,#1b3557);color:var(--violet-ink,#ffffff);border:0;
     border-radius:10px;padding:0 14px;cursor:pointer;font-weight:600}
-  .snt-foot{padding:0 18px 12px;font:400 11px/1.4 var(--font-body,system-ui);color:var(--ink-4,#777)}
-  .snt-foot a{color:var(--ink-3,#9a9a9a)}
+  .snt-foot{padding:0 18px 12px;font:400 11px/1.4 var(--font-body,system-ui);color:var(--ink-4,#6b7682)}
+  .snt-foot a{color:var(--ink-3,#515b67)}
   .snt-typing{display:inline-flex;gap:3px}
-  .snt-typing i{width:5px;height:5px;border-radius:50%;background:var(--ink-3,#9a9a9a);animation:snt-b 1s infinite}
+  .snt-typing i{width:5px;height:5px;border-radius:50%;background:var(--ink-3,#515b67);animation:snt-b 1s infinite}
   .snt-typing i:nth-child(2){animation-delay:.15s}.snt-typing i:nth-child(3){animation-delay:.3s}
   @keyframes snt-b{0%,100%{opacity:.3}50%{opacity:1}}
   @media (prefers-reduced-motion:reduce){.snt-fab,.snt-typing i{transition:none;animation:none}}`;

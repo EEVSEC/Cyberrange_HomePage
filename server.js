@@ -24,6 +24,8 @@ const mime = {
   ".ico":  "image/x-icon",
   ".xml":  "application/xml",
   ".txt":  "text/plain",
+  ".woff2": "font/woff2",
+  ".ttf":  "font/ttf",
 };
 
 const cacheControl = {
