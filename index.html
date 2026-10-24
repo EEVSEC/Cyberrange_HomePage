@@ -9,6 +9,7 @@
 <meta name="description" content="CyberRange is a live, browser-based arena where you learn cybersecurity by attacking and defending real systems against a real opponent, with a state-aware AI coach in your corner." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="/fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="canonical" href="https://eevsec.com/" />
 <link rel="alternate" hreflang="en" href="https://eevsec.com/" />
 <link rel="alternate" hreflang="x-default" href="https://eevsec.com/" />
@@ -32,9 +33,9 @@
 <meta name="twitter:description" content="Attack, defend, and decide under pressure on real machines. With a state-aware AI coach that explains every move." />
 <meta name="twitter:image" content="https://eevsec.com/media/og/home.png" />
 <script>(function(){if('scrollRestoration' in history)history.scrollRestoration='manual';}());</script>
-<link rel="stylesheet" href="css/tokens.css?v=103" />
+<link rel="stylesheet" href="css/tokens.css?v=105" />
 <link rel="stylesheet" href="css/styles.css?v=158" />
-<link rel="stylesheet" href="css/brand.css?v=6" />
+<link rel="stylesheet" href="css/brand.css?v=9" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -86,6 +87,15 @@
 </head>
 <body class="home">
 <a class="skip-link" href="#top">Skip to content</a>
+
+<!-- ── intro: CyberRange (kit logo) by EEVSEC. ──────────────── -->
+<div class="intro" id="intro" role="presentation">
+  <div class="intro__inner">
+    <img class="intro__logo" src="/brand/cyberrange-wordmark.webp" alt="" width="1600" height="560" decoding="async" />
+    <div class="intro__by" aria-hidden="true"><span>by</span><img src="/brand/eevsec-icon-512.png" alt="" width="30" height="30" />EEVSEC.</div>
+    <div class="intro__bar"><div class="intro__fill" id="introFill"></div></div>
+  </div>
+</div>
 
 <div class="field" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -882,7 +892,7 @@
 <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
 <script src="js/silk.js?v=1" defer></script>
-<script src="js/main.js?v=140"></script>
+<script src="js/main.js?v=141"></script>
 <script>
 (function(){
   var img = document.getElementById('modesGif');

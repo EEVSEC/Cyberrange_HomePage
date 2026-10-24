@@ -7,10 +7,35 @@
  * older stylesheets still use (--bg, --ink-2, --violet, ...) at brand values,
  * so every page inherits the palette without renaming each rule.
  */
+/* Fonts are shipped as real files in every style used on the site, so no browser has to synthesise
+   anything (synthetic italics and CSS font-size scaling differ slightly between engines).
+     EEVSEC Serif           the brand font, unchanged
+       + italic             the same outlines slanted 14 deg (what browsers fake for <em>)
+     EEVSEC Serif Display   the same outlines uniformly scaled to 73% - the old display face
+                            (Instrument Serif) is ~1.37x narrower, and measured on the old page
+                            this is what keeps every heading on its original line breaks
+       + italic             scaled and slanted
+   Body text needs no adjustment (within ~3% of the old Geist). Built by make_fonts.py logic from
+   fonts/EEVSECSerif.ttf; see fonts/README.md. */
 @font-face {
   font-family: "EEVSEC Serif";
   src: url("/fonts/EEVSECSerif.woff2") format("woff2"), url("/fonts/EEVSECSerif.ttf") format("truetype");
   font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "EEVSEC Serif";
+  src: url("/fonts/EEVSECSerif-Italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "EEVSEC Serif Display";
+  src: url("/fonts/EEVSECSerif-Display.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "EEVSEC Serif Display";
+  src: url("/fonts/EEVSECSerif-Display-Italic.woff2") format("woff2");
+  font-weight: 400; font-style: italic; font-display: swap;
 }
 
 :root {
@@ -21,7 +46,7 @@
   --white: #ffffff;
   --line: rgb(27 53 87 / 20%);
   --muted: #515b67;
-  --display: "EEVSEC Serif", Georgia, serif;
+  --display: "EEVSEC Serif Display", Georgia, serif;   /* brand token is "EEVSEC Serif"; same face, width-matched */
   --sans: "EEVSEC Serif", Georgia, serif;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
@@ -104,9 +129,9 @@
 
   /* fluid type scale (brand hero is 72-160px; section titles 36-68px) */
   --text-hero:  clamp(2.9rem, 1.4rem + 6.5vw, 7.2rem);
-  --text-xxl:   clamp(2.2rem, 1.3rem + 3.2vw, 3.75rem);
-  --text-xl:    clamp(1.7rem, 1.2rem + 2.0vw, 3.0rem);
-  --text-lg:    clamp(1.3rem, 1.05rem + 1.0vw, 1.9rem);
+  --text-xxl:   clamp(2.75rem, 1.6rem + 3.6vw, 4.5rem);
+  --text-xl:    clamp(2.1rem, 1.4rem + 2.0vw, 3.0rem);
+  --text-lg:    clamp(1.6rem, 1.2rem + 1.0vw, 1.9rem);
   --text-md:    clamp(1.05rem, 0.98rem + 0.35vw, 1.22rem);
   --text-base:  1rem;
   --text-sm:    0.9rem;
