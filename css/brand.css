@@ -198,7 +198,11 @@ html:not(.intro-done) .brand { opacity: 1; }
      content width = viewport (max 1800) - page gutters; left column = (content - 44px gap) / 2.3. Plain math, no container units. */
   font-size: min(7rem, calc((min(100vw - 20px, 1800px) - 2 * clamp(20px, 5vw, 80px) - 44px) / 9.6));
   letter-spacing: -0.01em; color: var(--ink);
+  /* one even, tight pitch for all three lines (~1.0x the glyph size). The old per-row offsets were tuned
+     for the condensed face, which filled its line boxes; here they made the gaps uneven. */
+  line-height: 0.72;
 }
+.hero__title .ttl-row:nth-child(2), .hero__title .ttl-row:nth-child(3) { margin-top: 0; }
 .hero__title em { font-style: italic; color: var(--navy); }
 .hero__cute {
   font-family: var(--font-code); color: var(--muted); background: var(--white); border-color: var(--line-strong);
@@ -229,7 +233,6 @@ html:not(.intro-done) .brand { opacity: 1; }
 @media (max-width: 1024px) {
   .hero__title { font-size: clamp(2.8rem, 20.5vw, 7rem); }
   .hero__lead { font-size: clamp(2.3rem, 9.4vw, 3.4rem); }
-  .hero__title .ttl-row:nth-child(3) { margin-top: 0.04em; }
 }
 /* the "L0L." chip trails the last word; keep it inside the screen when the title is large */
 @media (max-width: 760px) {
