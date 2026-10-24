@@ -282,17 +282,31 @@ html:not(.intro-done) .brand { opacity: 1; }
 .hiw__nots-accent { color: var(--navy); }
 
 /* ── 9 · AI coach ── */
-/* Two columns of equal height starting at the same line: the label, the dialog's top edge, the card
-   grid and the dialog + caption all share top and bottom edges (the dialog was centred, which left it
-   sticking out above the left column). Cards and dialog stretch to fill. */
+/* Layout: the heading sits on its own row; below it the four cards and the dialog share ONE row, so
+   they have the same top, bottom and centre line. The cards stretch to the dialog's height; the
+   caption sits under the dialog. (display: contents lets the existing wrappers' children take part
+   in the grid; below 941px nothing changes: single column as before.) */
+@media (max-width: 940px) {
+  .coach__feat-t { font-size: 1.7rem; }
+  .coach__feat-d { font-size: 1rem; }
+}
 @media (min-width: 941px) {
-  .coach__grid { align-items: stretch; }
-  .coach__copy { display: flex; flex-direction: column; }
-  .coach__copy .coach__feats { flex: 1; }
-  .coach__right { justify-content: flex-start; }
-  .coach__right .coach__panel { flex: 1; display: flex; flex-direction: column; }
-  .coach__right .coach__panel .panel { flex: 1; display: flex; flex-direction: column; }
-  .coach__right .panel__body { flex: 1; }
+  .coach__grid {
+    grid-template-areas: "head ." "feats panel" ". note";
+    grid-template-rows: auto auto auto;
+    align-items: stretch;
+    row-gap: 0;
+  }
+  .coach__copy, .coach__right { display: contents; }
+  .coach__head { grid-area: head; }
+  .coach__feats { grid-area: feats; margin-top: var(--space-lg); }
+  .coach__right > .coach__panel { grid-area: panel; margin-top: var(--space-lg); display: flex; flex-direction: column; }
+  .coach__right > .iso-note { grid-area: note; margin-top: clamp(20px, 2.4vw, 32px); }
+  /* the cards stretch to the dialog's height; content stays top-aligned so icons and titles line up across cards */
+  .coach__feat { justify-content: flex-start; padding: clamp(24px, 2.2vw, 32px); }
+  .coach__feat-ic { margin-bottom: clamp(20px, 2vw, 30px); }
+  .coach__panel > .panel { flex: 1; display: flex; flex-direction: column; }
+  .coach__panel .panel__body { flex: 1; }
 }
 .coach__copy h2 .c-blue { color: var(--navy); }
 .coach__copy p { color: var(--muted); }
