@@ -19,22 +19,22 @@
    fonts/EEVSECSerif.ttf; see fonts/README.md. */
 @font-face {
   font-family: "EEVSEC Serif";
-  src: url("/fonts/EEVSECSerif.woff2") format("woff2"), url("/fonts/EEVSECSerif.ttf") format("truetype");
+  src: url("../fonts/EEVSECSerif.woff2") format("woff2"), url("../fonts/EEVSECSerif.ttf") format("truetype");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "EEVSEC Serif";
-  src: url("/fonts/EEVSECSerif-Italic.woff2") format("woff2");
+  src: url("../fonts/EEVSECSerif-Italic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
   font-family: "EEVSEC Serif Display";
-  src: url("/fonts/EEVSECSerif-Display.woff2") format("woff2");
+  src: url("../fonts/EEVSECSerif-Display.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "EEVSEC Serif Display";
-  src: url("/fonts/EEVSECSerif-Display-Italic.woff2") format("woff2");
+  src: url("../fonts/EEVSECSerif-Display-Italic.woff2") format("woff2");
   font-weight: 400; font-style: italic; font-display: swap;
 }
 
