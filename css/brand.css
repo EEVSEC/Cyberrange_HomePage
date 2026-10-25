@@ -129,12 +129,12 @@ html:not(.intro-done) .brand { opacity: 1; }
 }
 .brand-header-inner {
   width: min(1280px, calc(100% - 96px)); height: 64px; margin: auto;
-  display: flex; align-items: center; gap: 32px;
+  display: flex; align-items: center; gap: 24px;
 }
 .brand-signature { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; color: #000; }
 .brand-signature img { width: 38px; height: 38px; background: #000; border-radius: 7px; object-fit: contain; }
 .brand-signature span { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
-.header-links { display: flex; align-items: center; gap: 28px; margin-left: auto; font-size: 17px; }
+.header-links { display: flex; align-items: center; gap: 24px; margin-left: auto; font-size: 17px; }
 .header-links a { padding-block: 12px; color: var(--ink); }
 .header-links a:hover, .header-links a[aria-current] {
   color: var(--navy); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px;
@@ -147,7 +147,7 @@ html:not(.intro-done) .brand { opacity: 1; }
   transition: background-color .2s, color .2s;
 }
 .menu-trigger:hover, .menu-trigger[aria-expanded="true"] { color: var(--white); background: var(--navy); }
-.header-cta { display: flex; align-items: center; gap: 10px; }
+.header-cta { display: flex; align-items: center; gap: 24px; }
 .header-cta .btn { padding: 8px 20px; font-size: 15px; }
 /* the Menu pill is for screens too narrow for the full bar */
 .menu-trigger { display: none; }
