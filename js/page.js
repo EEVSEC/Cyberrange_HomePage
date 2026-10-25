@@ -1,5 +1,5 @@
 /* CyberRange — lightweight engine for static sub-pages (legal, etc.)
-   Handles only what text pages need: theme toggle, copyright year, sticky nav.
+   Handles only what text pages need: copyright year, sticky nav.
    The homepage uses the richer main.js; this avoids loading that here. */
 (() => {
   'use strict';
@@ -8,21 +8,6 @@
   /* copyright year */
   const yr = $('#year');
   if (yr) yr.textContent = new Date().getFullYear();
-
-  /* theme toggle — shares the cr-theme key with the homepage */
-  const btn = $('#themeToggle');
-  const html = document.documentElement;
-  const meta = $('meta[name="color-scheme"]');
-  if (btn) {
-    btn.setAttribute('aria-pressed', html.dataset.theme === 'light' ? 'true' : 'false');
-    btn.addEventListener('click', () => {
-      const t = html.dataset.theme === 'dark' ? 'light' : 'dark';
-      html.dataset.theme = t;
-      try { localStorage.setItem('cr-theme', t); } catch (e) {}
-      if (meta) meta.content = t === 'dark' ? 'dark light' : 'light dark';
-      btn.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');  // G-04
-    });
-  }
 
   /* sticky nav shadow on scroll */
   const nav = $('#nav');

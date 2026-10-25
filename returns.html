@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Refund &amp; Cancellation Policy | EEVSEC CyberRange</title>
 <meta name="description" content="Refund and cancellation rules for EEVSEC CyberRange subscriptions and training credits, applicable worldwide and alongside your local consumer rights." />
-<meta name="color-scheme" content="dark light" />
+<meta name="color-scheme" content="light" />
+<link rel="preload" href="fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="canonical" href="https://eevsec.com/returns.html" />
 <link rel="alternate" hreflang="en" href="https://eevsec.com/returns.html" />
 <link rel="alternate" hreflang="x-default" href="https://eevsec.com/returns.html" />
@@ -28,15 +30,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta name="theme-color" content="#0b0d0c" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;600&text=%E0%A4%88%E0%A4%B5&display=swap" rel="stylesheet" />
-<script>(function(){var t=localStorage.getItem('cr-theme');if(t==='light')document.documentElement.dataset.theme='light';document.documentElement.classList.add('intro-done');}());</script>
-<link rel="stylesheet" href="css/tokens.css?v=99" />
-<link rel="stylesheet" href="css/styles.css?v=156" />
-<link rel="stylesheet" href="css/legal.css?v=4" />
+<meta name="theme-color" content="#f6f4ef" />
+<script>(function(){document.documentElement.classList.add('intro-done');}());</script>
+<link rel="stylesheet" href="css/tokens.css?v=106" />
+<link rel="stylesheet" href="css/styles.css?v=158" />
+<link rel="stylesheet" href="css/legal.css?v=5" />
+<link rel="stylesheet" href="css/brand.css?v=23" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -71,23 +70,51 @@
 <div class="field" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="nav" id="nav">
-  <nav class="nav__inner" aria-label="Primary">
-    <a class="brand" href="/"><img class="brand__mark" src="/logo.png" alt="" aria-hidden="true" width="31" height="28" />Cyber<span class="br">Range</span></a>
-    <div class="nav__links">
+<header class="brand-header" id="siteHeader" data-scrolled="false">
+  <div class="brand-header-inner">
+    <a class="brand-signature" href="/" aria-label="EEVSEC CyberRange home">
+      <img src="brand/eevsec-icon-512.png" alt="" width="38" height="38" />
+      <span>EEVSEC.</span>
+    </a>
+    <nav class="header-links" aria-label="Main navigation">
       <a href="/#how">How it works</a>
       <a href="/#coach">AI Coach</a>
       <a href="/#scenarios">Scenarios</a>
       <a href="/pricing.html">Pricing</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn--ghost" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
+      <a class="btn btn--primary" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
     </div>
-    <a class="btn btn--ghost nav__login" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
-    <a class="btn btn--primary nav__cta" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
-    <button class="btn-theme" id="themeToggle" aria-label="Toggle dark mode" type="button">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-      <svg class="icon-sun"  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
+      Menu
+      <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
     </button>
-  </nav>
+  </div>
 </header>
+
+<div class="menu-scrim" id="menuScrim" hidden></div>
+<aside class="brand-menu" id="siteMenu" role="dialog" aria-modal="true" aria-label="Site menu" aria-hidden="true" tabindex="-1">
+  <div class="menu-top">
+    <span class="menu-title">EEVSEC.</span>
+    <button class="menu-close" id="menuClose" type="button" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <p class="eyebrow">CyberRange</p>
+  <nav class="menu-products" aria-label="CyberRange">
+    <a href="/#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </nav>
+  <div class="menu-secondary">
+    <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="https://cyberrange.eevsec.com/" rel="noopener">Log in <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="/careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+  <a class="btn btn--primary menu-contact" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+</aside>
 
 <main id="main" class="legal wrap">
   <header class="legal__head">
@@ -172,94 +199,61 @@
   <div class="wrap">
     <div class="foot__grid">
 
-      <!-- brand -->
       <div class="foot__col foot__col--brand">
-        <div class="foot__brand"><span class="foot__deva" title="ईव — the EEVSEC mark">ईव</span>Cyber<span class="br">Range</span></div>
-        <div class="foot__tag">Live-fire cybersecurity training</div>
-        <p class="foot__motto"><span class="accent-c">Attack. Defend. Repeat.</span></p>
-        <div class="foot__social">
-          <a class="foot__link" href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
-          </a>
-          <a class="foot__link" href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <a class="foot__link" href="mailto:hi@eevsec.com" aria-label="Email hi@eevsec.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-          </a>
-        </div>
+        <img class="foot__mark" src="brand/eevsec-mark.svg" alt="" width="297" height="268" />
+        <a class="foot__word" href="/" aria-label="EEVSEC home">EEVSEC.</a>
+        <p class="foot__tagline">Security, made visible.</p>
       </div>
 
-      <!-- platform -->
       <nav class="foot__col" aria-label="Platform">
         <h2 class="foot__col-title">Platform</h2>
-        <div class="foot__links">
-          <a href="/#how">How it works</a>
-          <a href="/#coach">AI Coach</a>
-          <a href="/#scenarios">Scenarios</a>
-          <a href="/doctrine.html">Doctrine</a>
-          <a href="/pricing.html">Pricing</a>
-          <a href="/contact.html">Contact</a>
-          <a href="/news.html">Newsroom</a>
-          <a href="/careers.html">Careers</a>
-          <a href="/blog/index.html">Academy</a>
-          <a href="/faq.html">FAQ</a>
-        </div>
+        <a href="/#how">How it works</a>
+        <a href="/#coach">AI Coach</a>
+        <a href="/#scenarios">Scenarios</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/news.html">Newsroom</a>
+        <a href="/careers.html">Careers</a>
+        <a href="/faq.html">FAQ</a>
       </nav>
 
-      <!-- company -->
-      <div class="foot__col foot__col--org">
-        <h2 class="foot__col-title">Company</h2>
-        <div class="foot__logo-row">
-          <span class="foot__logo"><img src="/logo.png" alt="EEVSEC" width="26" height="24" decoding="async" loading="lazy" /></span>
-          <span class="foot__legal-name">EEVSEC PRIVATE LIMITED</span>
-        </div>
-        <address class="foot__addr">
-          401, Garud Apartment, Opp: Mahabaleshwar Flat,<br>
-          Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
-        </address>
-        <div class="foot__cin">CIN: U62013GJ2026PTC177190</div>
-        <div class="foot__contact">
-          <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> ·
-          <a href="tel:+919265359476">+91 92653 59476</a>
+      <div class="foot__col foot__connect">
+        <h2 class="foot__col-title">Connect</h2>
+        <p class="foot__org">EEVSEC Private Limited</p>
+        <a href="mailto:hi@eevsec.com">hi@eevsec.com</a>
+        <a href="tel:+917891089239">+91-7891089239</a>
+        <div class="foot__social">
+          <a href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+          <a href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg> Instagram</a>
         </div>
       </div>
 
-      <!-- legal -->
       <nav class="foot__col" aria-label="Legal">
         <h2 class="foot__col-title">Legal</h2>
-        <div class="foot__links">
-          <a href="/privacy.html">Privacy Policy</a>
-          <a href="/terms.html">Terms of Service</a>
-          <a href="/aup.html">Acceptable Use</a>
-          <a href="/returns.html">Refund Policy</a>
-          <a href="/cookies.html">Cookie Policy</a>
-          <a href="/cookies.html" onclick="if(window.crConsent){event.preventDefault();window.crConsent.open();}">Cookie preferences</a>
-          <a href="/security.html">Security</a>
-          <a href="/sitemap.xml">Sitemap</a>
-        </div>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/aup.html">Acceptable Use</a>
+        <a href="/returns.html">Refund Policy</a>
+        <a href="/cookies.html">Cookie Policy</a>
+        <a href="/security.html">Security</a>
       </nav>
 
     </div>
 
     <div class="foot__bottom">
-      <span>© <span id="year">2026</span> EEVSEC PRIVATE LIMITED. All rights reserved.</span>
-      <span class="foot__bottom-links">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
-        <a href="/returns.html">Refund</a>
-        <a href="/cookies.html">Cookies</a>
-      </span>
+      <span>&copy; <span id="year">2026</span> EEVSEC Private Limited. All rights reserved.</span>
     </div>
   </div>
 </footer>
 
-<script src="js/page.js?v=2"></script>
+<script src="js/nav.js?v=2" defer></script>
+<script src="js/silk.js?v=1" defer></script>
+<script src="js/page.js?v=3"></script>
 <script src="/js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=7" defer></script>
 <script src="/js/analytics.js?v=4" defer></script>
 <script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/sentinel.js?v=6" defer></script>
+<script src="/js/sentinel.js?v=7" defer></script>
 <!-- Cloudflare Web Analytics (RUM) -->
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
 </body>

@@ -1,0 +1,661 @@
+/* ============================================================
+   EEVSEC brand layer — loaded last on every page.
+   Source of truth: EEVSEC Brand Kit 2026-10-23 (tokens, source/client/src/index.css).
+
+   Identity in one paragraph: paper (#f6f4ef) ground with a pearl-silver silk
+   field above the fold; black ink for headlines; navy (#1b3557) as the single
+   accent; one typeface, EEVSEC Serif at weight 400, with italic emphasis in navy;
+   hairline rules instead of boxes; pill buttons; charcoal footer with the cream
+   symbol. No dark mode, no gradients-for-their-own-sake, no second typeface.
+
+   tokens.css re-points every legacy token at these values, so most components
+   already carry the palette. This file changes what tokens cannot: type
+   treatment, header, hero, buttons, background, footer.
+   ============================================================ */
+
+/* ── 0 · base ─────────────────────────────────────────────── */
+html { background: var(--paper); }
+body {
+  position: relative;
+  font-family: var(--sans);
+  font-size: var(--text-md);
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: var(--ink);
+  background: transparent;         /* the silk (.field) paints behind; paper comes from <html> */
+  /* EEVSEC Serif has a broken kern pair on "kh" ("CyberShiksha") and no other pairs worth keeping */
+  font-kerning: none;
+  font-feature-settings: "kern" 0;
+  /* only real font files are used: nothing is synthesised, so every engine draws the same glyphs */
+  font-synthesis: none;
+  transition: none;
+}
+*, *::before, *::after { font-weight: 400 !important; }
+em { color: var(--navy); font-style: italic; }
+::selection { background: var(--navy); color: var(--white); }
+:focus-visible { outline: 2px solid var(--navy); outline-offset: 4px; border-radius: 3px; }
+.skip-link {
+  background: var(--navy); color: var(--white);
+  font-family: var(--sans); font-size: 16px; letter-spacing: 0; border-radius: 0; padding: 12px 20px;
+}
+code, kbd, samp, pre { font-family: var(--font-code); }
+
+/* ── 1 · background: pearl-silver silk over paper, fine paper grain ── */
+:root { --silk-h: 110svh; }
+body.home { --silk-h: 200svh; }
+.field {
+  position: absolute; inset: 0; z-index: -1;
+  overflow: hidden; pointer-events: none;
+  background: none;
+}
+/* CSS pearl gradient: the no-WebGL / reduced-GPU fallback, identical to the kit's */
+.field::before,
+.field__silk {
+  content: ""; display: block;
+  position: absolute; left: 0; top: 0; width: 100%;
+  height: min(100%, var(--silk-h));
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 192px), transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 calc(100% - 192px), transparent 100%);
+}
+.field::before { background: linear-gradient(135deg, #cbd4db, #e5eaf0, #f8fafc, #ffffff); }
+.field::after { display: none; }
+.grain {
+  position: fixed; inset: 0; z-index: -2;
+  opacity: 1; mix-blend-mode: normal; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .25 0 0 0 0 .22 0 0 0 0 .17 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html:not(.intro-done) .brand { opacity: 1; }
+.scroll-progress { display: none; }
+
+/* ── 2 · type: one face, calm headings, uppercase small caps for labels ── */
+.hero__title, .hero__lead, .shead h2, .cta h2, .page__head h1, .legal__head h1,
+.article__head h1, .coach__copy h2, .gap2__intro h2, .contact__h2, .dmap__title,
+.forx-final__h, .dlayer__title, .abt-hero__title, .abt-head h2, .wait__success h3 {
+  font-family: var(--display); letter-spacing: -0.02em;
+}
+.scen__card h3, .modecard h3, .who__cell h3, .why__cell h3, .dtri__title, .diff__t,
+.coach__feat-t, .acad-card__title, .news-card__head, .faq__q, .legal__body h2,
+.article__body h2, .forx-point__h, .cpath__h, .scn-block__h, .hiw__scenario h3,
+.hiw__step b, .loop__t, .diff__title, .cited__big, .ptier__price {
+  font-family: var(--display); letter-spacing: -0.01em;
+}
+
+.eyebrow {
+  font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--navy);
+}
+.eyebrow::before { width: 28px; background: var(--navy); opacity: .45; }
+.eyebrow.is-cyan::before { background: var(--navy); }
+.eyebrow--center::before { display: none; }
+
+/* small labels in the old CSS were sized for a mono face; keep everything legible */
+.hiw__coach-pill, .cmp__htag, .state__k, .stream__cmdlabel, .stream__whylabel,
+.stream__chain-label, .chain__step .n, .stream__cmd .copy, .iso-wall::after,
+.modecard .tags, .scen__k, .nav__status { font-size: 0.75rem; }
+
+/* real code keeps a monospace: EEVSEC Serif has no + < = > ^ _ ` | glyphs */
+.term__body, .stream__cmd, .stream__cmd code, #coachCmd, .state__v, .hmac-bar-title,
+.faqbot__glyph, .snt-src { font-family: var(--font-code); }
+
+/* ── 3 · buttons: pills; navy fill or hairline outline ── */
+.btn {
+  font-family: var(--sans); font-size: 16px; line-height: 1.5;
+  letter-spacing: 0; text-transform: none;
+  padding: 11px 26px; border-radius: var(--r-pill);
+  border: 1px solid var(--navy);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, transform 160ms var(--ease-out);
+}
+.btn--primary { background: var(--navy); color: var(--white); box-shadow: none; }
+.btn--primary:hover { background: #3a5576; background: color-mix(in srgb, var(--navy) 86%, var(--white)); box-shadow: none; transform: none; }
+.btn--ghost { background: transparent; color: var(--navy); border-color: rgb(27 53 87 / 45%); }
+.btn--ghost:hover { background: rgb(255 255 255 / 55%); border-color: var(--navy); transform: none; }
+.btn:active { transform: scale(0.97); }
+.btn .arr { transition: transform 300ms var(--ease-out); }
+.btn:hover .arr { transform: translateX(3px); }
+.btn[data-state="loading"]::after { border-color: var(--white); border-top-color: transparent; }
+.btn:disabled { opacity: .45; }
+
+/* ── 4 · header: the eevsec.com bar (logo left; Ecosystem, Pricing and the Menu pill right) ──
+   Source: brand kit index.css .brand-header / .menu-trigger / .brand-menu. Fixed (not sticky) so the
+   page content keeps the positions it already has. */
+.brand-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: transparent;
+  transition: background-color .3s var(--ease-out), box-shadow .3s var(--ease-out);
+}
+.brand-header[data-scrolled="true"] {
+  background: rgb(246 244 239 / 62%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 1px 0 var(--line);
+}
+.brand-header-inner {
+  width: min(1280px, calc(100% - 96px)); height: 64px; margin: auto;
+  display: flex; align-items: center; gap: 24px;
+}
+.brand-signature { display: inline-flex; align-items: center; gap: 11px; flex-shrink: 0; color: #000; }
+.brand-signature img { width: 38px; height: 38px; background: #000; border-radius: 7px; object-fit: contain; }
+.brand-signature span { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
+.header-links { display: flex; align-items: center; gap: 24px; margin-left: auto; font-size: 17px; }
+.header-links a { padding-block: 12px; color: var(--ink); }
+.header-links a:hover, .header-links a[aria-current] {
+  color: var(--navy); text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px;
+}
+.menu-trigger {
+  display: inline-flex; align-items: center; justify-content: center; gap: 20px;
+  height: 44px; min-width: 112px; padding: 0 20px;
+  border: 1px solid var(--navy); border-radius: 50px; color: var(--navy); background: transparent;
+  font-family: var(--sans); font-size: 17px; line-height: 1;
+  transition: background-color .2s, color .2s;
+}
+.menu-trigger:hover, .menu-trigger[aria-expanded="true"] { color: var(--white); background: var(--navy); }
+.header-cta { display: flex; align-items: center; gap: 10px; }
+.header-cta .btn { padding: 8px 20px; font-size: 15px; }
+/* the Menu pill is for screens too narrow for the full bar */
+.menu-trigger { display: none; }
+@media (max-width: 1000px) {
+  .header-links, .header-cta { display: none; }
+  .menu-trigger { display: inline-flex; margin-left: auto; }
+}
+.menu-lines { width: 15px; display: grid; gap: 4px; }
+.menu-lines i { display: block; height: 1px; background: currentColor; }
+
+/* slide-in panel */
+.menu-scrim {
+  position: fixed; inset: 0; z-index: 60; background: rgb(27 53 87 / 28%);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  opacity: 0; transition: opacity .35s var(--ease-out);
+}
+.menu-scrim[hidden] { display: none; }
+.menu-scrim.is-open { opacity: 1; }
+.brand-menu {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 70;
+  width: min(520px, 100%); padding: 38px 42px 32px; overflow-y: auto;
+  display: flex; flex-direction: column; background: var(--white); color: var(--ink);
+  transform: translateX(100%); visibility: hidden;
+  transition: transform .4s var(--ease-out), visibility 0s linear .4s;
+}
+.brand-menu.is-open { transform: none; visibility: visible; transition: transform .4s var(--ease-out), visibility 0s; }
+.menu-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.menu-title { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
+.menu-close {
+  width: 44px; height: 44px; display: grid; place-items: center; color: var(--navy);
+  border: 1px solid var(--line); border-radius: 50%; background: none;
+}
+.menu-close:hover { background: var(--navy); color: var(--white); }
+.brand-menu .eyebrow { margin-bottom: 0; }
+.menu-products { margin-top: 20px; }
+.menu-products > a {
+  display: flex; align-items: center; gap: 16px; min-height: 57px; border-bottom: 1px solid var(--line);
+  font-family: var(--sans); font-size: 27px; line-height: 1.15; color: var(--ink);
+}
+.menu-products > a:hover { color: var(--navy); }
+.menu-number { font-family: var(--sans); font-size: 10px; color: var(--muted); min-width: 22px; }
+.menu-products > a svg { margin-left: auto; color: var(--navy); }
+.menu-secondary { display: grid; gap: 16px; padding-block: 24px; font-size: 21px; }
+.menu-secondary a { display: flex; align-items: center; justify-content: space-between; color: var(--ink); }
+.menu-secondary a:hover { color: var(--navy); }
+.menu-contact { margin-top: auto; flex-shrink: 0; justify-content: center; font-size: 17px; padding: 13px 26px; }
+html.menu-open { overflow: hidden; }
+/* the chat button must not sit above the open panel */
+html.menu-open .snt-fab { opacity: 0; pointer-events: none; }
+
+@media (max-width: 1050px) { .brand-header-inner { width: calc(100% - 64px); } }
+@media (max-width: 700px) {
+  .brand-header-inner { width: calc(100% - 40px); gap: 12px; }
+  .brand-signature { gap: 9px; }
+  .brand-signature img { width: 31px; height: 31px; border-radius: 6px; }
+  .brand-signature span { font-size: 25px; }
+  .header-links { display: none; }
+  .menu-trigger { margin-left: auto; height: 42px; min-width: 100px; padding: 0 18px; font-size: 16px; }
+  .brand-menu { padding: 26px 22px 24px; }
+  .menu-products > a { font-size: 24px; min-height: 54px; }
+  .menu-secondary { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-menu, .menu-scrim { transition: none; }
+}
+
+/* ── 5 · reveal: a short settle, no blur ── */
+.reveal {
+  opacity: 0; transform: translateY(18px); filter: none; will-change: auto;
+  transition: opacity .75s var(--ease-out), transform .75s var(--ease-out);
+}
+.reveal.in { opacity: 1; transform: none; filter: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* ── 6 · hero: original two-column placement (title + copy left, demo right, stats below) ── */
+.hero__title {
+  /* original 7rem, capped so "practicing on" can never outgrow the left column at any width:
+     content width = viewport (max 1800) - page gutters; left column = (content - 44px gap) / 2.3. Plain math, no container units. */
+  font-size: min(7rem, calc((min(100vw - 20px, 1800px) - 2 * clamp(20px, 5vw, 80px) - 44px) / 9.6));
+  letter-spacing: -0.01em; color: var(--ink);
+  /* one even, tight pitch for all three lines (~1.0x the glyph size). The old per-row offsets were tuned
+     for the condensed face, which filled its line boxes; here they made the gaps uneven. */
+  line-height: 0.72;
+}
+.hero__title .ttl-row:nth-child(2), .hero__title .ttl-row:nth-child(3) { margin-top: 0; }
+.hero__title em { font-style: italic; color: var(--navy); }
+.hero__cute {
+  font-family: var(--font-code); color: var(--muted); background: var(--white); border-color: var(--line-strong);
+}
+.hero__lead .c { color: var(--navy); font-style: italic; }
+.hero__sub { color: var(--muted); }
+.hero__sub .k-atk { color: var(--how-atk); }
+.hero__sub .k-def { color: var(--navy); }
+.hero__sub .caret { background: var(--navy); }
+
+/* the demo, framed like a print on paper */
+.hero-mockup {
+  border-radius: var(--r-lg); background: var(--white);
+  box-shadow: 0 0 0 1px var(--line), 0 40px 90px -44px rgb(27 53 87 / 50%), 0 12px 30px -18px rgb(27 53 87 / 22%);
+}
+.hmac-bar { background: #f1f4f7; border-bottom: 1px solid var(--line); }
+.hmac-tl-r, .hmac-tl-y, .hmac-tl-g { background: rgb(27 53 87 / 22%); }
+.hmac-bar-title { color: var(--muted); letter-spacing: 0.04em; font-size: 0.8rem; }
+.hmac-scrim { display: none; }
+
+.hero__meta { border-top-color: var(--line); }
+.hero__meta div { color: var(--muted); }
+.hero__meta b { font-size: 1rem; color: var(--ink); }
+.scroll-cue { color: var(--muted); }
+.scroll-cue span { background: linear-gradient(var(--navy), transparent); box-shadow: none; }
+.scroll-progress { background: var(--navy); box-shadow: none; height: 2px; }
+/* single-column hero (<= 1024px): the title can use the full width, like the PC hero does */
+@media (max-width: 1024px) {
+  .hero__title { font-size: clamp(2.8rem, 20.5vw, 7rem); }
+  .hero__lead { font-size: clamp(2.3rem, 9.4vw, 3.4rem); }
+}
+/* the "L0L." chip trails the last word; keep it inside the screen when the title is large */
+@media (max-width: 760px) {
+  .hero__cute { font-size: 0.95rem; padding: 3px 10px; left: calc(100% + 0.15em); }
+}
+
+/* ── 7 · section heads ── */
+.shead h2 {
+  font-size: var(--text-xxl); line-height: 1.04; color: var(--ink); margin-bottom: var(--space-md); text-wrap: balance;
+}
+.shead h2 em, .gap2__intro h2 em, .cta h2 em, .coach__copy h2 em,
+.page__head h1 em, #how .shead h2 em { font-style: italic; color: var(--navy); }
+.shead p, .page__head p, .legal__intro { color: var(--muted); }
+.page__head h1, .legal__head h1 { font-size: var(--text-xxl); line-height: 1.06; color: var(--ink); text-wrap: balance; }
+.shead--center h2, .shead--center p { text-align: center; }
+
+/* ── 8 · how it works ── */
+.hiw__side, .hiw__card, .hiw__steps {
+  background: var(--how-surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px rgb(27 53 87 / 35%);
+}
+.hiw__role { font-size: 0.95rem; letter-spacing: 0.14em; }
+.hiw__sub { font-family: var(--sans); font-size: 1rem; letter-spacing: 0; color: var(--muted); }
+.hiw__note { font-size: 1.15rem; color: var(--ink); }
+.term { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-md); }
+.term__bar { background: #f1f4f7; border-bottom: 1px solid var(--line-faint); }
+.term__dots i { background: rgb(27 53 87 / 22%); }
+.hiw__side { min-width: 0; }
+.term__body { color: var(--ink-2); overflow-wrap: anywhere; }
+@media (min-width: 981px) { .term__body { font-size: 0.95rem; } }
+.hiw__label { font-size: 0.85rem; letter-spacing: 0.16em; color: var(--navy); }
+.hiw__label--coach { color: var(--navy); font-size: 0.95rem; }
+.hiw__tags { gap: 14px; }
+.hiw__tags span { font-family: var(--sans); font-size: 0.86rem; gap: 5px; color: var(--muted); }
+.hiw__tags svg { width: 18px; height: 18px; color: var(--navy); }
+.hiw__coach p { font-size: 1.1rem; color: var(--ink-2); }
+.hiw__coach-pill { color: var(--navy); background: var(--navy-soft); border-color: transparent; letter-spacing: 0.12em; }
+.hiw__coach-pill::before { background: var(--navy); box-shadow: 0 0 0 3px var(--navy-soft); }
+.hiw__chip {
+  font-family: var(--sans); font-size: 0.9rem; gap: 7px; padding-inline: 8px; color: var(--navy);
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.hiw__chip svg { color: var(--navy); }
+.hiw__snum { font-family: var(--sans); color: var(--navy); font-size: 1.05rem; }
+.hiw__sd { color: var(--muted); }
+.hiw__nots span { font-family: var(--sans); font-size: 1.05rem; color: var(--muted); border-left-color: var(--line); }
+.hiw__nots-accent { color: var(--navy); }
+
+/* ── 9 · AI coach ── */
+/* Layout: the heading sits on its own row; below it the four cards and the dialog share ONE row, so
+   they have the same top, bottom and centre line. The cards stretch to the dialog's height; the
+   caption sits under the dialog. (display: contents lets the existing wrappers' children take part
+   in the grid; below 941px nothing changes: single column as before.) */
+@media (max-width: 940px) {
+  .coach__feat-t { font-size: 1.7rem; }
+  .coach__feat-d { font-size: 1rem; }
+}
+@media (min-width: 941px) {
+  .coach__grid {
+    grid-template-areas: "head ." "feats panel" ". note";
+    grid-template-rows: auto auto auto;
+    align-items: stretch;
+    row-gap: 0;
+  }
+  .coach__copy, .coach__right { display: contents; }
+  .coach__head { grid-area: head; }
+  .coach__feats { grid-area: feats; margin-top: var(--space-lg); }
+  .coach__right > .coach__panel { grid-area: panel; margin-top: var(--space-lg); display: flex; flex-direction: column; }
+  .coach__right > .iso-note { grid-area: note; margin-top: clamp(20px, 2.4vw, 32px); }
+  /* the cards stretch to the dialog's height; content stays top-aligned so icons and titles line up across cards */
+  .coach__feat { justify-content: flex-start; padding: clamp(24px, 2.2vw, 32px); }
+  .coach__feat-ic { margin-bottom: clamp(20px, 2vw, 30px); }
+  .coach__panel > .panel { flex: 1; display: flex; flex-direction: column; }
+  .coach__panel .panel__body { flex: 1; }
+}
+.coach__copy h2 .c-blue { color: var(--navy); }
+.coach__copy p { color: var(--muted); }
+.coach__feat { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-md); }
+.coach__feat-ic { color: var(--navy); }
+.coach__feat-d { color: var(--muted); }
+.panel {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: 0 40px 90px -50px rgb(27 53 87 / 45%), 0 10px 30px -20px rgb(27 53 87 / 20%);
+}
+.seg { background: var(--bg-2); border-color: var(--line); }
+.seg button { font-family: var(--sans); font-size: 0.82rem; letter-spacing: 0.1em; }
+.seg button[aria-selected="true"][data-side="atk"] { background: var(--how-atk); color: var(--white); box-shadow: none; }
+.seg button[aria-selected="true"][data-side="def"] { background: var(--navy); color: var(--white); box-shadow: none; }
+.panel__phase { letter-spacing: 0.14em; }
+.state { background: #f7f8f9; }
+.stream__head { color: var(--navy); font-size: 0.82rem; letter-spacing: 0.14em; }
+.stream__head .orb { background: radial-gradient(circle at 35% 30%, #5d7ca3, var(--navy)); box-shadow: none; }
+.stream__read { font-size: 1.1rem; }
+.stream__cmd { background: #f7f8f9; border-color: var(--line); border-left-color: var(--navy); font-size: 0.88rem; }
+.stream__cmd .sig { color: var(--navy); }
+.chain__step .n { color: var(--navy); }
+.coach__panel.def .stream__head, .coach__panel.def .chain__step .n, .coach__panel.def .stream__cmd .sig { color: var(--navy); }
+.coach__panel.atk .stream__cmd { border-left-color: var(--how-atk); }
+.coach__panel.atk .stream__cmd .sig { color: var(--how-atk); }
+.iso-note { font-family: var(--sans); font-size: 1rem; letter-spacing: 0; color: var(--muted); }
+.isolation { background: var(--bg-1); border-radius: var(--r-md); }
+.iso-side { font-family: var(--sans); font-size: 1rem; }
+.iso-side.atk .lab { color: var(--how-atk); }
+.iso-side.def .lab { color: var(--navy); }
+.iso-wall::after { background: var(--bg-1); }
+
+/* ── 10 · modes reel: a product window on paper ── */
+.modes-reel {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: 0 40px 90px -50px rgb(27 53 87 / 45%), 0 10px 30px -20px rgb(27 53 87 / 20%);
+}
+.modes-reel__frame { background: #0a0a0a; }
+
+/* ── 11 · hairline grids: scenarios, doctrine, modes, why, testimonials ── */
+.scen, .dtri, .tmon, .why, .modecard-list, .contrast, .gap2__strip, .diff, .cmp {
+  border-color: var(--line); border-radius: var(--r-md);
+}
+.scen__card, .dtri__card, .tmon__card, .why__cell, .modecard, .contrast__row { background: var(--bg-1); }
+.scen__card:hover, .scen__card:focus-within, .dtri__card:hover, .modecard:hover, .contrast__row:hover { background: var(--bg-2); }
+.scen__ic, img.scen__ic { filter: none; transition: transform .35s var(--ease-out); }
+.scen__card:hover .scen__ic, .scen__card:focus-within .scen__ic,
+.scen__card:hover img.scen__ic, .scen__card:focus-within img.scen__ic { filter: none; color: var(--navy); transform: translateY(-3px); }
+.scen__eyebrow, .dtri__role, .modecard__n, .why__n { letter-spacing: 0.12em; color: var(--muted); }
+.why__n { color: var(--navy); }
+.scen__card > p, .modecard p, .why__cell p, .dtri__body { color: var(--muted); }
+.scen__row.atk .scen__k { color: var(--how-atk); }
+.scen__row.def .scen__k { color: var(--navy); }
+.scen__row.ai  .scen__k { color: var(--muted); }
+.scen__v { color: var(--ink-2); }
+.scen__more, .dtri__more, .who__more, .cited__more, .gap2__link {
+  font-family: var(--sans); font-size: 0.95rem; letter-spacing: 0; text-transform: none; color: var(--navy);
+}
+.scen__more:hover, .dtri__more:hover, .who__more:hover, .cited__more:hover, .gap2__link:hover {
+  text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px;
+}
+.dtri__tag { letter-spacing: 0.1em; color: var(--navy); }
+.dtri__title { font-size: var(--text-xl); }
+.tmon__name { font-size: 1.05rem; color: var(--ink); }
+.who__cell { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-md); }
+.who__cell:hover, .who__cell:focus-within { background: var(--bg-2); border-color: var(--line-strong); }
+.who__n { font-family: var(--sans); color: var(--navy); }
+.who__cell p { color: var(--muted); }
+
+/* ── 12 · comparison: "what other platforms still don't have" ── */
+.cmp { background: var(--bg-1); }
+.cmp__hcell--us, .cmp__cell--us { background: var(--navy-soft); }
+.cmp__hlabel { font-family: var(--sans); letter-spacing: 0.12em; color: var(--ink-2); }
+.cmp__hcell--us .cmp__hlabel { color: var(--navy); }
+.cmp__htag { color: var(--navy); background: rgb(27 53 87 / 12%); letter-spacing: 0.08em; }
+.cmp__htag--muted { color: var(--muted); background: rgb(27 53 87 / 6%); }
+.cmp__icon { background: var(--navy-soft); color: var(--navy); border-radius: var(--r-sm); }
+.cmp__feat { font-family: var(--sans); }
+.cmp__cell { font-family: var(--sans); color: var(--muted); }
+.cmp__st.yes, .cmp__cell--us { color: var(--navy); }
+.cmp__st.no { color: #8d97a2; }
+.cmp__st.part, .cmp__cell:has(.part) { color: var(--muted); }
+.cmp__bot-img { filter: drop-shadow(0 8px 14px rgb(27 53 87 / 28%)); }
+.cmp__bot-bubble { font-family: var(--sans); color: var(--navy); background: var(--white); border-color: var(--line); }
+.cmp__bot-bubble::before { background: var(--white); border-color: var(--line); }
+.gap2__intro p { color: var(--muted); }
+.gap2__pill { font-family: var(--sans); color: var(--ink-2); }
+.gap2__pill--accent, .gap2__pill--accent .gap2__pic { color: var(--navy); }
+.gap2__pic { color: var(--navy); }
+.gap2__foot { font-size: var(--text-lg); color: var(--muted); }
+.gap2__foot em { color: var(--navy); }
+.diff { border-color: var(--line); }
+.diff__title { background: var(--bg-1); }
+.diff__title--no { color: var(--muted); background: var(--bg-2); }
+.diff__title--yes { color: var(--navy); background: var(--bg-1); }
+.diff__vs {
+  font-family: var(--sans); font-size: 0.85rem; background: var(--white);
+  border-color: var(--navy); color: var(--navy); box-shadow: 0 0 0 5px var(--bg-1);
+}
+.diff__cell { background: var(--bg-1); }
+.diff__label { font-family: var(--sans); letter-spacing: 0.12em; color: var(--muted); font-size: 0.8rem; }
+.diff__label--g { color: var(--navy); }
+.diff__d { color: var(--muted); }
+.contrast__no s { text-decoration-color: var(--navy); }
+
+/* ── 13 · call to action + waitlist form ── */
+.cta::before { background: radial-gradient(55% 42% at 50% 48%, rgb(27 53 87 / 6%) 0%, transparent 72%); }
+.cta h2 { font-size: var(--text-xxl); line-height: 1.06; }
+.cta p { color: var(--muted); }
+.cta__eyebrow { color: var(--navy); }
+.cta__eyebrow::before { background: var(--navy); }
+.wait__label { font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.12em; color: var(--muted); }
+.wait__input, .wait__select, .cform__input {
+  font-family: var(--sans); font-size: 1.0625rem; letter-spacing: 0; color: var(--ink);
+  background: var(--white); border: 1px solid var(--input); border-radius: var(--r-md); padding: 13px 16px;
+}
+.wait__input::placeholder, .cform__input::placeholder { color: #7b8794; }
+.wait__input:focus, .wait__select:focus, .cform__input:focus-visible {
+  outline: none; border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgb(27 53 87 / 14%);
+}
+.wait__err, .wait__msg { font-family: var(--sans); font-size: 0.9rem; letter-spacing: 0; }
+.wait__msg.ok { color: var(--navy); }
+.wait__submit:hover { box-shadow: none; }
+.wait__check { color: var(--white); background: var(--navy); box-shadow: none; }
+.wait__success h3 { font-size: var(--text-xl); }
+.wait__success strong { color: var(--navy); }
+.cta__feat + .cta__feat::before { background: var(--line); }
+.cta__feat h3 { font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.14em; color: var(--ink); }
+.cta__feat p { color: var(--muted); }
+
+.cited { border-top-color: var(--line); }
+.cited__eyebrow { font-family: var(--sans); font-size: 0.82rem; letter-spacing: 0.16em; color: var(--muted); }
+.cited__big { color: var(--navy); }
+.cited__cap { color: var(--ink-2); }
+.cited__src { font-family: var(--sans); letter-spacing: 0; color: var(--muted); }
+.cited__src:hover { color: var(--navy); }
+
+/* ── 14 · footer: the eevsec.com footer (kit: .footer-wrap / .site-footer / .footer-grid) ──
+   Charcoal band; the cream symbol stacked above the EEVSEC. signature and tagline; small uppercase
+   column titles; one quiet copyright row. Platform links are this site's own. */
+.foot { background: #1f2022; color: #f2f1ed; border-top: 0; margin: 0; padding-block: clamp(32px, 4vw, 52px) clamp(14px, 1.5vw, 22px); }
+.foot a { color: inherit; }
+.foot__grid {
+  display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1fr; gap: clamp(24px, 3vw, 40px);
+  padding-bottom: clamp(16px, 2vw, 24px); border-bottom: 1px solid rgb(242 241 237 / 16%);
+}
+.foot__col { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; font-size: 17px; line-height: 1.3; }
+.foot__col--brand { gap: 0; }
+.foot__mark { display: block; width: clamp(72px, 50%, 104px); height: auto; }
+.foot__word {
+  display: block; margin-top: 10px;
+  font-family: "Times New Roman", Times, serif; font-size: clamp(32px, 3vw, 44px); line-height: 1.1; color: #f2f1ed;
+}
+.foot__tagline { margin: 2px 0 0; font-family: var(--sans); font-size: clamp(22px, 2.1vw, 28px); font-style: italic; line-height: 1.2; color: #f2f1ed; }
+.foot__col-title {
+  margin: 0 0 4px; color: rgb(242 241 237 / 55%); font-family: var(--sans); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.foot__org { margin: 0; }
+.foot__addr { margin: 0; font-style: normal; font-size: 15px; line-height: 1.5; color: rgb(242 241 237 / 68%); }
+.foot__cin { margin: 0; font-size: 14px; letter-spacing: 0.03em; color: rgb(242 241 237 / 55%); }
+.foot__social { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+.foot__social a { display: inline-flex; align-items: center; gap: 8px; }
+.foot__social a:hover { opacity: .8; text-decoration: none; }
+.foot a:hover { color: #fff; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.foot__bottom { padding-top: clamp(14px, 1.5vw, 20px); color: rgb(242 241 237 / 60%); font-family: var(--sans); font-size: 15px; letter-spacing: 0; border: 0; margin: 0; }
+@media (max-width: 860px) { .foot__grid { grid-template-columns: 1fr 1fr; gap: 28px 24px; } .foot__col--brand { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .foot__grid { grid-template-columns: 1fr; } }
+
+/* ── 15 · cookie notice + Sentinel chat (its CSS is injected by sentinel.js, so beat it on specificity) ── */
+.consent__inner {
+  background: rgb(251 250 247 / 96%); border-color: var(--line); border-radius: var(--r-lg);
+  box-shadow: 0 24px 60px -24px rgb(27 53 87 / 40%);
+}
+.consent { width: min(380px, calc(100vw - 28px)); }
+.consent__inner { gap: 12px; padding: 16px 18px 14px; }
+.consent__text { font-size: 0.9rem; line-height: 1.5; color: var(--ink-2); }
+.consent__btn { padding: 8px 20px; font-size: 15px; }
+.consent__text a { color: var(--navy); }
+html .snt-fab {
+  background: var(--navy); color: var(--white); border-color: var(--navy);
+  box-shadow: 0 14px 32px -14px rgb(27 53 87 / 60%);
+}
+html .snt-fab:hover { box-shadow: 0 18px 38px -14px rgb(27 53 87 / 65%); }
+html .snt-fab:focus-visible { outline-color: var(--navy); }
+html .snt-badge { background: var(--how-atk); border-color: var(--paper); }
+html .snt-panel {
+  background: var(--bg-1); color: var(--ink); border-color: var(--line); border-radius: var(--r-lg);
+  box-shadow: 0 40px 90px -40px rgb(27 53 87 / 50%); font-size: 16px; line-height: 1.5;
+}
+html .snt-head h3 { font-size: 21px; line-height: 1.15; }
+html .snt-head p { font-size: 14px; color: var(--muted); }
+html .snt-msg { font-size: 16px; }
+html .snt-msg.snt-user { background: var(--navy); color: var(--white); }
+html .snt-sugg button { font-size: 14px; background: var(--white); border-color: var(--line); color: var(--ink-2); }
+html .snt-sugg button:hover { border-color: var(--navy); color: var(--navy); }
+html .snt-form input { font-size: 16px; background: var(--white); border-color: var(--input); border-radius: var(--r-md); }
+html .snt-form input:focus { border-color: var(--navy); }
+html .snt-form button { background: var(--navy); color: var(--white); font-size: 18px; border-radius: var(--r-md); }
+html .snt-foot { font-size: 13px; color: var(--muted); }
+html .snt-faqlink, html .snt-src a { color: var(--navy); font-size: 14px; }
+
+/* ── 16 · inner pages (pricing, faq, contact, legal, scenarios, blog, ...) ── */
+.page__head h1 em, .page__head h1 span { font-style: italic; color: var(--navy); }
+.page__head--left p { margin-inline: 0; }
+.crumb, .article__byline, .legal__dates, .news-card__src, .news-card__tags, .scn-cta__tags,
+.pricing__note, .cpath__sub, .abt-note, .ir-table thead th, .cform__label, .dlayer__tag,
+.dlayer__eg-h, .ptier__name, .ptier__status, .dtag, .acad-card__tag, .acad-card__read,
+.article__back a, .scn-mission__h, .scn-tech__id, .cpath__sla li span:last-child, .dmap__list li {
+  font-family: var(--sans); letter-spacing: 0.1em;
+}
+.ptier__name, .acad-card__tag, .dlayer__tag, .scn-mission__h { color: var(--navy); }
+.ptier, .news-card, .acad-card, .forx-point, .dlayer, .scn-mission {
+  background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--r-lg);
+}
+.ptier:hover, .news-card:hover, .acad-card:hover, .forx-point:hover, .dlayer:hover, .dlayer:focus-within {
+  box-shadow: 0 30px 70px -40px rgb(27 53 87 / 40%); border-color: var(--line-strong);
+}
+.ptier--featured { border-color: var(--navy); box-shadow: 0 0 0 1px var(--navy), 0 30px 70px -40px rgb(27 53 87 / 45%); }
+.ptier__badge { font-family: var(--sans); background: var(--navy); color: var(--white); letter-spacing: 0.1em; }
+.ptier__price { color: var(--ink); }
+.ptier__per, .ptier__desc, .ptier__feat, .news-card__cite, .forx-point__p, .scn-mission p,
+.dlayer__body, .dlayer__eg li, .cpath__p, .cpath__line, .cpath__addr { color: var(--muted); }
+.ptier__feat svg { color: var(--navy); }
+.ptier__status--now, .ptier__status--soon { color: var(--navy); border-color: var(--navy); background: var(--navy-soft); }
+.curr { background: var(--bg-1); border-color: var(--line); }
+.curr__btn { font-family: var(--sans); letter-spacing: 0.06em; }
+.curr__btn[aria-checked="true"] { background: var(--navy); color: var(--white); }
+.dlayer__lede { color: var(--ink); }
+.dmap__list li { background: var(--bg-1); border-color: var(--line); }
+.scn-real li::before { background: var(--how-atk); }
+.faq__q:hover, .faq__icon { color: var(--navy); }
+.faq__a p { color: var(--muted); }
+.faq__a a, .legal__body a, .article__body a, .cform__fineprint a, .pricing__note a,
+.cpath__line a, .crumb a:hover, .news-card__head a:hover { color: var(--navy); }
+.legal__body h2 { font-size: var(--text-lg); line-height: 1.15; margin-top: 4px; }
+.legal__body h3 { font-size: var(--text-md); color: var(--ink); }
+.legal__body li::marker { color: var(--navy); }
+.legal__body p, .legal__body li, .article__body p, .scn-lede, .scn-tech__item, .legal__note { color: var(--ink-2); }
+.legal__note { border-left-color: var(--navy); background: var(--bg-1); }
+.legal__contact { background: var(--bg-1); border-color: var(--line); }
+.legal__contact a { color: var(--navy); }
+.cform__status--ok { color: var(--navy); }
+.cform__input.is-invalid { border-color: var(--destructive); box-shadow: 0 0 0 3px rgb(180 35 24 / 14%); }
+.ir-table thead th { border-bottom-color: var(--line-strong); }
+.article__head { border-bottom-color: var(--line); }
+.article__back a { text-transform: none; font-size: 1rem; letter-spacing: 0; }
+.acad-card__read { text-transform: none; font-size: 1rem; letter-spacing: 0; color: var(--navy); }
+
+/* ── 18 · original text-block widths (see note: `ch` is narrower in EEVSEC Serif) ── */
+.page__head, .page__head--left, .scn-lede, .dmap__p, .legal__intro { max-width: calc(var(--w) * 1.207); }
+.shead { max-width: calc(64ch * 1.207); }
+.shead p { max-width: calc(56ch * 1.207); }
+.page__head { --w: 64ch; }
+.page__head p { max-width: calc(56ch * 1.207); }
+.page__head--left { --w: 72ch; }
+.scn-lede, .dmap__p, .legal__intro { --w: 64ch; }
+.hero__sub { max-width: calc(58ch * 1.10); }
+.gap2__intro p { max-width: calc(42ch * 1.207); }
+.hiw__sd { max-width: calc(18ch * 1.207); }
+.cta p { max-width: calc(48ch * 1.207); }
+.foot__addr { max-width: calc(34ch * 1.207); }
+.pricing__vat { max-width: calc(60ch * 1.207); }
+.article { max-width: calc(70ch * 1.207); }
+.cmp__bot-bubble { max-width: calc(18ch * 1.207); }
+@media (max-width: 768px) { .cmp__bot-bubble { max-width: calc(13ch * 1.207); } }
+
+/* ── 19 · intro: the CyberRange logo (kit asset) with the EEVSEC. lockup, then the page lifts ── */
+.intro {
+  position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(70% 60% at 50% 38%, #ffffff 0%, #e5eaf0 58%, #cbd4db 100%), var(--paper);
+  transition: opacity .7s var(--ease-out), visibility .7s;
+}
+.intro.is-out { opacity: 0; visibility: hidden; }
+.intro__inner { display: flex; flex-direction: column; align-items: center; gap: 20px; width: min(600px, 86vw); }
+.intro__logo {
+  width: 100%; height: auto;
+  opacity: 0; transform: translateY(12px) scale(0.985);
+  transition: opacity .8s var(--ease-out) .1s, transform 1s var(--ease-out) .1s;
+}
+.intro.is-run .intro__logo { opacity: 1; transform: none; }
+.intro__by {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: "Times New Roman", Times, serif; font-size: 26px; line-height: 1; color: #000;
+  opacity: 0; transition: opacity .7s var(--ease-out) .55s;
+}
+.intro__by img { width: 30px; height: 30px; background: #000; border-radius: 6px; object-fit: contain; }
+.intro.is-run .intro__by { opacity: 1; }
+.intro__by span { color: var(--muted); font-family: var(--sans); font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; margin-right: 2px; }
+.intro__bar { width: 120px; height: 2px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 6px; }
+.intro__fill { width: 0; height: 100%; background: var(--navy); border-radius: 99px; }
+.intro.is-run .intro__fill { width: 100%; transition: width 1.25s var(--ease-in-out) .25s; }
+/* the chat button must not float over the intro (its z-index is above the overlay's) */
+html:not(.intro-done) .snt-fab { opacity: 0; pointer-events: none; }
+.snt-fab { transition: opacity .5s var(--ease-out), transform .2s, box-shadow .2s; }
+
+/* ── 20 · scenario cards: compact, and every card built on the same skeleton ──
+   All icons sit in the same 44px box (the Adversarial AI robot art is wider than the others and used
+   to be drawn at 92px, which pushed its whole card down). The card is a column: icon, label, title,
+   description (takes the spare height), then the three mission lines and the link, so each row of
+   cards lines up top to bottom. */
+.scen__card {
+  display: flex; flex-direction: column;
+  padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px) clamp(18px, 1.8vw, 24px);
+}
+.scen__ic, .scen__ic--robot, img.scen__ic {
+  width: auto; height: 54px; max-width: 100%; margin: 0 0 12px; object-fit: contain; object-position: left center;
+  align-self: flex-start;
+}
+.scen__eyebrow { margin-bottom: 4px; }
+.scen__card h3 { margin-bottom: 6px; }
+.scen__card > p { flex: 1; margin-bottom: 12px; font-size: 0.86rem; line-height: 1.5; }
+.scen__mission { gap: 4px; padding-top: 10px; }
+.scen__v { font-size: 0.8rem; line-height: 1.4; }
+.scen__more { margin-top: 10px; }
+@media (max-width: 880px) { .scen__card > p { flex: 0 0 auto; } }
+
+/* ── 17 · reduced motion ── */
+/* (silk.js already freezes the cloth at t=0 under reduced motion, as in the kit) */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .scen__ic { transition: none; }
+}

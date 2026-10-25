@@ -100,27 +100,6 @@
   /* ── year ── */
   const yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ── theme toggle ── */
-  (() => {
-    const btn  = $('#themeToggle');
-    const html = document.documentElement;
-    const meta = $('meta[name="color-scheme"]');
-    if (!btn) return;
-    const apply = (theme) => {
-      html.dataset.theme = theme;
-      localStorage.setItem('cr-theme', theme);
-      if (meta) meta.content = theme === 'dark' ? 'dark light' : 'light dark';
-      // G-04: expose toggle state to assistive tech (pressed === light mode)
-      btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
-      const reel = document.querySelector('.modes-reel__frame');
-      if (reel && reel.contentWindow) reel.contentWindow.postMessage({ crTheme: theme }, '*');
-    };
-    btn.setAttribute('aria-pressed', html.dataset.theme === 'light' ? 'true' : 'false');
-    btn.addEventListener('click', () => {
-      apply(html.dataset.theme === 'dark' ? 'light' : 'dark');
-    });
-  })();
-
   /* ── modes reel CTA → scroll to waitlist ── */
   window.addEventListener('message', (e) => {
     if (e.data && e.data.crNav === 'join') {
@@ -130,14 +109,12 @@
   });
 
   /* ════════════════════════════════════════════════════════════
-     INTRO ANIMATION — "CyberRange" types in, flies to navbar
+     INTRO — the CyberRange logo (kit asset) by EEVSEC., then the page lifts in
      ════════════════════════════════════════════════════════════ */
   (() => {
-    const overlay  = $('#intro');
-    const wordEl   = $('#introWord');
-    const fillEl   = $('#introFill');
-    const html     = document.documentElement;
-    if (!overlay || !wordEl) { html.classList.add('intro-done'); return; }
+    const overlay = $('#intro');
+    const html    = document.documentElement;
+    if (!overlay) { html.classList.add('intro-done'); return; }
 
     if (reduced) {
       overlay.style.display = 'none';
@@ -145,67 +122,12 @@
       return;
     }
 
-    /* build character spans */
-    const TEXT   = 'CyberRange';
-    const ACCENT = 5; /* chars 5–9 get accent colour */
-    wordEl.innerHTML = '';
-    [...TEXT].forEach((ch, i) => {
-      const s = document.createElement('span');
-      s.className = 'ichar' + (i >= ACCENT ? ' ichar--accent' : '');
-      s.textContent = ch;
-      wordEl.appendChild(s);
-    });
-    const chars = $$('.ichar', wordEl);
-
-    let idx = 0;
-
-    const typeNext = () => {
-      if (idx >= chars.length) {
-        /* fill the loading bar then fly */
-        if (fillEl) {
-          fillEl.style.transition = 'width .44s var(--ease-in-out)';
-          fillEl.style.width = '100%';
-        }
-        setTimeout(fly, 560);
-        return;
-      }
-      chars[idx].classList.add('visible');
-      idx++;
-      setTimeout(typeNext, idx === 1 ? 55 : 42);
-    };
-
-    const fly = () => {
-      const brand = $('.brand');
-      if (!brand) { finish(); return; }
-
-      const wRect = wordEl.getBoundingClientRect();
-      const bRect = brand.getBoundingClientRect();
-      const tx = bRect.left + bRect.width  / 2 - (wRect.left + wRect.width  / 2);
-      const ty = bRect.top  + bRect.height / 2 - (wRect.top  + wRect.height / 2);
-      const sc = Math.max(bRect.width / wRect.width * 0.9, 0.08);
-
-      /* reveal brand at the same moment the word starts flying so they
-       * cross-fade through the flight — eliminates the "pops up" gap */
-      html.classList.add('intro-done');
-
-      wordEl.style.cssText +=
-        'transition:transform .68s var(--ease-in-out),opacity .42s var(--ease-in) .22s;' +
-        `transform:translate(${tx}px,${ty}px) scale(${sc});opacity:0;`;
-
-      /* fade overlay slightly behind the word */
-      setTimeout(() => {
-        overlay.style.cssText += 'transition:opacity .5s var(--ease-out);opacity:0;';
-      }, 160);
-
-      setTimeout(finish, 880);
-    };
-
-    const finish = () => {
-      html.classList.add('intro-done');
-      overlay.style.display = 'none';
-    };
-
-    setTimeout(typeNext, 260);
+    requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('is-run')));
+    setTimeout(() => {
+      html.classList.add('intro-done');          // hero words + typewriter start as the overlay lifts
+      overlay.classList.add('is-out');
+      setTimeout(() => { overlay.style.display = 'none'; }, 750);
+    }, 1750);
   })();
 
   /* ── nav stuck + hide-on-scroll-down ── */
@@ -420,7 +342,7 @@
     canvas.style.display = 'block';
 
     // CyberRange palette — greens, cyan, gold, white
-    const colors = ['#3DD68C', '#1FA463', '#22B8CF', '#E3B341', '#FAFAFA', '#7CE7B0'];
+    const colors = ['#1b3557', '#2c4d78', '#5d7ca3', '#cbd4db', '#f6f4ef', '#b42318'];
     const pieces = [];
     for (let i = 0; i < 180; i++) {
       pieces.push({
