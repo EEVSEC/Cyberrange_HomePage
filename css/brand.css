@@ -147,7 +147,7 @@ html:not(.intro-done) .brand { opacity: 1; }
   transition: background-color .2s, color .2s;
 }
 .menu-trigger:hover, .menu-trigger[aria-expanded="true"] { color: var(--white); background: var(--navy); }
-.header-cta { display: flex; align-items: center; gap: 24px; }
+.header-cta { display: flex; align-items: center; gap: 10px; }
 .header-cta .btn { padding: 8px 20px; font-size: 15px; }
 /* the Menu pill is for screens too narrow for the full bar */
 .menu-trigger { display: none; }
