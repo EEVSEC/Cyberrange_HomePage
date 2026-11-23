@@ -88,6 +88,12 @@
     if (reduced) {
       showButton('Play');
     } else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry], observer) => {
+        if (!entry.isIntersecting) return;
+        video.preload = 'auto';
+        observer.disconnect();
+      }, { rootMargin: '0px 0px 70% 0px' }).observe(video);
+
       new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
           if (video.paused) play();
