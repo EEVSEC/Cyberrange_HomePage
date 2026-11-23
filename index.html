@@ -34,7 +34,7 @@
 <meta name="twitter:image" content="https://eevsec.com/cyberrange/media/og/home.png" />
 <script>(function(){if('scrollRestoration' in history)history.scrollRestoration='manual';}());</script>
 <link rel="stylesheet" href="css/tokens.css?v=110" />
-<link rel="stylesheet" href="css/styles.css?v=166" />
+<link rel="stylesheet" href="css/styles.css?v=167" />
 <link rel="stylesheet" href="css/brand.css?v=37" />
 <script type="application/ld+json">
 {
@@ -175,7 +175,7 @@
         <span class="hmac-bar-title">cyberrange live session</span>
       </div>
       <div class="hmac-body">
-        <picture class="hmac-video" aria-hidden="true">
+        <picture class="hmac-video" data-animated-picture aria-hidden="true">
           <source media="(max-width: 768px)" type="image/webp" data-srcset="media/demo-mobile.webp">
           <source type="image/webp" data-srcset="media/demo.webp">
           <img alt="" draggable="false" decoding="async" data-src="media/video-safari.webp">
@@ -292,16 +292,11 @@
           </div>
           <span class="hmac-bar-title">cyberrange modes</span>
         </div>
-        <div class="modes-reel__wrap">
-          <video class="modes-reel__frame" width="1920" height="1080" preload="none" poster="media/modes-poster.jpg" muted playsinline loop aria-label="CyberRange modes: Battle, Practice, Learn, and Analyze">
-            <source src="media/modes.mp4" type="video/mp4">
-          </video>
-          <button class="modes-reel__play" type="button" id="modesPlay" aria-label="Play" title="Play">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-              <path d="M9 5v14l11-7z" />
-            </svg>
-          </button>
-        </div>
+        <picture class="modes-reel__wrap" data-animated-picture>
+          <source media="(max-width: 768px)" type="image/webp" data-srcset="media/modes-loop-mobile.webp">
+          <source type="image/webp" data-srcset="media/modes-loop.webp">
+          <img class="modes-reel__frame" src="media/modes-poster.jpg" width="1920" height="1080" alt="CyberRange modes: Battle, Practice, Learn, and Analyze" loading="lazy" decoding="async" draggable="false">
+        </picture>
       </div>
     </div>
   </section>
@@ -877,7 +872,7 @@
 
 <script src="js/nav.js?v=3" defer></script>
 <script src="js/silk.js?v=1" defer></script>
-<script src="js/main.js?v=147"></script>
+<script src="js/main.js?v=148"></script>
 <script src="js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=8" defer></script>
 <script src="js/analytics.js?v=5" defer></script>

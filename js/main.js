@@ -14,17 +14,15 @@
   window.addEventListener('load', resetScroll);
   window.addEventListener('pageshow', resetScroll);
 
-  /* hero clip: load + play only once the typing is done AND the hero is on screen,
-     and restart from frame 0 on every load / back-forward restore */
-  (() => {
-    const pic = $('.hmac-video');
-    const img = pic && pic.querySelector('img');
+  /* Load each animated picture when the intro is done and it enters view. */
+  $$('[data-animated-picture]').forEach((pic) => {
+    const img = $('img', pic);
     if (!img) return;
     let introDone = false, visible = false, loaded = false;
 
     const load = () => {                       // first activation → starts at frame 0
       pic.querySelectorAll('source[data-srcset]').forEach(s => { s.srcset = s.dataset.srcset; });
-      img.src = img.dataset.src;
+      if (img.dataset.src) img.src = img.dataset.src;
       loaded = true;
     };
     const tryLoad = () => { if (introDone && visible && !loaded) load(); };
@@ -48,73 +46,13 @@
       visible = true; tryLoad();
     }
 
-    // back/forward cache restore → replay from frame 0
-    window.addEventListener('pageshow', (e) => {
-      if (e.persisted && loaded) { const s = img.currentSrc || img.src; img.removeAttribute('src'); img.src = s; }
-    });
-  })();
-
-  /* Play the Modes reel while it is on screen. */
-  (() => {
-    const video = $('video.modes-reel__frame');
-    const button = $('#modesPlay');
-    if (!video || !button) return;
-
-    let inView = true;
-    let resumeOnPause = !reduced;
-    const showPlay = () => button.classList.add('is-visible');
-    const hidePlay = () => button.classList.remove('is-visible');
-    const play = () => {
-      video.muted = true;
-      video.play().catch(() => {
-        if (inView && video.paused) showPlay();
+    // The hero restarts on back/forward cache restore.
+    if (img.dataset.src) {
+      window.addEventListener('pageshow', (e) => {
+        if (e.persisted && loaded) { const s = img.currentSrc || img.src; img.removeAttribute('src'); img.src = s; }
       });
-    };
-    video.addEventListener('playing', hidePlay);
-    video.addEventListener('pause', () => {
-      if (!inView || !video.paused || document.hidden) return;
-      if (resumeOnPause) {
-        resumeOnPause = false;
-        play();
-      } else {
-        showPlay();
-      }
-    });
-    button.addEventListener('click', play);
-
-    if (reduced) {
-      showPlay();
-      return;
     }
-
-    const resume = () => {
-      if (!inView || document.hidden) return;
-      resumeOnPause = true;
-      play();
-    };
-    document.addEventListener('visibilitychange', resume);
-
-    if ('IntersectionObserver' in window) {
-      inView = false;
-      new IntersectionObserver(([entry], observer) => {
-        if (!entry.isIntersecting) return;
-        video.preload = 'auto';
-        observer.disconnect();
-      }, { rootMargin: '0px 0px 70% 0px' }).observe(video);
-
-      new IntersectionObserver(([entry]) => {
-        inView = entry.isIntersecting;
-        if (inView) {
-          resume();
-        } else {
-          video.pause();
-          hidePlay();
-        }
-      }).observe(video);
-    } else {
-      resume();
-    }
-  })();
+  });
 
   /* ── year ── */
   const yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
