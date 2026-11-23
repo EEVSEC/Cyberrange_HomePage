@@ -31,4 +31,4 @@ Disallow: /admin/
 Disallow: /preview/
 Disallow: /api/
 
-Sitemap: https://eevsec.com/sitemap.xml
+Sitemap: https://eevsec.com/cyberrange/sitemap.xml

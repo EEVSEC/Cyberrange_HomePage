@@ -1,199 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://eevsec.com/</loc>
+    <loc>https://eevsec.com/cyberrange/</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/faq.html</loc>
+    <loc>https://eevsec.com/cyberrange/faq</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/careers.html</loc>
+    <loc>https://eevsec.com/cyberrange/careers</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/contact.html</loc>
+    <loc>https://eevsec.com/cyberrange/contact</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/doctrine.html</loc>
+    <loc>https://eevsec.com/cyberrange/doctrine</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/news.html</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://eevsec.com/blog/</loc>
+    <loc>https://eevsec.com/cyberrange/blog/</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/mission-command-modern-soc.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/mission-command-modern-soc</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/culminating-point-ransomware-dwell-time.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/culminating-point-ransomware-dwell-time</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/trojan-horse-supply-chain.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/trojan-horse-supply-chain</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/maskirovka-living-off-the-land.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/maskirovka-living-off-the-land</loc>
     <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/defeat-in-detail-ddos.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/defeat-in-detail-ddos</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/ooda-loop-ransomware.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/ooda-loop-ransomware</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/blog/vauban-zero-trust.html</loc>
+    <loc>https://eevsec.com/cyberrange/blog/vauban-zero-trust</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/iot-semiconductor.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/iot-semiconductor</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/digital-forensics.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/digital-forensics</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/cloud-zero-trust.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/cloud-zero-trust</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/adversarial-ai.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/adversarial-ai</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/red-blue-automation.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/red-blue-automation</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/scenarios/scada-ics.html</loc>
+    <loc>https://eevsec.com/cyberrange/scenarios/scada-ics</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/for/corporate.html</loc>
+    <loc>https://eevsec.com/cyberrange/for/corporate</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/for/security-teams.html</loc>
+    <loc>https://eevsec.com/cyberrange/for/security-teams</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/for/universities.html</loc>
+    <loc>https://eevsec.com/cyberrange/for/universities</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/aup.html</loc>
+    <loc>https://eevsec.com/cyberrange/aup</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/privacy.html</loc>
+    <loc>https://eevsec.com/cyberrange/privacy</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/privacy/annual-report.html</loc>
+    <loc>https://eevsec.com/cyberrange/privacy/annual-report</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/legal/dpa.html</loc>
+    <loc>https://eevsec.com/cyberrange/legal/dpa</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/terms.html</loc>
+    <loc>https://eevsec.com/cyberrange/terms</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/returns.html</loc>
+    <loc>https://eevsec.com/cyberrange/returns</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/pricing.html</loc>
+    <loc>https://eevsec.com/cyberrange/pricing</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/cookies.html</loc>
+    <loc>https://eevsec.com/cyberrange/cookies</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/security/incident-response.html</loc>
+    <loc>https://eevsec.com/cyberrange/security/incident-response</loc>
     <lastmod>2026-06-14</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://eevsec.com/security.html</loc>
+    <loc>https://eevsec.com/cyberrange/security</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>

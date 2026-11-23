@@ -21,6 +21,17 @@
 
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const MAILTO = 'mailto:hi@eevsec.com';
+  const site = new URL('../', document.currentScript.src);
+  const FAQ_URL = new URL('faq.html', site).href;
+  const PRIVACY_URL = new URL('privacy.html#cookies', site).href;
+  const PRICING_URL = new URL('pricing.html', site).href;
+  const ACCESS_URL = new URL('#join', site).href;
+  const FAQ_TOPICS = [
+    [/^what is (?:the )?(?:eevsec )?cyberrange\??$/i, 'What is the EEVSEC CyberRange?', FAQ_URL],
+    [/\b(?:pricing|price|cost)\b/i, 'How much does it cost?', PRICING_URL],
+    [/\b(?:get access|request access|sign up|waitlist|when does it open)\b/i, 'How do I get access?', ACCESS_URL],
+  ];
+
 
   // ── styles (scoped, token-aware) ──────────────────────────────────────────
   const style = document.createElement('style');
@@ -93,7 +104,7 @@
       '<form class="snt-form" id="snt-form"><label class="sr-only" for="snt-input">Your question</label>' +
         '<input id="snt-input" type="text" autocomplete="off" placeholder="Type your question…" maxlength="500" required>' +
         '<button type="submit" aria-label="Send">→</button></form>' +
-      '<div class="snt-foot">AI assistant · <a href="/faq.html">Common questions</a> · <a href="/privacy.html#section-12">Privacy</a> · <a href="' + MAILTO + '">Email a human</a></div>' +
+      '<div class="snt-foot">AI assistant · <a href="' + FAQ_URL + '">Common questions</a> · <a href="' + PRIVACY_URL + '">Privacy</a> · <a href="' + MAILTO + '">Email a human</a></div>' +
     '</aside>';
   document.body.appendChild(root);
 
@@ -139,35 +150,93 @@
   }
   function addBot(text, sources, handoff) {
     const li = addMsg('bot', text);
-    if (Array.isArray(sources) && sources.length) {
-      const p = document.createElement('p'); p.className = 'snt-src';
-      p.innerHTML = 'See: ' + sources.map((s) => '<a href="' + esc(s) + '">' + esc(s) + '</a>').join(' · ');
-      li.appendChild(p);
+    const links = Array.isArray(sources) ? sources : [];
+    for (const source of links) {
+      if (typeof source !== 'string' || !(source.startsWith('https://') || source.startsWith('http://'))) continue;
+      const label = source === FAQ_URL ? 'See common questions' :
+        source === PRICING_URL ? 'View pricing' : source === ACCESS_URL ? 'Request access' : source;
+      addLink(li, source, label);
     }
-    if (handoff) {
-      const p = document.createElement('p'); p.className = 'snt-src';
-      p.innerHTML = '<a href="' + MAILTO + '">Email a human →</a>';
-      li.appendChild(p);
+    if (handoff) addLink(li, MAILTO, 'Email a human');
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function addLink(message, href, label) {
+    const p = document.createElement('p');
+    p.className = 'snt-src';
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    p.appendChild(link);
+    message.appendChild(p);
+  }
+
+  let faqAnswers;
+  async function getFAQ() {
+    if (faqAnswers) return faqAnswers;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+    try {
+      const response = await fetch(FAQ_URL, { signal: controller.signal });
+      if (!response.ok) throw new Error('FAQ unavailable');
+      const html = await response.text();
+      for (const [, json] of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+        const data = JSON.parse(json);
+        if (data['@type'] === 'FAQPage' && Array.isArray(data.mainEntity)) {
+          faqAnswers = data.mainEntity;
+          return faqAnswers;
+        }
+      }
+      return [];
+    } finally {
+      clearTimeout(timeout);
     }
   }
+
+  async function useFAQ(question) {
+    const normalize = text => text.trim().toLowerCase().replace(/[?!.]+$/, '');
+    const topic = FAQ_TOPICS.find(([pattern]) => pattern.test(question));
+    const target = normalize(topic ? topic[1] : question);
+    try {
+      const answers = await getFAQ();
+      const match = answers.find(item => normalize(item.name) === target);
+      const answer = match?.acceptedAnswer?.text;
+      if (answer) return { answer, sources: [topic ? topic[2] : FAQ_URL] };
+    } catch {
+      // Keep the contact option available even if the FAQ cannot load.
+    }
+    return {
+      answer: 'Live chat is temporarily unavailable. You can browse common questions or email us at hi@eevsec.com.',
+      sources: [FAQ_URL],
+      handoff: true,
+    };
+  }
   function suggestions() {
-    const qs = ['What is CyberRange?', 'How is it different from a CTF?', 'How much does it cost?', 'When does it open?', 'What are the three doctrine layers?'];
+    const qs = ['What is CyberRange?', 'How is it different from a CTF?', 'How much does it cost?', 'How do I get access?', 'What are the three doctrine layers?'];
     const li = document.createElement('li'); li.className = 'snt-msg snt-bot';
-    li.innerHTML = '<div class="snt-sugg">' + qs.map((q) => '<button type="button" data-q="' + esc(q) + '">' + esc(q) + '</button>').join('') + '</div><a class="snt-faqlink" href="/faq.html">See all common questions &rarr;</a>';
+    li.innerHTML = '<div class="snt-sugg">' + qs.map((q) => '<button type="button" data-q="' + esc(q) + '">' + esc(q) + '</button>').join('') + '</div><a class="snt-faqlink" href="' + FAQ_URL + '">See all common questions &rarr;</a>';
     log.appendChild(li);
   }
 
   function open() {
-    panel.hidden = false; requestAnimationFrame(() => panel.classList.add('open'));
+    panel.hidden = false;
+    requestAnimationFrame(() => {
+      if (fab.getAttribute('aria-expanded') !== 'true') return;
+      panel.classList.add('open');
+      input.focus();
+    });
     fab.setAttribute('aria-expanded', 'true');
     clearNudge();
     if (!greeted) { greeted = true; addBot("Hi — I'm Sentinel. Ask me anything about CyberRange, or pick a common question:"); suggestions(); }
-    input.focus();
     if (window.track) window.track('ai_bot_open');
   }
   function close() {
     panel.classList.remove('open'); fab.setAttribute('aria-expanded', 'false');
-    setTimeout(() => { panel.hidden = true; }, reduced ? 0 : 200); fab.focus();
+    setTimeout(() => {
+      if (fab.getAttribute('aria-expanded') === 'false') panel.hidden = true;
+    }, reduced ? 0 : 200);
+    fab.focus();
   }
   fab.addEventListener('click', () => (fab.getAttribute('aria-expanded') === 'true' ? close() : open()));
   closeBtn.addEventListener('click', close);
@@ -185,18 +254,29 @@
     const typing = document.createElement('li'); typing.className = 'snt-msg snt-bot';
     typing.innerHTML = '<span class="snt-typing"><i></i><i></i><i></i></span>';
     log.appendChild(typing); log.scrollTop = log.scrollHeight;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    let data;
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ q }),
+        body: JSON.stringify({ q }), signal: controller.signal,
       });
-      const data = await res.json().catch(() => ({}));
+      if (res.ok) data = await res.json();
+    } catch {
+      // Fall back to the site's published FAQ after a network error or timeout.
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    try {
+      if (typeof data?.answer !== 'string' || !data.answer.trim()) data = await useFAQ(q);
       typing.remove();
-      addBot(data.answer || "I didn't catch that — could you rephrase?", data.sources, data.handoff);
+      addBot(data.answer, data.sources, data.handoff);
       if (data.handoff && window.track) window.track('ai_bot_handoff_to_human');
-    } catch (err) {
+    } finally {
       typing.remove();
-      addBot("I'm having trouble reaching the brain right now. Email hi@eevsec.com and a human will pick up — usually within one business day.", null, true);
-    } finally { busy = false; }
+      busy = false;
+    }
   });
 })();

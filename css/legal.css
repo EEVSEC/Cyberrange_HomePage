@@ -41,7 +41,7 @@
 .legal__body p,
 .legal__body li {
   /* G-06: easier long-form reading on policy pages — 17px, generous leading */
-  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.15rem); color: var(--ink-2); line-height: 1.7;
+  font-size: var(--text-sm); color: var(--ink-2); line-height: 1.7;
 }
 .legal__body p + p { margin-top: var(--space-sm); }
 .legal__body ul {
@@ -92,3 +92,135 @@
 }
 .ir-table td { color: var(--ink-2); }
 .ir-table td:first-child { color: var(--ink); font-weight: 500; }
+
+/* Policy reading layout shared with eevsec.com. */
+.policy {
+  padding-top: 64px;
+}
+.policy .legal__head {
+  margin-bottom: 0;
+  padding-block: clamp(36px, 4vw, 60px);
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.policy .legal__label {
+  margin-bottom: 18px;
+  color: var(--navy);
+  font-size: var(--text-md);
+}
+.policy .legal__head h1 {
+  margin-bottom: 0;
+  font-size: clamp(2.625rem, 5.6vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.policy .legal__intro {
+  max-width: 57rem;
+  margin: 22px auto 0;
+  color: var(--muted);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.policy .legal__dates {
+  justify-content: center;
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  letter-spacing: normal;
+  text-transform: none;
+}
+.policy .legal__layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) minmax(0, 1fr);
+  gap: clamp(40px, 6vw, 96px);
+  padding-block: 36px 48px;
+}
+.policy .legal__toc {
+  position: sticky;
+  top: 104px;
+  max-height: calc(100dvh - 128px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.policy .legal__nav-title {
+  margin-bottom: 14px;
+  color: var(--navy);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.policy summary { cursor: pointer; }
+.policy .legal__toc ol,
+.policy .legal__others ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.policy .legal__toc li + li { margin-top: 9px; }
+.policy .legal__toc a {
+  display: block;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+}
+.policy .legal__toc a:hover,
+.policy .legal__toc a:focus-visible { color: var(--navy); }
+.policy .legal__body {
+  display: block;
+  max-width: 70ch;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.policy .legal__body section { scroll-margin-top: 16px; }
+.policy .legal__body section + section { margin-top: 36px; }
+.policy .legal__body h2 {
+  margin-bottom: 14px;
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.policy .legal__number { color: var(--navy); }
+.policy .legal__body h3 {
+  margin: 26px 0 8px;
+  color: var(--navy);
+  font-size: var(--text-md);
+  line-height: 1.35;
+}
+.policy .legal__body section p,
+.policy .legal__body section li {
+  color: inherit;
+  line-height: inherit;
+}
+.policy .legal__body p + p,
+.policy .legal__body p + ul,
+.policy .legal__body ul + p { margin-top: 14px; }
+.policy .legal__body section ul {
+  display: block;
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.policy .legal__body section li + li { margin-top: 8px; }
+.policy .legal__body section li::marker { color: var(--navy); }
+.policy .legal__body a { text-underline-offset: 3px; }
+.policy .legal__others {
+  margin-top: 44px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.policy .legal__others ul {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px 28px;
+}
+.policy .legal__others a { text-decoration: none; }
+.policy .legal__others a:hover,
+.policy .legal__others a:focus-visible { text-decoration: underline; }
+
+@media (max-width: 860px) {
+  .policy .legal__head { padding-block: 32px; }
+  .policy .legal__layout { grid-template-columns: 1fr; gap: 28px; padding-block: 28px 40px; }
+  .policy .legal__toc { position: static; max-height: none; }
+}

@@ -3,7 +3,7 @@
 > EEVSEC CyberRange is a competitive, live-fire cybersecurity training arena. Two people enter one live scenario on separate isolated virtual machines (one attacks, one defends) in real time, with a state-aware AI Coach watching each side. It is not a course and not a CTF: there are no scripted walkthroughs, no fake boxes, and no passive videos. Operated by EEVSEC PRIVATE LIMITED, Ahmedabad, India (CIN U62013GJ2026PTC177190).
 
 ## Status
-CyberRange is in pre-launch. Access is currently by waitlist (request access on the site); the description below reflects how the product works at launch. Joining the waitlist is free and collects only your name and email.
+Use Request access on the CyberRange site to submit your name, email address, and role. Submitting an access request is free.
 
 ## What it is
 CyberRange replaces passive lectures and predictable Capture-the-Flag puzzles with real-time, high-pressure defensive and offensive simulations on isolated virtual machines, guided by an AI Coach. The platform is browser-based with zero setup.
@@ -39,6 +39,6 @@ Most labs test memory; CyberRange tests decisions. A live human opponent reacts 
 EEVSEC PRIVATE LIMITED. Registered office: 401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India. CIN U62013GJ2026PTC177190. Contact: hi@eevsec.com.
 
 ## Legal
-- Privacy Policy: https://eevsec.com/privacy.html. Personal-data processing under India's DPDPA 2023 & DPDP Rules 2025, the UAE PDPL (Decree-Law 45/2021), the UAE Child Digital Safety Law (Decree-Law 26/2025), CCPA, and GDPR.
-- Terms of Service: https://eevsec.com/terms.html. Rules of engagement, sandbox isolation, liability limits, governing law (Ahmedabad, India).
-- Refund Policy: https://eevsec.com/returns.html. Digital-goods nature, 7-day non-activated refunds, technical-outage credits, and cancellation rules.
+- Privacy Policy: https://eevsec.com/cyberrange/privacy. Personal-data processing under India's DPDPA 2023 & DPDP Rules 2025, the UAE PDPL (Decree-Law 45/2021), the UAE Child Digital Safety Law (Decree-Law 26/2025), CCPA, and GDPR.
+- Terms of Service: https://eevsec.com/cyberrange/terms. Rules of engagement, sandbox isolation, liability limits, governing law (Ahmedabad, India).
+- Refund Policy: https://eevsec.com/cyberrange/returns. Digital-goods nature, 7-day non-activated refunds, technical-outage credits, and cancellation rules.

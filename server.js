@@ -6,6 +6,14 @@ const { URL: NodeURL } = require("url");
 
 const root = process.cwd();
 const port = 8000;
+// Google's public reCAPTCHA v2 test site key, served only by the loopback preview.
+const RECAPTCHA_DEV_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
+const sentinelEndpoint = process.env.SENTINEL_DEV_ENDPOINT
+  ? new NodeURL(process.env.SENTINEL_DEV_ENDPOINT)
+  : null;
+if (sentinelEndpoint && (sentinelEndpoint.protocol !== "https:" || sentinelEndpoint.username || sentinelEndpoint.password)) {
+  throw new Error("SENTINEL_DEV_ENDPOINT must be an HTTPS URL without credentials.");
+}
 
 const HCAPTCHA_SECRET = process.env.HCAPTCHA_SECRET || "";
 const LOOPS_FORM_ID   = "cmog6m7fn0i650h1tir5n4smw";
@@ -177,7 +185,22 @@ http.createServer(async (req, res) => {
     return handleJoin(req, res);
   }
 
-  let filePath = decodeURIComponent(req.url.split("?")[0]);
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    res.writeHead(405, { Allow: "GET, HEAD" });
+    return res.end("Method not allowed");
+  }
+
+  let filePath;
+  try {
+    filePath = decodeURIComponent(req.url.split("?")[0]);
+  } catch {
+    res.writeHead(400);
+    return res.end("Invalid path");
+  }
+  if (filePath.split("/").some(part => part.startsWith(".") && part !== ".well-known")) {
+    res.writeHead(404);
+    return res.end("Not found");
+  }
   if (filePath === "/") filePath = "/index.html";
 
   const fullPath = path.join(root, filePath);
@@ -196,16 +219,33 @@ http.createServer(async (req, res) => {
     const cc          = cacheControl[ext] || "public, max-age=86400";
 
     if (ext === ".mp4") {
-      const range = req.headers.range;
+      const headers = { "Content-Type": contentType, "Accept-Ranges": "bytes", "Cache-Control": cc };
+      const range = req.method === "GET" && req.headers.range;
       if (!range) {
-        res.writeHead(200, { "Content-Type": contentType, "Content-Length": stat.size, "Accept-Ranges": "bytes", "Cache-Control": cc });
+        res.writeHead(200, { ...headers, "Content-Length": stat.size });
+        if (req.method === "HEAD") return res.end();
         return fs.createReadStream(fullPath).pipe(res);
       }
-      const parts     = range.replace(/bytes=/, "").split("-");
-      const start     = parseInt(parts[0], 10);
-      const end       = parts[1] ? parseInt(parts[1], 10) : stat.size - 1;
-      const chunkSize = end - start + 1;
-      res.writeHead(206, { "Content-Range": `bytes ${start}-${end}/${stat.size}`, "Accept-Ranges": "bytes", "Content-Length": chunkSize, "Content-Type": contentType, "Cache-Control": cc });
+
+      const match = /^bytes=(\d*)-(\d*)$/.exec(range);
+      let start;
+      let end;
+      if (match?.[1]) {
+        start = Number(match[1]);
+        end = Math.min(match[2] ? Number(match[2]) : stat.size - 1, stat.size - 1);
+      } else if (match?.[2]) {
+        start = Math.max(stat.size - Number(match[2]), 0);
+        end = stat.size - 1;
+      }
+      if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start > end) {
+        res.writeHead(416, { "Content-Range": `bytes */${stat.size}` });
+        return res.end();
+      }
+      res.writeHead(206, {
+        ...headers,
+        "Content-Range": `bytes ${start}-${end}/${stat.size}`,
+        "Content-Length": end - start + 1,
+      });
       return fs.createReadStream(fullPath, { start, end }).pipe(res);
     }
 
@@ -214,6 +254,15 @@ http.createServer(async (req, res) => {
       // forces subresources to https (no TLS here) → strip it so CSS/JS load.
       let html = fs.readFileSync(fullPath, "utf8")
         .replace(/\s*;?\s*upgrade-insecure-requests/g, "");
+      if (html.includes("js/recaptcha.js")) {
+        html = html.replace("</head>", `<script>window.CR_DEV_RECAPTCHA_SITE_KEY = ${JSON.stringify(RECAPTCHA_DEV_SITE_KEY)};</script>\n</head>`);
+      }
+      if (sentinelEndpoint && html.includes("js/sentinel.js")) {
+        const endpoint = JSON.stringify(sentinelEndpoint.href).replace(/</g, "\\u003c");
+        html = html
+          .replace("connect-src 'self'", `connect-src 'self' ${sentinelEndpoint.origin}`)
+          .replace("</head>", `<script>window.SENTINEL_ENDPOINT = ${endpoint};</script>\n</head>`);
+      }
       const buf = Buffer.from(html, "utf8");
       res.writeHead(200, { "Content-Type": contentType, "Content-Length": buf.length, "Cache-Control": cc });
       return res.end(buf);
@@ -222,6 +271,6 @@ http.createServer(async (req, res) => {
     res.writeHead(200, { "Content-Type": contentType, "Content-Length": stat.size, "Cache-Control": cc });
     fs.createReadStream(fullPath).pipe(res);
   });
-}).listen(port, "0.0.0.0", () => {
+}).listen(port, "127.0.0.1", () => {
   console.log(`Server running at http://127.0.0.1:${port}`);
 });

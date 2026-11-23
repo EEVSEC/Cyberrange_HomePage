@@ -5,8 +5,7 @@
      and also the moment they click Accept (the 'cr:consent' event). Get your
      Measurement ID (G-XXXXXXXXXX) from analytics.google.com > Admin > Data
      streams > Web. See deployment-notes.md.
-   - Cookieless options (Cloudflare / Plausible / Umami): no cookies, no consent
-     needed, so they load immediately if configured. Fill in ONE.
+   - Optional Cloudflare, Plausible, or Umami measurements also wait for consent.
 
    All matching origins are already allow-listed in each page's CSP. Leave every
    value blank to keep analytics off. */
@@ -16,8 +15,8 @@
   // --- Google Analytics 4 (consent-gated; sets _ga cookies) ---
   var GA_ID = 'G-2DJ0DCR7CD';     // GA4 Measurement ID (loads only after consent)
 
-  // --- Cookieless alternatives (no consent required) ---
-  var CLOUDFLARE_TOKEN = '';
+  // --- Optional cookieless measurements (consent-gated) ---
+  var CLOUDFLARE_TOKEN = '55c1d7d86e2c484098673dcae8d0145c';
   var PLAUSIBLE_DOMAIN = '';
   var PLAUSIBLE_SRC    = 'https://plausible.io/js/script.js';
   var UMAMI_ID  = '';
@@ -31,13 +30,23 @@
     head.appendChild(s);
   }
 
-  // Cookieless providers: safe to load right away.
-  if (CLOUDFLARE_TOKEN) {
-    load('https://static.cloudflareinsights.com/beacon.min.js', { 'data-cf-beacon': '{"token": "' + CLOUDFLARE_TOKEN + '"}' });
-  } else if (PLAUSIBLE_DOMAIN) {
-    load(PLAUSIBLE_SRC, { 'data-domain': PLAUSIBLE_DOMAIN });
-  } else if (UMAMI_ID) {
-    load(UMAMI_SRC, { 'data-website-id': UMAMI_ID });
+  var extraLoaded = false;
+  function syncConsent() {
+    var allowed = window.crConsent && window.crConsent.allows('analytics');
+    if (GA_ID) window['ga-disable-' + GA_ID] = !allowed;
+    if (!allowed) return;
+
+    if (!extraLoaded) {
+      extraLoaded = true;
+      if (CLOUDFLARE_TOKEN) {
+        load('https://static.cloudflareinsights.com/beacon.min.js', { 'data-cf-beacon': JSON.stringify({ token: CLOUDFLARE_TOKEN }) });
+      } else if (PLAUSIBLE_DOMAIN) {
+        load(PLAUSIBLE_SRC, { 'data-domain': PLAUSIBLE_DOMAIN });
+      } else if (UMAMI_ID) {
+        load(UMAMI_SRC, { 'data-website-id': UMAMI_ID });
+      }
+    }
+    loadGA();
   }
 
   // Google Analytics: only with consent.
@@ -53,8 +62,8 @@
     gtag('js', new Date());
     gtag('config', GA_ID);
   }
-  loadGA();                                        // returning visitor who already accepted
-  window.addEventListener('cr:consent', loadGA);   // when they Accept now
+  syncConsent();
+  window.addEventListener('cr:consent', syncConsent);
 
   /* ── T-14: consent-gated event tracking ──────────────────────
      Public API: window.track('event_name', { ...params }).

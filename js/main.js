@@ -5,12 +5,14 @@
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-  /* always (re)load from the very top of the page */
+  /* Reset ordinary visits to the top while honoring section links. */
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.scrollTo(0, 0);
-  window.addEventListener('load', () => window.scrollTo(0, 0));
-  // bfcache restores (mobile back/forward, some reloads) keep scroll — reset those too
-  window.addEventListener('pageshow', () => window.scrollTo(0, 0));
+  const resetScroll = () => {
+    if (!location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+  resetScroll();
+  window.addEventListener('load', resetScroll);
+  window.addEventListener('pageshow', resetScroll);
 
   /* hero clip: load + play only once the typing is done AND the hero is on screen,
      and restart from frame 0 on every load / back-forward restore */
@@ -52,48 +54,49 @@
     });
   })();
 
-  /* ── modes reel ──────────────────────────────────────────────────────────
-     Two-stage so playback is smooth: (1) preload the iframe off-screen while
-     the visitor is still up top, so React/Babel boot and the about:blank→dark
-     paint all happen out of view; (2) only signal it to start animating once
-     the FOUR MODES section is actually on screen. */
+  /* Play the Modes reel while it is on screen. */
   (() => {
-    const frame = $('.modes-reel__frame');
-    if (!frame || !frame.dataset.src) return;
-    let loaded = false, inView = false, ready = false, sent = false;
+    const video = $('video.modes-reel__frame');
+    const button = $('#modesReplay');
+    if (!video || !button) return;
 
-    const load = () => {
-      if (loaded) return;
-      loaded = true;
-      frame.src = frame.dataset.src;
+    let previousTime = 0;
+    const showButton = (label) => {
+      button.classList.add('is-visible');
+      button.setAttribute('aria-label', label);
+      button.title = label;
     };
     const play = () => {
-      if (sent || !inView || !ready) return;
-      try { frame.contentWindow.postMessage({ crPlay: true }, '*'); sent = true; } catch (e) {}
+      video.muted = true;
+      video.play().then(() => {
+        if (button.title === 'Play') button.classList.remove('is-visible');
+      }).catch((error) => {
+        if (error.name !== 'AbortError') showButton('Play');
+      });
     };
-
-    // the reel announces itself once its player has mounted (and is sitting on frame 0)
-    window.addEventListener('message', (e) => {
-      if (e.source === frame.contentWindow && e.data && e.data.crReady) { ready = true; play(); }
+    video.addEventListener('timeupdate', () => {
+      if (!video.seeking && video.currentTime < previousTime) showButton('Replay');
+      previousTime = video.currentTime;
+    });
+    button.addEventListener('click', () => {
+      button.classList.remove('is-visible');
+      previousTime = 0;
+      video.currentTime = 0;
+      play();
     });
 
-    // preload as soon as the browser is idle — the reel lives several sections down,
-    // so it has time to finish booting before the visitor scrolls to it
-    const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
-    window.addEventListener('load', () => idle(load));
-
-    if ('IntersectionObserver' in window) {
-      // safety net: if they reach it before idle-preload fired, load immediately
-      new IntersectionObserver((es, o) => {
-        if (es.some(e => e.isIntersecting)) { load(); o.disconnect(); }
-      }, { rootMargin: '1200px 0px' }).observe(frame);
-      // start the animation when the section is genuinely in view
-      const playIO = new IntersectionObserver((es) => {
-        if (es.some(e => e.isIntersecting)) { inView = true; play(); playIO.disconnect(); }
-      }, { threshold: 0.35 });
-      playIO.observe(frame);
+    if (reduced) {
+      showButton('Play');
+    } else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          if (video.paused) play();
+        } else if (!video.paused) {
+          video.pause();
+        }
+      }).observe(video);
     } else {
-      load(); inView = true; play();
+      play();
     }
   })();
 
@@ -116,7 +119,7 @@
     const html    = document.documentElement;
     if (!overlay) { html.classList.add('intro-done'); return; }
 
-    if (reduced) {
+    if (reduced || location.hash) {
       overlay.style.display = 'none';
       html.classList.add('intro-done');
       return;
@@ -432,7 +435,7 @@
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      if (honeypot && honeypot.value) return;            // bot trap
+      if (btn.disabled || (honeypot && honeypot.value)) return;
 
       const name = nameEl.value.trim();
       const email = emailEl.value.trim();
@@ -452,23 +455,25 @@
       // so this is a client-side bot check layered on top of the honeypot.
       if (window.crRecaptcha && window.crRecaptcha.enabled) {
         try { await window.crRecaptcha.execute(); }
-        catch (_) { msg.textContent = 'Verification failed, please try again.'; resetBtn(); return; }
+        catch (_) { msg.textContent = 'Verification is unavailable. Try again or email hi@eevsec.com.'; resetBtn(); return; }
       }
 
       const parts = name.split(' ');
       const firstName = parts[0];
       const lastName = parts.slice(1).join(' ') || '';
 
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
       try {
         const body = new URLSearchParams({ email, firstName, lastName, role }).toString();
         const res = await fetch(LOOPS_FORM, {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body,
+          body, signal: controller.signal,
         });
         const data = await res.json();
 
-        if (data.success) {
+        if (res.ok && data.success) {
           if (window.track) { window.track('waitlist_submit', { role: role }); window.track('waitlist_role_chosen', { role: role }); }
           if (successName) successName.textContent = firstName;
           // U-07: fade the form out, then reveal the confirmation
@@ -484,7 +489,9 @@
           msg.textContent = 'Something went wrong, please try again.'; resetBtn();
         }
       } catch (_) {
-        msg.textContent = 'Something went wrong, please try again.'; resetBtn();
+        msg.textContent = 'Could not send your request. Try again or email hi@eevsec.com.'; resetBtn();
+      } finally {
+        clearTimeout(timeout);
       }
     });
   })();

@@ -85,7 +85,7 @@
   /* ink: black headings, muted brand grey for body copy */
   --ink-2:   #2d3744;
   --ink-3:   var(--muted);
-  --ink-4:   #6b7682;
+  --ink-4:   var(--muted);
 
   /* accent. "violet" and "cyan" are historic names; both are navy now */
   --violet:       var(--navy);
@@ -127,16 +127,18 @@
   --font-mono:    var(--sans);
   --font-code:    ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
-  /* fluid type scale (brand hero is 72-160px; section titles 36-68px) */
+  /* Increase type gradually beyond a laptop-sized viewport. */
+  --wide-type: clamp(0rem, calc((100vw - 90rem) * 0.006), 0.375rem);
+  /* Fluid type scale with readable mobile minimums and capped desktop sizes. */
   --text-hero:  clamp(2.9rem, 1.4rem + 6.5vw, 7.2rem);
-  --text-xxl:   clamp(2.75rem, 1.6rem + 3.6vw, 4.5rem);
-  --text-xl:    clamp(2.1rem, 1.4rem + 2.0vw, 3.0rem);
-  --text-lg:    clamp(1.6rem, 1.2rem + 1.0vw, 1.9rem);
-  --text-md:    clamp(1.05rem, 0.98rem + 0.35vw, 1.22rem);
-  --text-base:  1rem;
-  --text-sm:    0.9rem;
-  --text-xs:    0.8rem;
-  --text-2xs:   0.72rem;
+  --text-xxl:   calc(clamp(2.75rem, 1.75rem + 3.8vw, 4.75rem) + var(--wide-type) * 1.5);
+  --text-xl:    calc(clamp(2.1rem, 1.4rem + 2vw, 3rem) + var(--wide-type));
+  --text-lg:    calc(clamp(1.6rem, 1.2rem + 1vw, 1.9rem) + var(--wide-type));
+  --text-md:    calc(clamp(1.1875rem, 1.1rem + 0.35vw, 1.4375rem) + var(--wide-type) * 0.65);
+  --text-base:  calc(clamp(1.0625rem, 1.01rem + 0.24vw, 1.25rem) + var(--wide-type) * 0.5);
+  --text-sm:    calc(clamp(1.125rem, 1.05rem + 0.28vw, 1.3125rem) + var(--wide-type) * 0.65);
+  --text-xs:    calc(clamp(0.9375rem, 0.9rem + 0.17vw, 1.0625rem) + var(--wide-type) * 0.35);
+  --text-2xs:   clamp(0.8125rem, 0.78rem + 0.14vw, 0.9375rem);
   --text-mono:  0.78rem;
 
   /* ── spacing — 4pt scale ── */
@@ -149,8 +151,8 @@
   --space-2xl: 92px;
   --space-3xl: 148px;
   --section-pad: clamp(22px, 2.6vw, 44px);
-  --gutter:    clamp(20px, 5vw, 80px);
-  --maxw:      1240px;
+  --gutter: clamp(22px, 5%, 120px);
+  --site-width: min(100% - 2 * var(--gutter), 2400px);
 
   /* ── motion ── */
   --ease-in:     cubic-bezier(.55, 0, 1, .45);

@@ -167,7 +167,7 @@ html.intro-done .brand { opacity: 1; transition: opacity .55s var(--ease-out); }
 }
 
 /* ── layout helpers ─────────────────────────────────────────── */
-.wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+.wrap { width: var(--site-width); margin-inline: auto; }
 .section { position: relative; padding-block: var(--section-pad); }
 .section--tight { padding-block: clamp(52px, 7vw, 104px); }
 .divider { border: 0; border-top: 1px solid var(--line); }
@@ -420,18 +420,18 @@ html { scroll-padding-top: 88px; }
 /* ── hero ───────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
-  max-width: 1800px;              /* wider than the 1240 container so text + big video both fit */
+  min-height: min(100svh, 72rem);
+  container-type: inline-size;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
   grid-template-areas:
     "title video"
     "text  video"
     "meta  meta";
-  align-content: center;
-  column-gap: clamp(20px, 2.5vw, 44px);
+  align-content: safe center;
+  column-gap: clamp(20px, 2.5vw, 64px);
   row-gap: clamp(14px, 2vh, 30px);
-  padding-top: 112px; padding-bottom: 40px;
+  padding-top: clamp(92px, 11svh, 112px); padding-bottom: 56px;
 }
 .hero__title { grid-area: title; }
 .hero__text  { grid-area: text; }
@@ -439,7 +439,7 @@ html { scroll-padding-top: 88px; }
 .hero__meta  { grid-area: meta; }
 @media (max-width: 1024px) {
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "title" "text" "video" "meta";
     align-content: start; min-height: auto;
     padding-top: clamp(92px, 16vw, 120px); padding-bottom: clamp(28px, 6vw, 44px);
@@ -448,7 +448,7 @@ html { scroll-padding-top: 88px; }
 
 /* clamp sub-title content so it never bleeds into the mockup area */
 .hero__text {
-  max-width: 480px;
+  max-width: clamp(27rem, 34vw, 40rem);
 }
 @media (max-width: 1024px) {
   .hero__text { max-width: 100%; }
@@ -460,7 +460,6 @@ html { scroll-padding-top: 88px; }
   align-self: center;
   justify-self: end;
   width: 100%;
-  max-width: 720px;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-1);
@@ -473,7 +472,7 @@ html { scroll-padding-top: 88px; }
 @media (max-width: 1024px) {
   .hero-mockup {
     justify-self: stretch; align-self: start;
-    max-width: 100%; margin-top: 6px;
+    margin-top: 6px;
   }
 }
 
@@ -612,10 +611,12 @@ still   pull line 2 up to even out the optical spacing */
   letter-spacing: 0; text-transform: none; color: var(--ink);
   margin-top: 5px; font-weight: 600;
 }
-/* phones: let the 4-up strip wrap to a 2×2 grid instead of overflowing */
+@media (max-width: 1024px) {
+  .hero__meta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 24px; }
+  .hero__meta div { white-space: normal; }
+}
 @media (max-width: 600px) {
-  .hero__meta { flex-wrap: wrap; gap: 18px 28px; }
-  .hero__meta div { flex: 1 1 40%; }
+  .hero__meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .scroll-cue {
@@ -707,19 +708,25 @@ still   pull line 2 up to even out the optical spacing */
 @media (max-width: 680px){ .contrast__row { grid-template-columns: 1fr; gap: 12px; } }
 
 /* ── WHAT MAKES IT DIFFERENT — not/real comparison grid ─────── */
+#what { max-width: 1160px; }
 .diff {
+  --diff-padding: clamp(16px, 2.2vw, 28px);
+  --diff-icon: clamp(56px, 6vw, 80px);
+  --diff-gap: clamp(14px, 1.7vw, 24px);
   position: relative;
-  margin-top: clamp(28px, 4vw, 52px);
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--line);
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
   border: 1px solid var(--line-2); border-radius: var(--r-md); overflow: hidden;
 }
+.diff__title--yes,
+.diff__cell--yes { border-inline-start: 1px solid var(--line-strong); }
+.diff__cell { border-block-start: 1px solid var(--line-strong); }
 /* header titles — first row inside the table */
 .diff__title {
-  grid-row: 1; background: var(--bg); text-align: center;
+  grid-row: 1; background: var(--bg); text-align: left;
   font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em;
   font-size: clamp(1.4rem, 1.05rem + 1.1vw, 2rem); line-height: 1.1;
-  padding: clamp(18px, 2vw, 26px) 24px;
+  padding: clamp(16px, 2vw, 23px) var(--diff-padding);
+  padding-left: calc(var(--diff-padding) + var(--diff-icon) + var(--diff-gap));
 }
 .diff__title--no  {
   grid-column: 1; color: var(--ink-2);
@@ -733,7 +740,7 @@ still   pull line 2 up to even out the optical spacing */
 .diff__vs {
   grid-row: 1; grid-column: 1 / -1; justify-self: center; align-self: center;
   z-index: 3; display: grid; place-items: center;
-  width: clamp(42px, 4vw, 54px); height: clamp(42px, 4vw, 54px); border-radius: 50%;
+  width: 38px; height: 38px; border-radius: 50%;
   background: var(--bg-1); border: 1px solid var(--violet);
   font-family: var(--font-mono); font-weight: 600; font-size: 0.82rem;
   letter-spacing: 0.06em; color: var(--violet);
@@ -741,11 +748,11 @@ still   pull line 2 up to even out the optical spacing */
 }
 .diff__cell {
   position: relative; background: var(--bg);
-  display: flex; flex-direction: row; align-items: center; gap: clamp(16px, 1.6vw, 24px);
-  padding: clamp(20px, 2.2vw, 28px) clamp(22px, 2.8vw, 38px);
+  display: flex; align-items: center; gap: var(--diff-gap);
+  padding: clamp(16px, 2vw, 24px) var(--diff-padding);
   text-align: left;
 }
-.diff__ic { flex: none; width: clamp(84px, 7.5vw, 116px); height: auto; }
+.diff__ic { flex: none; width: var(--diff-icon); height: var(--diff-icon); object-fit: contain; }
 .diff__body { display: flex; flex-direction: column; gap: 6px; }
 .diff__label {
   font-family: var(--font-mono); font-size: 0.76rem;
@@ -758,18 +765,16 @@ still   pull line 2 up to even out the optical spacing */
 }
 .diff__d { font-size: var(--text-md); color: var(--ink-3); line-height: 1.5; }
 @media (max-width: 760px) {
-  /* compact 2-col comparison table — titles stay as the header row inside it */
-  #what .shead { margin-bottom: clamp(20px, 5vw, 30px); }   /* tighten gap above table */
-  .diff__title { padding: 13px 8px; font-size: 0.92rem; }
-  .diff__vs { width: 34px; height: 34px; font-size: 0.6rem; box-shadow: 0 0 0 4px var(--bg); }
+  #what .shead { margin-bottom: clamp(20px, 5vw, 30px); }
+  .diff { --diff-padding: 14px; --diff-icon: 42px; }
+  .diff__title { padding: 13px var(--diff-padding); font-size: 1rem; align-content: center; }
+  .diff__vs { width: 24px; height: 24px; }
   .diff__cell {
     flex-direction: column; align-items: flex-start;
-    gap: 9px; padding: 14px 12px;
+    gap: 9px; padding: 14px var(--diff-padding);
   }
-  .diff__ic { width: 38px; }
-  .diff__label { font-size: 0.54rem; letter-spacing: 0.08em; }
-  .diff__t { font-size: 0.98rem; line-height: 1.14; }
-  .diff__d { font-size: 0.78rem; line-height: 1.4; }
+  .diff__t { font-size: 1.0625rem; line-height: 1.14; }
+  .diff__d { font-size: 0.875rem; line-height: 1.4; }
 }
 
 /* ── THE GAP — comparison redesign ──────────────────────────── */
@@ -803,7 +808,6 @@ still   pull line 2 up to even out the optical spacing */
   position: relative;
   border: 1px solid var(--line-2); border-radius: var(--r-md);
   background: var(--bg-1); overflow: hidden;
-  padding-bottom: 84px;            /* band the robot head sits in */
 }
 .cmp__head,
 .cmp__row {
@@ -855,40 +859,34 @@ still   pull line 2 up to even out the optical spacing */
 }
 .cmp__st { display: inline-flex; }
 .cmp__st svg { width: 21px; height: 21px; }
-.cmp__st.yes  { color: var(--violet); }
-.cmp__cell--us { color: var(--violet); font-weight: 500; }
-.cmp__st.no   { color: var(--ink-4); }
-.cmp__st.part { color: var(--warn); }
-.cmp__cell:has(.part) { color: var(--warn); }
+.cmp__cell--us { font-weight: 500; }
 
-/* robot peeking up from the bottom band — antenna pokes into the last row */
-.cmp__bot { display: contents; }
+/* Keep the robot and its message below the comparison rows. */
+.cmp__bot {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  padding: 12px 16px; border-top: 1px solid var(--line);
+}
 .cmp__bot-img {
-  position: absolute; bottom: -6px; left: 47%; transform: translateX(-50%);
-  width: 178px; height: 104px;                 /* crop off the base/stand */
+  display: block; flex: none;
+  width: 178px; height: 104px;
   object-fit: cover; object-position: center top;
-  z-index: 3; pointer-events: none;
   filter: drop-shadow(0 8px 20px oklch(0% 0 0 / 0.5));
 }
 .cmp__bot-bubble {
-  position: absolute; bottom: 34px; left: calc(47% + 82px); z-index: 3;
+  position: relative; min-width: 0; max-width: 22ch;
   font-family: var(--font-body); font-size: var(--text-sm); color: var(--violet);
   background: var(--bg-2); border: 1px solid var(--line-2);
-  padding: 10px 16px; border-radius: 14px; max-width: 18ch; line-height: 1.35;
+  padding: 9px 13px; border-radius: 14px; line-height: 1.35;
 }
 .cmp__bot-bubble::before {
   content: ""; position: absolute; left: -7px; top: 50%; transform: translateY(-50%) rotate(45deg);
   width: 12px; height: 12px; background: var(--bg-2);
   border-left: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
 }
-/* mobile: shift the robot left and keep its bubble aligned on the right
-   (instead of sitting center where the bubble overlaps content) */
+
 @media (max-width: 768px) {
-  .cmp__bot-img { left: 24%; width: 150px; }
-  .cmp__bot-bubble {
-    left: calc(24% + 66px); bottom: 40px;
-    font-size: 0.78rem; max-width: 13ch; padding: 8px 12px;
-  }
+  .cmp__bot-img { width: clamp(112px, 40vw, 150px); }
+  .cmp__bot-bubble { font-size: var(--text-xs); padding: 8px 12px; }
 }
 
 /* bottom strip */
@@ -1545,7 +1543,7 @@ still   pull line 2 up to even out the optical spacing */
 @media (max-width: 480px){ .loop { grid-template-columns: 1fr; } }
 
 /* ── AI COACH ───────────────────────────────────────────────── */
-.coach { position: relative; max-width: 1360px; }
+.coach { position: relative; }
 .coach__grid {
   display: grid; grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
   gap: clamp(28px, 4vw, 68px); align-items: center;
@@ -1754,9 +1752,9 @@ still   pull line 2 up to even out the optical spacing */
 .modes__grid {
   display: grid; grid-template-columns: 1fr;
 }
-/* modes reel — full-width terminal-framed looping feature video */
+/* Modes reel preserves the source size on wide displays. */
 .modes-reel {
-  width: 100%; margin-inline: auto;
+  width: min(100%, 1280px, 140svh); margin-inline: auto;
   display: flex; flex-direction: column;
   border-radius: var(--r-lg, 18px);
   overflow: hidden;
@@ -1767,7 +1765,7 @@ still   pull line 2 up to even out the optical spacing */
     0 1px 0 rgba(255,255,255,0.04) inset;
 }
 .modes-reel__frame {
-  display: block; width: 100%; aspect-ratio: 16 / 9;
+  display: block; width: 100%; height: auto;
   border: 0; background: #0a0a0a;
 }
 .modes-reel__wrap {

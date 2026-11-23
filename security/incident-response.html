@@ -10,32 +10,32 @@
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="../fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="canonical" href="https://eevsec.com/security/incident-response.html" />
-<link rel="alternate" hreflang="en" href="https://eevsec.com/security/incident-response.html" />
-<link rel="alternate" hreflang="x-default" href="https://eevsec.com/security/incident-response.html" />
+<link rel="canonical" href="https://eevsec.com/cyberrange/security/incident-response" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/cyberrange/security/incident-response" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/cyberrange/security/incident-response" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="Incident Response &amp; Breach Notification | EEVSEC CyberRange" />
 <meta property="og:description" content="How EEVSEC handles security incidents and breach notification across CERT-In, GDPR, DPDPA, and UAE PDPL." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://eevsec.com/security/incident-response.html" />
-<meta property="og:image" content="https://eevsec.com/media/og-eev.png" />
+<meta property="og:url" content="https://eevsec.com/cyberrange/security/incident-response" />
+<meta property="og:image" content="https://eevsec.com/cyberrange/media/og-eev.png" />
 <meta property="og:image:width" content="2000" />
 <meta property="og:image:height" content="2000" />
 <meta property="og:image:alt" content="EEVSEC" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://eevsec.com/media/og-eev.png" />
+<meta name="twitter:image" content="https://eevsec.com/cyberrange/media/og-eev.png" />
 <meta name="robots" content="index,follow" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" href="../favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
+<link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+<link rel="manifest" href="../site.webmanifest" />
 <meta name="theme-color" content="#f6f4ef" />
 <script>(function(){document.documentElement.classList.add('intro-done');}());</script>
-<link rel="stylesheet" href="/css/tokens.css?v=106" />
-<link rel="stylesheet" href="/css/styles.css?v=158" />
-<link rel="stylesheet" href="/css/legal.css?v=5" />
-<link rel="stylesheet" href="/css/brand.css?v=23" />
+<link rel="stylesheet" href="../css/tokens.css?v=110" />
+<link rel="stylesheet" href="../css/styles.css?v=160" />
+<link rel="stylesheet" href="../css/legal.css?v=9" />
+<link rel="stylesheet" href="../css/brand.css?v=37" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,7 +46,7 @@
   "email": "hi@eevsec.com",
   "contactPoint": [
     { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "Security" },
-    { "@type": "ContactPoint", "email": "dpo@eevsec.com", "contactType": "Data Protection Officer" }
+    { "@type": "ContactPoint", "email": "hi@eevsec.com", "contactType": "Data Protection Officer" }
   ],
   "address": { "@type": "PostalAddress", "streetAddress": "401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta", "addressLocality": "Ahmedabad", "addressRegion": "Gujarat", "postalCode": "380015", "addressCountry": "IN" },
   "sameAs": [ "https://www.linkedin.com/company/eevsec", "https://www.instagram.com/eev.sec" ]
@@ -57,9 +57,9 @@
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/" },
-    { "@type": "ListItem", "position": 2, "name": "Security", "item": "https://eevsec.com/security.html" },
-    { "@type": "ListItem", "position": 3, "name": "Incident Response", "item": "https://eevsec.com/security/incident-response.html" }
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://eevsec.com/cyberrange/" },
+    { "@type": "ListItem", "position": 2, "name": "Security", "item": "https://eevsec.com/cyberrange/security" },
+    { "@type": "ListItem", "position": 3, "name": "Incident Response", "item": "https://eevsec.com/cyberrange/security/incident-response" }
   ]
 }
 </script>
@@ -72,20 +72,17 @@
 
 <header class="brand-header" id="siteHeader" data-scrolled="false">
   <div class="brand-header-inner">
-    <a class="brand-signature" href="/" aria-label="EEVSEC CyberRange home">
+    <a class="brand-signature" href="../" aria-label="EEVSEC CyberRange home">
       <img src="../brand/eevsec-icon-512.png" alt="" width="38" height="38" />
       <span>EEVSEC.</span>
     </a>
     <nav class="header-links" aria-label="Main navigation">
-      <a href="/#how">How it works</a>
-      <a href="/#coach">AI Coach</a>
-      <a href="/#scenarios">Scenarios</a>
-      <a href="/pricing.html">Pricing</a>
+      <a href="../#how">How it works</a>
+      <a href="../#coach">AI Coach</a>
+      <a href="../#scenarios">Scenarios</a>
+      <a href="../pricing.html">Pricing</a>
+      <a class="btn btn--primary" href="../#join">Request access</a>
     </nav>
-    <div class="header-cta">
-      <a class="btn btn--ghost" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
-      <a class="btn btn--primary" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
-    </div>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
       <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
@@ -103,27 +100,26 @@
   </div>
   <p class="eyebrow">CyberRange</p>
   <nav class="menu-products" aria-label="CyberRange">
-    <a href="/#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="https://cyberrange.eevsec.com/" rel="noopener">Log in <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="../#join">Request access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
-<main id="main" class="legal wrap">
-  <header class="legal__head">
-    <span class="eyebrow">Security</span>
+<main id="main" class="policy">
+  <header class="legal__head wrap">
+    <p class="legal__label">Security</p>
     <h1>Incident Response &amp; Breach Notification</h1>
     <p class="legal__intro">
       This page explains, in plain terms, how EEVSEC handles a security incident or personal-data breach: how we detect it,
       contain it, and notify the people and regulators we&rsquo;re required to. It complements our
-      <a href="/security.html">Security &amp; Responsible Disclosure</a> policy and our <a href="/privacy.html">Privacy Policy</a>.
+      <a href="../security.html">Security &amp; Responsible Disclosure</a> policy and our <a href="../privacy.html">Privacy Policy</a>.
       It is a summary of our commitments, not our internal runbook.
     </p>
     <div class="legal__dates">
@@ -132,55 +128,85 @@
     </div>
   </header>
 
-  <article class="legal__body">
-    <section id="how-we-respond">
-      <h2>1. How we respond</h2>
-      <p>When we detect or are told about a potential incident, we follow a defined sequence: <strong>detect</strong> &rarr; <strong>triage</strong> (assess severity within a few hours) &rarr; <strong>contain</strong> (revoke access, rotate credentials, preserve evidence) &rarr; <strong>notify</strong> (regulators and affected people within the timeframes their law requires) &rarr; <strong>review</strong> (root-cause analysis and corrective actions). We keep an incident log and run a post-incident review after every confirmed incident.</p>
-    </section>
+  <div class="legal__layout wrap">
+    <aside>
+      <nav class="legal__toc" aria-label="On this page">
+        <details>
+          <summary class="legal__nav-title">On this page</summary>
+          <ol>
+            <li><a href="#how-we-respond">How we respond</a></li>
+            <li><a href="#cert-in">CERT-In 6-hour reporting (India)</a></li>
+            <li><a href="#timelines">Regulatory notification timelines</a></li>
+            <li><a href="#customers">How we&rsquo;ll tell you</a></li>
+            <li><a href="#report">How to report an incident to us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ol>
+        </details>
+      </nav>
+    </aside>
 
-    <section id="cert-in">
-      <h2>2. CERT-In 6-hour reporting (India)</h2>
-      <p>EEVSEC PRIVATE LIMITED is an Indian-incorporated company (CIN U62013GJ2026PTC177190) and is therefore subject to CERT-In Direction No. 20(3)/2022 (effective 27 June 2022). For in-scope cybersecurity incidents, we are committed to reporting to the Indian Computer Emergency Response Team (CERT-In) <strong>within 6 hours of becoming aware</strong>, to <a href="mailto:incident@cert-in.org.in">incident@cert-in.org.in</a>, in addition to any data-protection notifications below.</p>
-    </section>
+    <article class="legal__body">
+      <section id="how-we-respond">
+        <h2><span class="legal__number">1.</span> How we respond</h2>
+        <p>When we detect or are told about a potential incident, we follow a defined sequence: <strong>detect</strong> &rarr; <strong>triage</strong> (assess severity within a few hours) &rarr; <strong>contain</strong> (revoke access, rotate credentials, preserve evidence) &rarr; <strong>notify</strong> (regulators and affected people within the timeframes their law requires) &rarr; <strong>review</strong> (root-cause analysis and corrective actions). We keep an incident log and run a post-incident review after every confirmed incident.</p>
+      </section>
 
-    <section id="timelines">
-      <h2>3. Regulatory notification timelines</h2>
-      <p>Where a breach affects personal data, our notification duties depend on where the affected individuals are. The headline timelines we work to:</p>
-      <table class="ir-table">
-        <thead><tr><th>Framework</th><th>Who we notify</th><th>By when</th></tr></thead>
-        <tbody>
-          <tr><td>CERT-In (India)</td><td>CERT-In</td><td>Within 6 hours of awareness (in-scope incidents)</td></tr>
-          <tr><td>DPDPA 2023 (India)</td><td>Data Protection Board of India &amp; affected individuals</td><td>Promptly, per the prescribed rules</td></tr>
-          <tr><td>GDPR (EU/EEA)</td><td>Lead supervisory authority</td><td>Within 72 hours of awareness, where there is a risk</td></tr>
-          <tr><td>GDPR (high risk)</td><td>Affected individuals</td><td>Without undue delay</td></tr>
-          <tr><td>UK GDPR</td><td>ICO &amp; affected individuals</td><td>Within 72 hours / without undue delay</td></tr>
-          <tr><td>UAE PDPL</td><td>UAE Data Office &amp; affected individuals</td><td>Without undue delay, per PDPL and its executive regulations</td></tr>
-          <tr><td>CCPA/CPRA (California)</td><td>Affected residents (and the AG above 500)</td><td>In the most expedient time, without unreasonable delay</td></tr>
-        </tbody>
-      </table>
-      <p>If we can&rsquo;t confirm full details inside a deadline, we file an initial notification and supplement it as we learn more.</p>
-    </section>
+      <section id="cert-in">
+        <h2><span class="legal__number">2.</span> CERT-In 6-hour reporting (India)</h2>
+        <p>EEVSEC PRIVATE LIMITED is an Indian-incorporated company (CIN U62013GJ2026PTC177190) and is therefore subject to CERT-In Direction No. 20(3)/2022 (effective 27 June 2022). For in-scope cybersecurity incidents, we are committed to reporting to the Indian Computer Emergency Response Team (CERT-In) <strong>within 6 hours of becoming aware</strong>, to <a href="mailto:incident@cert-in.org.in">incident@cert-in.org.in</a>, in addition to any data-protection notifications below.</p>
+      </section>
 
-    <section id="customers">
-      <h2>4. How we&rsquo;ll tell you</h2>
-      <p>If an incident affects your data, we will contact you using the email associated with your account or waitlist entry, and post a notice where appropriate. Our notice will say, in plain language: what happened, what data was involved, what we&rsquo;re doing about it, and what you can do to protect yourself. Enterprise customers receive notification within any tighter timeframe set in their contract or Data Processing Addendum.</p>
-    </section>
+      <section id="timelines">
+        <h2><span class="legal__number">3.</span> Regulatory notification timelines</h2>
+        <p>Where a breach affects personal data, our notification duties depend on where the affected individuals are. The headline timelines we work to:</p>
+        <table class="ir-table">
+          <thead><tr><th>Framework</th><th>Who we notify</th><th>By when</th></tr></thead>
+          <tbody>
+            <tr><td>CERT-In (India)</td><td>CERT-In</td><td>Within 6 hours of awareness (in-scope incidents)</td></tr>
+            <tr><td>DPDPA 2023 (India)</td><td>Data Protection Board of India &amp; affected individuals</td><td>Promptly, per the prescribed rules</td></tr>
+            <tr><td>GDPR (EU/EEA)</td><td>Lead supervisory authority</td><td>Within 72 hours of awareness, where there is a risk</td></tr>
+            <tr><td>GDPR (high risk)</td><td>Affected individuals</td><td>Without undue delay</td></tr>
+            <tr><td>UK GDPR</td><td>ICO &amp; affected individuals</td><td>Within 72 hours / without undue delay</td></tr>
+            <tr><td>UAE PDPL</td><td>UAE Data Office &amp; affected individuals</td><td>Without undue delay, per PDPL and its executive regulations</td></tr>
+            <tr><td>CCPA/CPRA (California)</td><td>Affected residents (and the AG above 500)</td><td>In the most expedient time, without unreasonable delay</td></tr>
+          </tbody>
+        </table>
+        <p>If we can&rsquo;t confirm full details inside a deadline, we file an initial notification and supplement it as we learn more.</p>
+      </section>
 
-    <section id="report">
-      <h2>5. How to report an incident to us</h2>
-      <p>If you believe you&rsquo;ve found a vulnerability or that an incident is in progress, please tell us right away. Follow our <a href="/security.html">responsible-disclosure policy</a>, email <a href="mailto:hi@eevsec.com?subject=Security%20report">hi@eevsec.com</a> with the subject &ldquo;Security report&rdquo;, or use the machine-readable contacts at <a href="/.well-known/security.txt">/.well-known/security.txt</a>. We acknowledge reports within two business days.</p>
-    </section>
+      <section id="customers">
+        <h2><span class="legal__number">4.</span> How we&rsquo;ll tell you</h2>
+        <p>If an incident affects your data, we will contact you using the email associated with your account or waitlist entry, and post a notice where appropriate. Our notice will say, in plain language: what happened, what data was involved, what we&rsquo;re doing about it, and what you can do to protect yourself. Enterprise customers receive notification within any tighter timeframe set in their contract or Data Processing Addendum.</p>
+      </section>
 
-    <section id="contact">
-      <h2>6. Contact</h2>
-      <div class="legal__contact">
-        Security: <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> (subject: &ldquo;Security report&rdquo;)<br>
-        Data Protection Officer: <a href="mailto:dpo@eevsec.com">dpo@eevsec.com</a><br>
-        EEVSEC PRIVATE LIMITED, CIN U62013GJ2026PTC177190<br>
-        401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
-      </div>
-    </section>
-  </article>
+      <section id="report">
+        <h2><span class="legal__number">5.</span> How to report an incident to us</h2>
+        <p>If you believe you&rsquo;ve found a vulnerability or that an incident is in progress, please tell us right away. Follow our <a href="../security.html">responsible-disclosure policy</a>, email <a href="mailto:hi@eevsec.com?subject=Security%20report">hi@eevsec.com</a> with the subject &ldquo;Security report&rdquo;, or use the machine-readable contacts at <a href="../.well-known/security.txt">/.well-known/security.txt</a>. We acknowledge reports within two business days.</p>
+      </section>
+
+      <section id="contact">
+        <h2><span class="legal__number">6.</span> Contact</h2>
+        <div class="legal__contact">
+          Security: <a href="mailto:hi@eevsec.com">hi@eevsec.com</a> (subject: &ldquo;Security report&rdquo;)<br>
+          Data Protection Officer: <a href="mailto:hi@eevsec.com">hi@eevsec.com</a><br>
+          EEVSEC PRIVATE LIMITED, CIN U62013GJ2026PTC177190<br>
+          401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India
+        </div>
+      </section>
+
+      <nav class="legal__others" aria-label="Other policies">
+        <p class="legal__nav-title">Other policies</p>
+        <ul>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../aup.html">Acceptable Use Policy</a></li>
+          <li><a href="../returns.html">Refund &amp; Cancellation Policy</a></li>
+          <li><a href="../cookies.html">Cookie Policy</a></li>
+          <li><a href="../security.html">Security &amp; Responsible Disclosure</a></li>
+        </ul>
+      </nav>
+    </article>
+  </div>
 </main>
 
 <footer class="foot">
@@ -189,27 +215,24 @@
 
       <div class="foot__col foot__col--brand">
         <img class="foot__mark" src="../brand/eevsec-mark.svg" alt="" width="297" height="268" />
-        <a class="foot__word" href="/" aria-label="EEVSEC home">EEVSEC.</a>
-        <p class="foot__tagline">Security, made visible.</p>
+        <div class="foot__brand-text">
+          <a class="foot__word" href="https://eevsec.com/" aria-label="EEVSEC home">EEVSEC.</a>
+          <p class="foot__tagline">Security, made visible.</p>
+        </div>
       </div>
 
-      <nav class="foot__col" aria-label="Platform">
-        <h2 class="foot__col-title">Platform</h2>
-        <a href="/#how">How it works</a>
-        <a href="/#coach">AI Coach</a>
-        <a href="/#scenarios">Scenarios</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/news.html">Newsroom</a>
-        <a href="/careers.html">Careers</a>
-        <a href="/faq.html">FAQ</a>
+      <nav class="foot__col" aria-label="Company">
+        <h2 class="foot__col-title">Company</h2>
+        <a href="../pricing.html">Pricing</a>
+        <a href="https://careers.eevsec.com/">Careers</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../faq.html">FAQ</a>
       </nav>
 
       <div class="foot__col foot__connect">
         <h2 class="foot__col-title">Connect</h2>
         <p class="foot__org">EEVSEC Private Limited</p>
         <a href="mailto:hi@eevsec.com">hi@eevsec.com</a>
-        <a href="tel:+917891089239">+91-7891089239</a>
         <div class="foot__social">
           <a href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
           <a href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg> Instagram</a>
@@ -218,12 +241,12 @@
 
       <nav class="foot__col" aria-label="Legal">
         <h2 class="foot__col-title">Legal</h2>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="/aup.html">Acceptable Use</a>
-        <a href="/returns.html">Refund Policy</a>
-        <a href="/cookies.html">Cookie Policy</a>
-        <a href="/security.html">Security</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Service</a>
+        <a href="../aup.html">Acceptable Use</a>
+        <a href="../returns.html">Refund Policy</a>
+        <a href="../cookies.html">Cookie Policy</a>
+        <a href="../security.html">Security</a>
       </nav>
 
     </div>
@@ -234,15 +257,13 @@
   </div>
 </footer>
 
-<script src="/js/nav.js?v=2" defer></script>
-<script src="/js/silk.js?v=1" defer></script>
-<script src="/js/page.js?v=3"></script>
-<script src="/js/cookies.js?v=1" defer></script>
-<script src="/js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=4" defer></script>
-<script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/sentinel.js?v=7" defer></script>
-<!-- Cloudflare Web Analytics (RUM) -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
+<script src="../js/nav.js?v=3" defer></script>
+<script src="../js/silk.js?v=1" defer></script>
+<script src="../js/page.js?v=4"></script>
+<script src="../js/cookies.js?v=1" defer></script>
+<script src="../js/consent.js?v=8" defer></script>
+<script src="../js/analytics.js?v=5" defer></script>
+<script src="../js/recaptcha.js?v=2" defer></script>
+<script src="../js/sentinel.js?v=8" defer></script>
 </body>
 </html>

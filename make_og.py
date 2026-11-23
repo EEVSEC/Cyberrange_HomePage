@@ -205,9 +205,8 @@ def make(slug, eyebrow, title, subtitle, out=None):
 
 PAGES = {
     "home":      ("Live-fire cyber range", "Still practicing on *fake boxes?*", "Attack, defend, and decide under pressure on real machines, with an AI coach that explains every move."),
-    "pricing":   ("Pricing", "Free to start. *Custom to scale.*", "A free tier to get on the range, and custom terms for teams and organisations."),
+    "pricing":   ("Pricing", "Train monthly. *Custom to scale.*", "Individual membership and custom plans for teams and organisations."),
     "doctrine":  ("Doctrine", "Three layers. *One engagement.*", "WAR, Ethical Hacking, Cyber Crime: every scenario runs on all three."),
-    "news":      ("Newsroom", "Why hands-on training *wins.*", "The external research that explains adversarial training, read through the doctrine."),
     "faq":       ("FAQ", "Questions, *answered.*", "What CyberRange is, how live matches work, and how to get in."),
     "contact":   ("Contact", "Reach the *right human.*", "Sales, security, press, or support: one inbox, clear paths."),
     "careers":   ("Careers", "Build the *arena.*", "Platform, scenario design, AI coaching, and security research."),

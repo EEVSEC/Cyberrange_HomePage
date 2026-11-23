@@ -9,6 +9,14 @@
   const yr = $('#year');
   if (yr) yr.textContent = new Date().getFullYear();
 
+  const contents = $('.legal__toc details');
+  if (contents) {
+    const desktop = window.matchMedia('(min-width: 861px)');
+    const update = () => { contents.open = desktop.matches; };
+    update();
+    desktop.addEventListener('change', update);
+  }
+
   /* sticky nav shadow on scroll */
   const nav = $('#nav');
   if (nav) {

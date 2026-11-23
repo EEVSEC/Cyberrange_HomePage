@@ -12,11 +12,10 @@
  */
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 
-// Model. Free on Groq. `llama-3.3-70b-versatile` is strong for an FAQ bot;
-// `llama-3.1-8b-instant` is faster/cheaper. Verify the current id list at
-// https://console.groq.com/docs/models (an unknown id returns an error).
-const MODEL = "llama-3.3-70b-versatile";
-const MAX_OUTPUT_TOKENS = 600;
+// Replacement for the retired Llama 3.3 model on Groq's free and developer plans.
+const MODEL = "openai/gpt-oss-120b";
+const MAX_COMPLETION_TOKENS = 1024;
+const PROVIDER_UNAVAILABLE = { answer: "Live chat is temporarily unavailable. Email hi@eevsec.com for help.", handoff: true };
 
 const ALLOWED_ORIGINS = new Set([
   "https://eevsec.com",
@@ -60,22 +59,18 @@ DOCTRINE (three layers EEVSEC organises every scenario around)
   counter it.
 - Cyber Crime — the threat: real adversaries and incidents the scenarios model.
 
-PRICING (pre-launch — kept deliberately simple; two plans only)
-- Free: a free tier to get on the range — 1 live 1v1 match per week, core scenarios,
-  post-match AI Coach review. Available at launch; people join the waitlist.
-- Custom: enterprise & teams — dedicated infrastructure, custom scenarios, SSO/SIEM,
-  priority support and onboarding. Available now; contact hi@eevsec.com for pricing.
-- More plans may arrive at general availability. Do NOT quote the retired
-  Recruit / Scout / Centurion / Squad / Warlord tiers or any specific monthly prices
-  (₹, $, AED) — they no longer exist. There is no published price beyond "Free" and "Custom".
-
-TIMING
-- Public availability targeted for Q4 2026 (exact date TBD). Waitlist sign-ups get
-  early access in waves. People join the waitlist on the home page.
+PRICING
+- Individual: ₹1499/month in India, $20/month elsewhere. Includes 1 live 1v1 match
+  per week, core scenarios, and post-match AI Coach review. Visitors can request
+  access on the home page.
+- Custom: teams and enterprises get dedicated infrastructure, custom scenarios,
+  SSO/SIEM, priority support, and onboarding. Contact hi@eevsec.com for pricing.
+- Do NOT quote the retired Recruit / Scout / Centurion / Squad / Warlord tiers
+  or their prices.
 
 COMPANY & TEAM
 - EEVSEC PRIVATE LIMITED, Ahmedabad, Gujarat, India. CIN U62013GJ2026PTC177190.
-- General contact: hi@eevsec.com, +91 92653 59476. Data Protection Officer: dpo@eevsec.com.
+- Contact and privacy enquiries: hi@eevsec.com.
 
 POLICIES (mention the relevant eevsec.com path when you cite a fact)
 - Privacy: /privacy.html (GDPR, UK GDPR, CCPA/CPRA, India DPDPA, UAE PDPL, FADP, LGPD).
@@ -195,12 +190,12 @@ export default {
 
     if (req.method !== "POST") return json({ error: "Method not allowed." }, 405, h);
 
-    // Optional native rate limiting (configure SENTINEL_RATELIMIT in wrangler.jsonc).
+    // Limit public requests before calling Groq.
     if (env.SENTINEL_RATELIMIT) {
       const ip = req.headers.get("CF-Connecting-IP") || "anon";
       const { success } = await env.SENTINEL_RATELIMIT.limit({ key: ip });
       if (!success) {
-        return json({ answer: "You're sending messages quickly — give it a moment and try again, or email hi@eevsec.com.", handoff: true }, 429, h);
+        return json({ answer: "You're sending messages quickly. Try again in a moment or email hi@eevsec.com.", handoff: true }, 429, h);
       }
     }
 
@@ -211,12 +206,14 @@ export default {
 
     const apiKey = env.GROQ_API_KEY;
     if (!apiKey) {
-      return json({ answer: "Sentinel isn't configured yet — email hi@eevsec.com and a human will help.", handoff: true }, 503, h);
+      console.warn("Sentinel: Groq API key is missing");
+      return json(PROVIDER_UNAVAILABLE, 503, h);
     }
 
     try {
       const gRes = await fetch(GROQ_URL, {
         method: "POST",
+        signal: AbortSignal.timeout(8000),
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
         body: JSON.stringify({
           model: MODEL,
@@ -224,14 +221,16 @@ export default {
             { role: "system", content: SYSTEM_PROMPT },
             { role: "user", content: q },
           ],
-          max_tokens: MAX_OUTPUT_TOKENS,
+          max_completion_tokens: MAX_COMPLETION_TOKENS,
+          reasoning_effort: "low",
+          include_reasoning: false,
           temperature: 0.4,
         }),
       });
 
       if (!gRes.ok) {
-        // 4xx/5xx from Groq (bad key, quota, bad model id) — fail gracefully.
-        return json({ answer: "I'm having trouble reaching the brain right now. Email hi@eevsec.com and a human will pick up — usually within one business day.", handoff: true }, 502, h);
+        console.warn("Sentinel: Groq request failed", { status: gRes.status, model: MODEL });
+        return json(PROVIDER_UNAVAILABLE, 502, h);
       }
 
       const data = await gRes.json();
@@ -247,9 +246,14 @@ export default {
       // Lightweight account/billing handoff hint on top of the model's own judgement.
       const handoff = /\b(my account|billing|refund my|cancel my|password|can't log ?in|login issue)\b/i.test(q);
 
-      return json({ answer: answer || "I didn't quite catch that — could you rephrase?", handoff }, 200, h);
+      if (!answer) {
+        console.warn("Sentinel: Groq returned an empty answer", { finishReason: choice?.finish_reason });
+        return json(PROVIDER_UNAVAILABLE, 502, h);
+      }
+      return json({ answer, handoff }, 200, h);
     } catch (err) {
-      return json({ answer: "I'm having trouble reaching the brain right now. Email hi@eevsec.com and a human will pick up — usually within one business day.", handoff: true }, 502, h);
+      console.warn("Sentinel: Groq response failed", { error: err?.name });
+      return json(PROVIDER_UNAVAILABLE, 502, h);
     }
   },
 };

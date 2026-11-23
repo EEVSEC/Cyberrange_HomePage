@@ -13,6 +13,7 @@
 (() => {
   'use strict';
   const C = window.crCookie;
+  const site = new URL("../", document.currentScript.src);
   const CONSENT = 'cr_consent', VISIT = 'cr_visit', VERSION = 1;
 
   const COLLECT_URL = 'https://script.google.com/macros/s/AKfycbzwKKVfyfODFKZCAH1QmuWOHkl5lAZCTwPThlBstYM7IEEK6vkf9J07DaJVF2S55GOl/exec';   // visit log -> Google Sheet
@@ -104,7 +105,7 @@
         '<p class="consent__text">We use a cookie to remember your choice, and your theme preference locally. ' +
         'With your consent, we use analytics cookies, including Google Analytics, to understand how our site is used. We do not use advertising cookies. ' +
         'Our forms are protected by Google reCAPTCHA, which may set a Google cookie when you use a form. ' +
-        'See our <a href="/privacy.html">Privacy Policy</a> and <a href="/cookies.html">Cookie Policy</a>.</p>' +
+        'See our <a href="' + new URL('privacy.html', site).href + '">Privacy Policy</a> and <a href="' + new URL('cookies.html', site).href + '">Cookie Policy</a>.</p>' +
         '<div class="consent__actions">' +
           '<button type="button" class="btn btn--ghost consent__btn" data-consent="declined">Decline</button>' +
           '<button type="button" class="btn btn--primary consent__btn" data-consent="accepted">Accept</button>' +

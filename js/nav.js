@@ -17,7 +17,7 @@
   var root = document.documentElement;
   var lastFocus = null;
 
-  function isOpen() { return menu.classList.contains('is-open'); }
+  function isOpen() { return trigger.getAttribute('aria-expanded') === 'true'; }
 
   function open() {
     lastFocus = document.activeElement;
@@ -25,6 +25,7 @@
     /* two frames so the transition runs from the closed state */
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
+        if (!isOpen()) return;
         menu.classList.add('is-open');
         scrim.classList.add('is-open');
       });
@@ -32,7 +33,7 @@
     menu.setAttribute('aria-hidden', 'false');
     trigger.setAttribute('aria-expanded', 'true');
     root.classList.add('menu-open');
-    setTimeout(function () { if (closeBtn) closeBtn.focus({ preventScroll: true }); }, 160);
+    setTimeout(function () { if (closeBtn && isOpen()) closeBtn.focus({ preventScroll: true }); }, 160);
   }
 
   function close(restoreFocus) {
@@ -44,6 +45,10 @@
     setTimeout(function () { if (!isOpen()) scrim.hidden = true; }, 400);
     if (restoreFocus !== false && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   }
+
+  window.matchMedia('(max-width: 1000px)').addEventListener('change', function (event) {
+    if (!event.matches && isOpen()) close(false);
+  });
 
   trigger.addEventListener('click', function () { isOpen() ? close() : open(); });
   if (closeBtn) closeBtn.addEventListener('click', function () { close(); });

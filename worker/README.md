@@ -15,8 +15,8 @@ POST /api/sentinel   { "q": "How much does CyberRange cost?" }
 
 ## Files
 - `src/index.js` — the Worker. System prompt, guardrails, safety-block + account
-  handoff handling, CORS, optional rate limit. Talks to Groq over `fetch`.
-- `wrangler.jsonc` — config (routing, optional rate-limit binding).
+  handoff handling, CORS, and rate limiting. Talks to Groq over `fetch`.
+- `wrangler.jsonc` configures routing and the rate-limit binding.
 - `package.json` (no runtime deps), `.dev.vars.example`.
 
 ## Deploy
@@ -39,29 +39,22 @@ CSP change. (If instead you expose it on a `*.workers.dev` URL, add that origin 
 each page's `connect-src` CSP.)
 
 ## Model
-`src/index.js` defaults to **`llama-3.3-70b-versatile`** (fast, free-tier, good for an FAQ
-bot). Change the one `MODEL` line for a newer/other model (e.g. `llama-3.1-8b-instant`)
-— verify the exact id at <https://console.groq.com/docs/models>, since an unknown id 404s.
+The Worker uses `openai/gpt-oss-120b` through the Groq Chat Completions API.
+Check [Groq's supported models](https://console.groq.com/docs/models) before
+changing the model ID.
 
-## Frontend — your call at deploy time
-The static site currently ships **"Byte"** (`js/faqbot.js`), a terminal-style FAQ
-widget with an in-chat contact flow and **no LLM**. This Worker powers the LLM
-**"Sentinel"** widget (`js/sentinel.js`, already in the repo, deploy-ready).
-Pick one — don't run both (two corner bubbles is bad UX):
-
-- **Go LLM (this Worker):** on every page, set `window.SENTINEL_ENDPOINT = "/api/sentinel"`,
-  load `/js/sentinel.js`, and **remove the `js/faqbot.js` script tag**. `sentinel.js`
-  is inert until `SENTINEL_ENDPOINT` is set, so nothing changes until you flip it.
-- **Stay static (no backend):** keep Byte as-is and don't deploy this Worker.
-
-`sentinel.js` already wires the `ai_bot_open` / `ai_bot_message_sent` /
-`ai_bot_handoff_to_human` analytics events.
+## Frontend
+The site loads Sentinel from `js/sentinel.js`. It calls the deployed Worker by
+default. For a different route, set `window.SENTINEL_ENDPOINT` before the script
+loads. For localhost, start `server.js` with `SENTINEL_DEV_ENDPOINT` set to the
+HTTPS Worker version URL you want to test. If the Worker is unavailable, Sentinel uses the published answers in
+`faq.html` or offers an email handoff.
 
 ## Safety / cost notes
 - The system prompt constrains Sentinel to EEVSEC topics, refuses exploit-code
   requests, and hands off account/legal/security questions to `hi@eevsec.com`.
 - Input is capped at 500 chars; method-checked; CORS-locked to eevsec.com.
-- Groq's free tier has its own per-minute/day quotas — watch them in the Groq console;
-  add a Cloudflare WAF rate-limit rule on `/api/sentinel` if abuse appears.
+- Sentinel limits requests to approximately 20 per minute per IP at each
+  Cloudflare location. Groq applies its own per-minute and daily quotas.
 - The Worker degrades gracefully on a Groq error/quota/safety block (returns a
   "email a human" answer with `handoff: true`).

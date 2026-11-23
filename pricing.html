@@ -5,41 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>CyberRange Pricing — Free &amp; Custom | EEVSEC</title>
-<meta name="description" content="CyberRange pricing while we are in pre-launch: a free tier to get on the range, and custom enterprise terms for teams and organisations. Join the waitlist for early access." />
+<title>CyberRange Pricing | EEVSEC</title>
+<meta name="description" content="CyberRange monthly membership for individuals and custom plans for teams and organisations." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
-<link rel="canonical" href="https://eevsec.com/pricing.html" />
-<link rel="alternate" hreflang="en" href="https://eevsec.com/pricing.html" />
-<link rel="alternate" hreflang="x-default" href="https://eevsec.com/pricing.html" />
+<link rel="canonical" href="https://eevsec.com/cyberrange/pricing" />
+<link rel="alternate" hreflang="en" href="https://eevsec.com/cyberrange/pricing" />
+<link rel="alternate" hreflang="x-default" href="https://eevsec.com/cyberrange/pricing" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="Pricing | EEVSEC CyberRange" />
 <meta property="og:description" content="Enterprise CyberRange: custom scenarios, dedicated infrastructure, and cohort dashboards. Contact us for pricing." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://eevsec.com/pricing.html" />
-<meta property="og:image" content="https://eevsec.com/media/og/pricing.png" />
+<meta property="og:url" content="https://eevsec.com/cyberrange/pricing" />
+<meta property="og:image" content="https://eevsec.com/cyberrange/media/og/pricing.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="EEVSEC" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://eevsec.com/media/og/pricing.png" />
+<meta name="twitter:image" content="https://eevsec.com/cyberrange/media/og/pricing.png" />
 <meta name="robots" content="index,follow" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
 <meta name="theme-color" content="#f6f4ef" />
-<script>(function(){var c=localStorage.getItem('cr_currency');document.documentElement.dataset.currency=(c==='INR'||c==='AED')?c:'USD';document.documentElement.classList.add('intro-done');}());</script>
-<link rel="stylesheet" href="css/tokens.css?v=106" />
-<link rel="stylesheet" href="css/styles.css?v=158" />
+<script>document.documentElement.classList.add('intro-done');</script>
+<link rel="stylesheet" href="css/tokens.css?v=110" />
+<link rel="stylesheet" href="css/styles.css?v=160" />
 <link rel="stylesheet" href="css/pages.css?v=13" />
-<link rel="stylesheet" href="css/brand.css?v=23" />
+<link rel="stylesheet" href="css/brand.css?v=37" />
 <style>
-  .pricing__grid--two { grid-template-columns: repeat(2, 1fr); max-width: 720px; gap: clamp(14px, 1.8vw, 24px); }
-  .pricing__grid--two .ptier { padding: 30px 26px; }
-  @media (max-width: 620px) { .pricing__grid--two { grid-template-columns: 1fr; max-width: 420px; } }
+  .page.pricing { padding-block: 112px 76px; }
+  .pricing .page__head { margin-bottom: 66px; }
+  .pricing .page__head h1 { margin-bottom: 25px; }
+  .pricing__grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+    gap: 24px;
+  }
+  .pricing__grid--two .ptier { padding: 34px clamp(28px, 4vw, 48px) 36px; }
+  .pricing__grid--two .ptier__name { font-size: var(--text-xs); }
+  .pricing__grid--two .ptier__price {
+    --price-size: calc(clamp(2.75rem, 4vw, 3.75rem) + var(--wide-type));
+    min-height: var(--price-size);
+    font-size: var(--price-size);
+    line-height: 1.05;
+  }
+  .pricing__grid--two .ptier__price--custom {
+    font-size: calc(clamp(2.25rem, 3.25vw, 3rem) + var(--wide-type));
+  }
+  .pricing__grid--two .ptier__per { font-size: var(--text-base); }
+
+  @media (max-width: 700px) {
+    .page.pricing { padding-block: 92px 48px; }
+    .pricing .page__head { margin-bottom: 48px; }
+    .pricing .page__head h1 { margin-bottom: 22px; }
+    .pricing__grid--two { grid-template-columns: 1fr; gap: 18px; }
+    .pricing__grid--two .ptier { padding: 28px 24px; }
+    .pricing__grid--two .ptier__price { min-height: 0; }
+  }
 </style>
 <script type="application/ld+json">
 {
@@ -67,17 +93,25 @@
   "operatingSystem": "Web",
   "url": "https://eevsec.com/",
   "description": "Live-fire 1v1 cybersecurity training arena with a state-aware AI Coach. Attack and defend real systems against a real opponent across six scenario domains.",
-  "offers": {
-    "@type": "AggregateOffer",
-    "priceCurrency": "USD",
-    "lowPrice": "0",
-    "highPrice": "0",
-    "offerCount": "2",
-    "offers": [
-      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "description": "Free — live matches to feel the format. Available at launch." },
-      { "@type": "Offer", "name": "Custom", "priceCurrency": "USD", "description": "Enterprise & teams — dedicated infrastructure and custom scenarios. Contact for pricing.", "availability": "https://schema.org/PreOrder" }
-    ]
-  }
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Individual",
+      "price": "20",
+      "priceCurrency": "USD",
+      "ineligibleRegion": "IN",
+      "description": "Monthly individual membership."
+    },
+    {
+      "@type": "Offer",
+      "name": "Individual",
+      "price": "1499",
+      "priceCurrency": "INR",
+      "eligibleRegion": "IN",
+      "description": "Monthly individual membership."
+    },
+    { "@type": "Offer", "name": "Custom", "priceCurrency": "USD", "description": "Dedicated infrastructure and custom scenarios for teams and enterprises. Contact us for pricing." }
+  ]
 }
 </script>
 </head>
@@ -89,20 +123,17 @@
 
 <header class="brand-header" id="siteHeader" data-scrolled="false">
   <div class="brand-header-inner">
-    <a class="brand-signature" href="/" aria-label="EEVSEC CyberRange home">
+    <a class="brand-signature" href="./" aria-label="EEVSEC CyberRange home">
       <img src="brand/eevsec-icon-512.png" alt="" width="38" height="38" />
       <span>EEVSEC.</span>
     </a>
     <nav class="header-links" aria-label="Main navigation">
-      <a href="/#how">How it works</a>
-      <a href="/#coach">AI Coach</a>
-      <a href="/#scenarios">Scenarios</a>
-      <a href="/pricing.html" aria-current="page">Pricing</a>
+      <a href="./#how">How it works</a>
+      <a href="./#coach">AI Coach</a>
+      <a href="./#scenarios">Scenarios</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
+      <a class="btn btn--primary" href="./#join">Request access</a>
     </nav>
-    <div class="header-cta">
-      <a class="btn btn--ghost" href="https://cyberrange.eevsec.com/" rel="noopener">Log in</a>
-      <a class="btn btn--primary" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
-    </div>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
       <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
@@ -120,49 +151,47 @@
   </div>
   <p class="eyebrow">CyberRange</p>
   <nav class="menu-products" aria-label="CyberRange">
-    <a href="/#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="./#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="./#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="./#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="https://cyberrange.eevsec.com/" rel="noopener">Log in <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="/careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="/#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="./#join">Request access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="main" class="page pricing wrap">
   <header class="page__head">
     <span class="eyebrow eyebrow--center">Pricing</span>
-    <h1>Free to start. <em>Custom to scale.</em></h1>
-    <p>While we are in pre-launch, pricing is simple: a free tier to get on the range, and custom enterprise terms for teams and organisations. Join the waitlist to lock in early access — enterprise is available now.</p>
+    <h1>Train monthly. <em>Custom to scale.</em></h1>
+    <p>Choose a monthly membership for individuals or a custom plan for teams and organisations.</p>
   </header>
 
   <div class="pricing__grid pricing__grid--two">
 
-    <!-- Free -->
+    <!-- Individual -->
     <article class="ptier">
-      <div class="ptier__name">Free</div>
-      <div class="ptier__price"><span class="ptier__free">$0</span></div>
-      <p class="ptier__desc">Everything you need to step into the arena &mdash; real 1v1 matches against a live opponent, on real isolated machines, with the AI Coach reviewing every move. No card, no catch.</p>
+      <div class="ptier__name">Individual</div>
+      <div class="ptier__price"><span id="individual-price">$20</span> <span class="ptier__per">/ month</span></div>
+      <p class="ptier__desc">Play live 1v1 matches on isolated machines and get a review of every move from the AI Coach.</p>
       <ul class="ptier__feats">
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1 live 1v1 match every week</li>
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Core scenario domains</li>
-        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real, single-use isolated machines — no simulators</li>
+        <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Real, single-use isolated machines</li>
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Post-match AI Coach review, mapped to MITRE ATT&amp;CK</li>
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Community matchmaking against live opponents</li>
       </ul>
-      <span class="ptier__status ptier__status--soon">At launch</span>
-      <a class="btn btn--ghost ptier__cta" href="/#join">Join waitlist <span class="arr" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn--ghost ptier__cta" href="./#join">Request access <span class="arr" aria-hidden="true">&rarr;</span></a>
     </article>
 
     <!-- Custom -->
     <article class="ptier">
       <div class="ptier__name">Custom</div>
       <div class="ptier__price ptier__price--custom"><span class="ptier__free">Let&rsquo;s talk</span></div>
-      <p class="ptier__desc">Built for SOCs, universities, and enterprises that need scale, integration, and control &mdash; run on dedicated infrastructure and shaped to your environment.</p>
+      <p class="ptier__desc">Built for SOCs, universities, and enterprises that need scale, integration, and control. Runs on dedicated infrastructure configured for your environment.</p>
       <ul class="ptier__feats">
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Dedicated hypervisor clusters</li>
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Unlimited matches &amp; seats</li>
@@ -171,13 +200,10 @@
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Team &amp; cohort dashboards, scenario assignment</li>
         <li class="ptier__feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Priority support, onboarding &amp; an SLA</li>
       </ul>
-      <span class="ptier__status ptier__status--now">Available now</span>
       <a class="btn btn--primary ptier__cta" href="mailto:hi@eevsec.com?subject=CyberRange%20enquiry">Contact us <span class="arr" aria-hidden="true">&rarr;</span></a>
     </article>
 
   </div>
-
-  <p class="pricing__note">Pricing is intentionally simple while we are in pre-launch &mdash; a free tier and custom enterprise terms set by contract. More plans may arrive at general availability. Questions? <a href="/contact.html">Talk to us</a>.</p>
 </main>
 
 <footer class="foot">
@@ -186,27 +212,24 @@
 
       <div class="foot__col foot__col--brand">
         <img class="foot__mark" src="brand/eevsec-mark.svg" alt="" width="297" height="268" />
-        <a class="foot__word" href="/" aria-label="EEVSEC home">EEVSEC.</a>
-        <p class="foot__tagline">Security, made visible.</p>
+        <div class="foot__brand-text">
+          <a class="foot__word" href="https://eevsec.com/" aria-label="EEVSEC home">EEVSEC.</a>
+          <p class="foot__tagline">Security, made visible.</p>
+        </div>
       </div>
 
-      <nav class="foot__col" aria-label="Platform">
-        <h2 class="foot__col-title">Platform</h2>
-        <a href="/#how">How it works</a>
-        <a href="/#coach">AI Coach</a>
-        <a href="/#scenarios">Scenarios</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/news.html">Newsroom</a>
-        <a href="/careers.html">Careers</a>
-        <a href="/faq.html">FAQ</a>
+      <nav class="foot__col" aria-label="Company">
+        <h2 class="foot__col-title">Company</h2>
+        <a href="pricing.html">Pricing</a>
+        <a href="https://careers.eevsec.com/">Careers</a>
+        <a href="contact.html">Contact</a>
+        <a href="faq.html">FAQ</a>
       </nav>
 
       <div class="foot__col foot__connect">
         <h2 class="foot__col-title">Connect</h2>
         <p class="foot__org">EEVSEC Private Limited</p>
         <a href="mailto:hi@eevsec.com">hi@eevsec.com</a>
-        <a href="tel:+917891089239">+91-7891089239</a>
         <div class="foot__social">
           <a href="https://www.linkedin.com/company/eevsec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-9h4v1.5"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
           <a href="https://www.instagram.com/eev.sec/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg> Instagram</a>
@@ -215,12 +238,12 @@
 
       <nav class="foot__col" aria-label="Legal">
         <h2 class="foot__col-title">Legal</h2>
-        <a href="/privacy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms of Service</a>
-        <a href="/aup.html">Acceptable Use</a>
-        <a href="/returns.html">Refund Policy</a>
-        <a href="/cookies.html">Cookie Policy</a>
-        <a href="/security.html">Security</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="aup.html">Acceptable Use</a>
+        <a href="returns.html">Refund Policy</a>
+        <a href="cookies.html">Cookie Policy</a>
+        <a href="security.html">Security</a>
       </nav>
 
     </div>
@@ -231,16 +254,14 @@
   </div>
 </footer>
 
-<script src="js/nav.js?v=2" defer></script>
+<script src="js/nav.js?v=3" defer></script>
 <script src="js/silk.js?v=1" defer></script>
 <script src="js/page.js?v=3"></script>
-<script src="/js/recaptcha.js?v=1" defer></script>
-<script src="/js/pricing.js?v=2" defer></script>
-<script src="/js/sentinel.js?v=7" defer></script>
-<script src="/js/cookies.js?v=1" defer></script>
-<script src="js/consent.js?v=7" defer></script>
-<script src="/js/analytics.js?v=4" defer></script>
-<!-- Cloudflare Web Analytics (RUM) -->
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55c1d7d86e2c484098673dcae8d0145c"}'></script>
+<script src="js/recaptcha.js?v=2" defer></script>
+<script src="js/pricing.js?v=4" defer></script>
+<script src="js/sentinel.js?v=8" defer></script>
+<script src="js/cookies.js?v=1" defer></script>
+<script src="js/consent.js?v=8" defer></script>
+<script src="js/analytics.js?v=5" defer></script>
 </body>
 </html>

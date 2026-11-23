@@ -5,13 +5,8 @@
    third-party _GRECAPTCHA cookie is set only for people who use a form, never
    on a plain page view.
 
-   Static site, no backend, so verification differs per form:
-     • Contact form  -> the token is sent to Web3Forms, which verifies it
-       server-side with the SECRET key. The SECRET key lives ONLY in your
-       Web3Forms dashboard (Settings > Spam Protection > Custom reCAPTCHA v2);
-       it must never appear in this file or anywhere in the repo.
-     • Waitlist form -> Loops.so does not verify reCAPTCHA, so the token is a
-       client-side gate only; the hidden honeypot is the second layer.
+   The access and contact forms run a browser-side challenge before sending
+   data to their respective providers. Provider-side verification is separate.
 
    Leave SITE_KEY blank to turn reCAPTCHA OFF (prime() is a no-op and execute()
    resolves to ''). The google.com / gstatic.com origins are allow-listed in
@@ -19,55 +14,84 @@
 (function () {
   'use strict';
 
-  var SITE_KEY = '6Le97QYtAAAAAKi7qMzTI9gbHL4Mlo5yi1hoCdU5';   // reCAPTCHA v2 Invisible SITE key (public)
+  var loopback = ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
+  var SITE_KEY = (loopback && window.CR_DEV_RECAPTCHA_SITE_KEY) || '6Le97QYtAAAAAKi7qMzTI9gbHL4Mlo5yi1hoCdU5';
 
   if (!SITE_KEY) {
     window.crRecaptcha = { enabled: false, prime: function () {}, execute: function () { return Promise.resolve(''); } };
     return;
   }
 
-  var widgetId = null, pending = null, readyResolve, ready = null, started = false;
+  var widgetId = null;
+  var loading = null;
+  var pending = null;
 
   function load() {
-    if (started) return;
-    started = true;
-    ready = new Promise(function (res) { readyResolve = res; });
+    if (loading) return loading;
+    loading = new Promise(function (resolve, reject) {
+      var container = document.createElement('div');
+      container.style.display = 'none';
+      document.body.appendChild(container);
 
-    var container = document.createElement('div');
-    container.style.display = 'none';
-    (document.body || document.documentElement).appendChild(container);
+      var script = document.createElement('script');
+      var timeout = setTimeout(fail, 8000);
 
-    window.__crRecaptchaOnload = function () {
-      widgetId = window.grecaptcha.render(container, {
-        sitekey: SITE_KEY,
-        size: 'invisible',
-        badge: 'bottomright',
-        callback: function (token) { if (pending) { pending.resolve(token); pending = null; } },
-        'error-callback': function () { if (pending) { pending.reject(new Error('recaptcha-error')); pending = null; } },
-        'expired-callback': function () { if (pending) { pending.reject(new Error('recaptcha-expired')); pending = null; } }
-      });
-      readyResolve();
-    };
+      function fail() {
+        clearTimeout(timeout);
+        script.remove();
+        container.remove();
+        reject(new Error('recaptcha-load'));
+      }
 
-    var s = document.createElement('script');
-    s.src = 'https://www.google.com/recaptcha/api.js?onload=__crRecaptchaOnload&render=explicit';
-    s.async = true; s.defer = true;
-    (document.head || document.documentElement).appendChild(s);
+      window.__crRecaptchaOnload = function () {
+        try {
+          widgetId = window.grecaptcha.render(container, {
+            sitekey: SITE_KEY,
+            size: 'invisible',
+            badge: 'bottomright',
+            callback: function (token) { if (pending) pending(null, token); },
+            'error-callback': function () { if (pending) pending(new Error('recaptcha-error')); },
+            'expired-callback': function () { if (pending) pending(new Error('recaptcha-expired')); }
+          });
+          clearTimeout(timeout);
+          resolve();
+        } catch (error) {
+          fail();
+        }
+      };
+
+      script.src = 'https://www.google.com/recaptcha/api.js?onload=__crRecaptchaOnload&render=explicit';
+      script.async = true;
+      script.onerror = fail;
+      document.head.appendChild(script);
+    }).catch(function (error) {
+      loading = null;
+      throw error;
+    });
+    return loading;
   }
 
   window.crRecaptcha = {
     enabled: true,
-    /* Warm up reCAPTCHA on first form interaction (focus / open contact). */
-    prime: load,
-    /* Resolves with a fresh token, or rejects if the challenge fails/expires. */
-    execute: function () {
-      load();
-      return ready.then(function () {
-        return new Promise(function (resolve, reject) {
-          pending = { resolve: resolve, reject: reject };
-          try { window.grecaptcha.reset(widgetId); } catch (e) {}
+    prime: function () { load().catch(function () {}); },
+    execute: async function () {
+      await load();
+      if (pending) throw new Error('recaptcha-busy');
+      return new Promise(function (resolve, reject) {
+        var timeout = setTimeout(function () {
+          pending(new Error('recaptcha-timeout'));
+        }, 60000);
+        pending = function (error, token) {
+          clearTimeout(timeout);
+          pending = null;
+          if (error) reject(error); else resolve(token);
+        };
+        try {
+          window.grecaptcha.reset(widgetId);
           window.grecaptcha.execute(widgetId);
-        });
+        } catch (error) {
+          pending(error);
+        }
       });
     }
   };

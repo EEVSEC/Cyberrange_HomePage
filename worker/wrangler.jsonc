@@ -9,6 +9,9 @@
   // fetch(), so no nodejs_compat flag is needed.
 
   "observability": { "enabled": true },
+  "ratelimits": [
+    { "name": "SENTINEL_RATELIMIT", "namespace_id": "736895201", "simple": { "limit": 20, "period": 60 } }
+  ]
 
   // ── Routing ───────────────────────────────────────────────────────────────
   // Put eevsec.com behind Cloudflare, then route /api/sentinel to this Worker so
@@ -23,13 +26,4 @@
   // Set it once with:  npx wrangler secret put GROQ_API_KEY
   // For local dev, copy .dev.vars.example to .dev.vars and fill it in.
 
-  // ── Optional: native rate limiting ────────────────────────────────────────
-  // The Worker uses env.SENTINEL_RATELIMIT only if present (it's optional).
-  // The binding syntax has changed across Wrangler versions — verify the current
-  // form with `npx wrangler --help` / the Cloudflare Rate Limiting docs before
-  // enabling, or just use a Cloudflare dashboard WAF rate-limiting rule instead.
-  // Example (verify before use):
-  // "ratelimits": [
-  //   { "name": "SENTINEL_RATELIMIT", "namespace_id": 1001, "simple": { "limit": 20, "period": 60 } }
-  // ]
 }
