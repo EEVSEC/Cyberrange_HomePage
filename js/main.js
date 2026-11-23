@@ -57,37 +57,45 @@
   /* Play the Modes reel while it is on screen. */
   (() => {
     const video = $('video.modes-reel__frame');
-    const button = $('#modesReplay');
+    const button = $('#modesPlay');
     if (!video || !button) return;
 
-    let previousTime = 0;
-    const showButton = (label) => {
-      button.classList.add('is-visible');
-      button.setAttribute('aria-label', label);
-      button.title = label;
-    };
+    let inView = true;
+    let resumeOnPause = !reduced;
+    const showPlay = () => button.classList.add('is-visible');
+    const hidePlay = () => button.classList.remove('is-visible');
     const play = () => {
       video.muted = true;
-      video.play().then(() => {
-        if (button.title === 'Play') button.classList.remove('is-visible');
-      }).catch((error) => {
-        if (error.name !== 'AbortError') showButton('Play');
+      video.play().catch(() => {
+        if (inView && video.paused) showPlay();
       });
     };
-    video.addEventListener('timeupdate', () => {
-      if (!video.seeking && video.currentTime < previousTime) showButton('Replay');
-      previousTime = video.currentTime;
+    video.addEventListener('playing', hidePlay);
+    video.addEventListener('pause', () => {
+      if (!inView || !video.paused || document.hidden) return;
+      if (resumeOnPause) {
+        resumeOnPause = false;
+        play();
+      } else {
+        showPlay();
+      }
     });
-    button.addEventListener('click', () => {
-      button.classList.remove('is-visible');
-      previousTime = 0;
-      video.currentTime = 0;
-      play();
-    });
+    button.addEventListener('click', play);
 
     if (reduced) {
-      showButton('Play');
-    } else if ('IntersectionObserver' in window) {
+      showPlay();
+      return;
+    }
+
+    const resume = () => {
+      if (!inView || document.hidden) return;
+      resumeOnPause = true;
+      play();
+    };
+    document.addEventListener('visibilitychange', resume);
+
+    if ('IntersectionObserver' in window) {
+      inView = false;
       new IntersectionObserver(([entry], observer) => {
         if (!entry.isIntersecting) return;
         video.preload = 'auto';
@@ -95,14 +103,16 @@
       }, { rootMargin: '0px 0px 70% 0px' }).observe(video);
 
       new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          if (video.paused) play();
-        } else if (!video.paused) {
+        inView = entry.isIntersecting;
+        if (inView) {
+          resume();
+        } else {
           video.pause();
+          hidePlay();
         }
       }).observe(video);
     } else {
-      play();
+      resume();
     }
   })();
 
