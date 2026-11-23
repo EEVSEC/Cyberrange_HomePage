@@ -1,6 +1,6 @@
 # EEVSEC CyberRange: Full Reference
 
-> EEVSEC CyberRange is a competitive, live-fire cybersecurity training arena. Two people enter one live scenario on separate isolated virtual machines (one attacks, one defends) in real time, with a state-aware AI Coach watching each side. It is not a course and not a CTF: there are no scripted walkthroughs, no fake boxes, and no passive videos. Operated by EEVSEC PRIVATE LIMITED, Ahmedabad, India (CIN U62013GJ2026PTC177190).
+> EEVSEC CyberRange is a competitive, live-fire cybersecurity training arena. Two people enter one live scenario on separate isolated virtual machines (one attacks, one defends) in real time, with a state-aware AI Coach watching each side. It is not a course and not a CTF: there are no scripted walkthroughs, no fake boxes, and no passive videos. Operated by EEVSEC PRIVATE LIMITED, Ahmedabad, India (CIN U62013GJ2026PTC177190, GSTIN 24AAJCE6671K1Z9).
 
 ## Status
 Use Request access on the CyberRange site to submit your name, email address, and role. Submitting an access request is free.
@@ -36,7 +36,7 @@ Corporate security teams, SOC analysts, recruiters and evaluators, learners, uni
 Most labs test memory; CyberRange tests decisions. A live human opponent reacts to every move, full kill-chain scenarios run on real machines, and AI coaching is built into every round rather than bolted on.
 
 ## Company
-EEVSEC PRIVATE LIMITED. Registered office: 401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India. CIN U62013GJ2026PTC177190. Contact: hi@eevsec.com.
+EEVSEC PRIVATE LIMITED. Registered office: 401, Garud Apartment, Opp: Mahabaleshwar Flat, Jodhpur Char Rasta, Ahmedabad, Gujarat 380015, India. CIN U62013GJ2026PTC177190, GSTIN 24AAJCE6671K1Z9. Contact: hi@eevsec.com.
 
 ## Legal
 - Privacy Policy: https://eevsec.com/cyberrange/privacy. Personal-data processing under India's DPDPA 2023 & DPDP Rules 2025, the UAE PDPL (Decree-Law 45/2021), the UAE Child Digital Safety Law (Decree-Law 26/2025), CCPA, and GDPR.

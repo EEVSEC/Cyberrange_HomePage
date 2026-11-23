@@ -10,7 +10,7 @@
 - [Doctrine](https://eevsec.com/cyberrange/doctrine): Every scenario runs on three layers — WAR (strategy), Ethical Hacking (craft), and Cyber Crime (the real-world threat).
 
 ## Company
-- [EEVSEC PRIVATE LIMITED](https://eevsec.com/): Registered in Ahmedabad, Gujarat, India (CIN U62013GJ2026PTC177190). Contact: hi@eevsec.com.
+- [EEVSEC PRIVATE LIMITED](https://eevsec.com/): Registered in Ahmedabad, Gujarat, India (CIN U62013GJ2026PTC177190, GSTIN 24AAJCE6671K1Z9). Contact: hi@eevsec.com.
 - [Contact](https://eevsec.com/cyberrange/contact): Named paths for general, sales, security, privacy, and press, with published response targets.
 
 ## Legal
