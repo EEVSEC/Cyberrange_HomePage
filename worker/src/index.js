@@ -16,6 +16,21 @@ const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const MODEL = "openai/gpt-oss-120b";
 const MAX_COMPLETION_TOKENS = 1024;
 const PROVIDER_UNAVAILABLE = { answer: "Live chat is temporarily unavailable. Email hi@eevsec.com for help.", handoff: true };
+const PRICING_URL = "https://eevsec.com/cyberrange/pricing";
+const PRICE_QUESTION = /\b(?:prices?|pricing|costs?|how much is it|subscription fee|monthly (?:fee|rate)|discounts?|coupons?|rootaccess|rupees|usd|inr)\b|[$₹]/i;
+const QUOTED_PRICE = /[$₹]|\b(?:usd|inr|dollars?|rupees?)\b|\b\d[\d,.]*\s*(?:\/|per)\s*month\b/i;
+const asksMatchLimit = question => /\b(?:matches?|1v1s?)\b/i.test(question) &&
+  /\b(?:how many|unlimited|limits?|caps?|weekly|per week|every week|a week)\b/i.test(question);
+
+function regionalPrice(req) {
+  const india = req.cf?.country === "IN";
+  const price = india ? "₹1599" : "$20";
+  const offer = india ? "50% off (₹799/month)" : "25% off ($15/month)";
+  return {
+    answer: `The Individual plan is ${price}/month for your location. Black Friday: use code ROOTACCESS for ${offer}.`,
+    sources: [PRICING_URL], handoff: false,
+  };
+}
 
 const ALLOWED_ORIGINS = new Set([
   "https://eevsec.com",
@@ -40,8 +55,9 @@ VOICE
 - The endline "Attack. Defend. Repeat." may appear only at the end of a longer
   answer, never mid-sentence. Don't overuse it.
 - Length: 2-4 sentences for factual answers, up to 6 for an explanation.
-- Respond directly with the answer only — no preamble ("Great question!"), no
+- Respond directly with the answer only: no preamble ("Great question!"), no
   meta-commentary about your process or that you are an AI.
+- Never use em dashes (—). Use a comma, colon, period, or parentheses instead.
 
 WHAT CYBERRANGE IS
 - A live, browser-based cyber range. Two human operators face off in isolated,
@@ -53,16 +69,16 @@ WHAT CYBERRANGE IS
   adversarial AI, red/blue automation, and SCADA/ICS.
 
 DOCTRINE (three layers EEVSEC organises every scenario around)
-- WAR — strategy: how you think (kill-chain thinking, OODA loops, defence-in-depth).
-- Ethical Hacking — craft: how you execute (Kerberoasting, IMDSv2 misuse, AWS IAM
-  lateral movement). It is *ethical* — offensive technique exists so defenders can
+- WAR (strategy): how you think (kill-chain thinking, OODA loops, defence-in-depth).
+- Ethical Hacking (craft): how you execute (Kerberoasting, IMDSv2 misuse, AWS IAM
+  lateral movement). It is *ethical*: offensive technique exists so defenders can
   counter it.
-- Cyber Crime — the threat: real adversaries and incidents the scenarios model.
+- Cyber Crime (the threat): real adversaries and incidents the scenarios model.
 
 PRICING
-- Individual: ₹1499/month in India, $20/month elsewhere. Includes 1 live 1v1 match
-  per week, core scenarios, and post-match AI Coach review. Visitors can request
-  access on the home page.
+- Individual includes unlimited live 1v1 matches, core scenarios, and post-match
+  AI Coach review. Visitors can buy it at /cyberrange/checkout. The site handles
+  regional pricing. Refer visitors to /cyberrange/pricing for rates and offers.
 - Custom: teams and enterprises get dedicated infrastructure, custom scenarios,
   SSO/SIEM, priority support, and onboarding. Contact hi@eevsec.com for pricing.
 - Do NOT quote the retired Recruit / Scout / Centurion / Squad / Warlord tiers
@@ -80,14 +96,14 @@ POLICIES (mention the relevant eevsec.com path when you cite a fact)
 
 WHEN TO HAND OFF TO A HUMAN (say so briefly and point to hi@eevsec.com)
 - Account-specific issues (a specific user's login, billing, or refund).
-- Security incidents — point to hi@eevsec.com or /.well-known/security.txt.
-- Substantive legal questions — "I can't give legal advice; for that, email
+- Security incidents: point to hi@eevsec.com or /.well-known/security.txt.
+- Substantive legal questions: "I can't give legal advice; for that, email
   hi@eevsec.com" and point at the policy page.
 - Anything requiring working exploit code or operational attack guidance against
-  real third-party systems. Refuse politely: "I can't help with that — if you want
+  real third-party systems. Refuse politely: "I can't help with that. If you want
   hands-on practice, that's exactly what the platform is for."
 
-REFUSAL STYLE: short, firm, no apology. "I can't help with that — but a human on the
+REFUSAL STYLE: short, firm, no apology. "I can't help with that, but a human on the
 team can. Try hi@eevsec.com."
 
 COMMON QUESTIONS: there is a public FAQ at /faq.html. When a visitor wants a quick
@@ -128,6 +144,7 @@ function decodeText(s) {
     .replace(/&#8220;|&#8221;|&ldquo;|&rdquo;|&quot;/g, '"')
     .replace(/&#8211;|&ndash;/g, "–")
     .replace(/&#8212;|&mdash;/g, "—")
+    .replace(/\s*—\s*/g, ", ")   // site style: no em dashes
     .replace(/&#8230;|&hellip;/g, "…")
     .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ")
     .replace(/&[a-z0-9#]+;/gi, " ")
@@ -204,6 +221,11 @@ export default {
     const q = body && typeof body.q === "string" ? body.q.trim() : "";
     if (!q || q.length > 500) return json({ error: "Your question must be 1–500 characters." }, 400, h);
 
+    if (PRICE_QUESTION.test(q)) return json(regionalPrice(req), 200, h);
+    if (asksMatchLimit(q)) {
+      return json({ answer: "The Individual plan includes unlimited live 1v1 matches.", sources: [PRICING_URL], handoff: false }, 200, h);
+    }
+
     const apiKey = env.GROQ_API_KEY;
     if (!apiKey) {
       console.warn("Sentinel: Groq API key is missing");
@@ -238,10 +260,11 @@ export default {
 
       // Content filter — refuse politely.
       if (choice?.finish_reason === "content_filter") {
-        return json({ answer: "I can't help with that one — but a human on the team can. Try hi@eevsec.com.", handoff: true }, 200, h);
+        return json({ answer: "I can't help with that one, but a human on the team can. Try hi@eevsec.com.", handoff: true }, 200, h);
       }
 
-      const answer = (choice?.message?.content || "").trim();
+      // site style: no em dashes, even if the model slips past the VOICE rule
+      const answer = (choice?.message?.content || "").trim().replace(/\s*—\s*/g, ", ");
 
       // Lightweight account/billing handoff hint on top of the model's own judgement.
       const handoff = /\b(my account|billing|refund my|cancel my|password|can't log ?in|login issue)\b/i.test(q);
@@ -250,6 +273,7 @@ export default {
         console.warn("Sentinel: Groq returned an empty answer", { finishReason: choice?.finish_reason });
         return json(PROVIDER_UNAVAILABLE, 502, h);
       }
+      if (QUOTED_PRICE.test(answer)) return json(regionalPrice(req), 200, h);
       return json({ answer, handoff }, 200, h);
     } catch (err) {
       console.warn("Sentinel: Groq response failed", { error: err?.name });

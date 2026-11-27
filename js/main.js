@@ -57,7 +57,7 @@
   /* ── year ── */
   const yr = $('#year'); if (yr) yr.textContent = new Date().getFullYear();
 
-  /* ── modes reel CTA → scroll to waitlist ── */
+  /* ── modes reel CTA → scroll to the buy section ── */
   window.addEventListener('message', (e) => {
     if (e.data && e.data.crNav === 'join') {
       const t = document.getElementById('join');
@@ -289,167 +289,6 @@
     secs.forEach(s => so.observe(s));
   }
 
-  /* ── waitlist confetti ── */
-  function launchConfetti() {
-    const canvas = $('#confettiCanvas');
-    if (!canvas || reduced) return;
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    canvas.style.display = 'block';
-
-    // CyberRange palette — greens, cyan, gold, white
-    const colors = ['#1b3557', '#2c4d78', '#5d7ca3', '#cbd4db', '#f6f4ef', '#b42318'];
-    const pieces = [];
-    for (let i = 0; i < 180; i++) {
-      pieces.push({
-        x: Math.random() * canvas.width,
-        y: -20 - Math.random() * canvas.height * 0.4,
-        vx: (Math.random() - 0.5) * 5,
-        vy: 1.5 + Math.random() * 3.5,
-        w: 6 + Math.random() * 9,
-        h: 3 + Math.random() * 4,
-        angle: Math.random() * Math.PI * 2,
-        spin: (Math.random() - 0.5) * 0.25,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: 1,
-        gravity: 0.06 + Math.random() * 0.04,
-      });
-    }
-    const start = performance.now();
-    let raf;
-    const draw = (now) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const elapsed = now - start;
-      pieces.forEach(p => {
-        p.vy += p.gravity; p.vx *= 0.995;
-        p.x += p.vx; p.y += p.vy; p.angle += p.spin;
-        if (elapsed > 2600) p.opacity = Math.max(0, p.opacity - 0.018);
-        if (p.opacity <= 0) return;
-        ctx.save();
-        ctx.globalAlpha = p.opacity;
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.angle);
-        ctx.fillStyle = p.color;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-        ctx.restore();
-      });
-      const alive = pieces.filter(p => p.opacity > 0 && p.y < canvas.height + 30);
-      if (alive.length > 0 && elapsed < 4200) {
-        raf = requestAnimationFrame(draw);
-      } else {
-        cancelAnimationFrame(raf);
-        canvas.style.display = 'none';
-      }
-    };
-    raf = requestAnimationFrame(draw);
-  }
-
-  /* ── waitlist — Loops.so signup ── */
-  (() => {
-    const LOOPS_FORM = 'https://app.loops.so/api/newsletter-form/cmog6m7fn0i650h1tir5n4smw';
-    const form = $('#waitForm');
-    if (!form) return;
-    const nameEl = $('#waitName'), emailEl = $('#waitEmail'), roleEl = $('#waitRole');
-    const honeypot = $('#waitHoneypot'), btn = $('#waitBtn'), msg = $('#waitMsg');
-    const success = $('#waitSuccess'), successName = $('#waitSuccessName');
-    const label = btn.querySelector('.btn-label'), arrow = btn.querySelector('.arr');
-
-    // Warm up Invisible reCAPTCHA the moment the visitor engages the form, so
-    // the Google script/cookie loads only for people who actually use it.
-    form.addEventListener('focusin', () => {
-      if (window.crRecaptcha && window.crRecaptcha.enabled) window.crRecaptcha.prime();
-    }, { once: true });
-
-    const validEmail = v => /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\.[a-zA-Z]{2,}$/.test(v);
-
-    const fieldError = (el, errId, text) => {
-      el.setAttribute('aria-invalid', 'true');
-      const e = $('#' + errId); if (e) e.textContent = text || '';
-      setTimeout(() => { el.removeAttribute('aria-invalid'); if (e) e.textContent = ''; }, 3200);
-    };
-
-    // U-07: inline email validation on blur (persists until corrected)
-    emailEl.addEventListener('blur', () => {
-      const v = emailEl.value.trim();
-      if (v && !validEmail(v)) {
-        emailEl.setAttribute('aria-invalid', 'true');
-        const e = $('#waitEmailErr'); if (e) e.textContent = 'Enter a valid email address.';
-      }
-    });
-    emailEl.addEventListener('input', () => {
-      emailEl.removeAttribute('aria-invalid');
-      const e = $('#waitEmailErr'); if (e) e.textContent = '';
-    });
-    const resetBtn = () => {
-      btn.disabled = false; btn.classList.remove('loading');
-      if (label) label.textContent = 'Request access';
-      if (arrow) arrow.style.visibility = '';
-    };
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (btn.disabled || (honeypot && honeypot.value)) return;
-
-      const name = nameEl.value.trim();
-      const email = emailEl.value.trim();
-      const role = roleEl.value;
-      msg.textContent = ''; msg.classList.remove('ok');
-
-      if (!name)  { fieldError(nameEl,  'waitNameErr',  'Name is required.');        nameEl.focus();  return; }
-      if (!email) { fieldError(emailEl, 'waitEmailErr', 'Email is required.');       emailEl.focus(); return; }
-      if (!validEmail(email)) { fieldError(emailEl, 'waitEmailErr', 'Enter a valid email address.'); emailEl.focus(); return; }
-      if (!role)  { fieldError(roleEl,  'waitRoleErr',  'Please select an option.'); roleEl.focus();  return; }
-
-      btn.disabled = true; btn.classList.add('loading');
-      if (label) label.textContent = 'Sending…';
-      if (arrow) arrow.style.visibility = 'hidden';
-
-      // Invisible reCAPTCHA gate. Loops cannot verify the token server-side,
-      // so this is a client-side bot check layered on top of the honeypot.
-      if (window.crRecaptcha && window.crRecaptcha.enabled) {
-        try { await window.crRecaptcha.execute(); }
-        catch (_) { msg.textContent = 'Verification is unavailable. Try again or email hi@eevsec.com.'; resetBtn(); return; }
-      }
-
-      const parts = name.split(' ');
-      const firstName = parts[0];
-      const lastName = parts.slice(1).join(' ') || '';
-
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 12000);
-      try {
-        const body = new URLSearchParams({ email, firstName, lastName, role }).toString();
-        const res = await fetch(LOOPS_FORM, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body, signal: controller.signal,
-        });
-        const data = await res.json();
-
-        if (res.ok && data.success) {
-          if (window.track) { window.track('waitlist_submit', { role: role }); window.track('waitlist_role_chosen', { role: role }); }
-          if (successName) successName.textContent = firstName;
-          // U-07: fade the form out, then reveal the confirmation
-          form.classList.add('is-out');
-          setTimeout(() => {
-            form.hidden = true; form.style.display = 'none';
-            if (success) success.hidden = false;
-            launchConfetti();
-          }, 220);
-        } else if (data.message && /duplicate|already/i.test(data.message)) {
-          msg.textContent = "You're already on the list."; resetBtn();
-        } else {
-          msg.textContent = 'Something went wrong, please try again.'; resetBtn();
-        }
-      } catch (_) {
-        msg.textContent = 'Could not send your request. Try again or email hi@eevsec.com.'; resetBtn();
-      } finally {
-        clearTimeout(timeout);
-      }
-    });
-  })();
-
   /* ════════════════════════════════════════════════════════════
      AI COACH ENGINE
      ════════════════════════════════════════════════════════════ */
@@ -523,11 +362,40 @@
     const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
     const later = (fn, ms) => { const t = setTimeout(fn, ms); timers.push(t); return t; };
 
-    const renderState = (rows) => {
-      stateBox.innerHTML = rows.map(([k, v, warn]) =>
-        `<div class="state__row"><span class="state__k">${k}</span><span class="state__v${warn ? ' warn' : ''}">${v}</span></div>`
-      ).join('');
+    const stateHTML = (rows) => rows.map(([k, v, warn]) =>
+      `<div class="state__row"><span class="state__k">${k}</span><span class="state__v${warn ? ' warn' : ''}">${v}</span></div>`
+    ).join('');
+    const renderState = (rows) => { stateBox.innerHTML = stateHTML(rows); };
+    const chainHTML = (steps) => steps.map((s, i) =>
+      `<div class="chain__step"><span class="n">${i + 1}</span><span class="tx">${s}</span></div>`
+    ).join('');
+
+    /* Lock every typed box to the tallest text any beat will put in it, so the panel (and the cards
+       stretched beside it) never grows or shrinks while the coach types. Measured on hidden clones
+       at the live width; re-run on resize and once fonts load. */
+    const lockHeights = () => {
+      const beats = [...COACH.atk, ...COACH.def];
+      const fit = (box, fill) => {
+        const w = box.getBoundingClientRect().width;
+        if (!w) return;
+        const c = box.cloneNode(true);
+        c.removeAttribute('id');
+        c.style.cssText = `position:absolute;visibility:hidden;pointer-events:none;width:${w}px;min-height:0`;
+        box.after(c);
+        let max = 0;
+        beats.forEach(b => { fill(c, b); max = Math.max(max, c.getBoundingClientRect().height); });
+        c.remove();
+        box.style.minHeight = Math.ceil(max) + 'px';
+      };
+      fit(stateBox, (c, b) => { c.innerHTML = stateHTML(b.state); });
+      fit(readEl,   (c, b) => { c.textContent = b.read; });
+      fit(cmdEl.parentElement, (c, b) => { c.querySelector('code').textContent = b.cmd; });
+      fit(whyEl,    (c, b) => { c.textContent = b.why; });
+      fit(chainEl,  (c, b) => { c.innerHTML = chainHTML(b.chain); });
     };
+    lockHeights();
+    window.addEventListener('resize', lockHeights, { passive: true });
+    if (document.fonts) document.fonts.ready.then(lockHeights);
 
     const typeText = (el, text, speed, done) => {
       if (reduced) { el.textContent = text; done && done(); return; }
@@ -542,11 +410,10 @@
     let runIdGuard = 0;
 
     const renderChain = (steps) => {
-      chainEl.innerHTML = steps.map((s, i) =>
-        `<div class="chain__step" style="opacity:0"><span class="n">${i + 1}</span><span class="tx">${s}</span></div>`
-      ).join('');
+      chainEl.innerHTML = chainHTML(steps);
       const items = $$('.chain__step', chainEl);
       items.forEach((it, i) => {
+        it.style.opacity = '0';
         if (reduced) { it.style.opacity = '1'; return; }
         it.style.transition = 'opacity .4s var(--ease-out), transform .4s var(--ease-out)';
         it.style.transform = 'translateY(6px)';

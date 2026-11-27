@@ -25,8 +25,8 @@
     { q: 'Who is CyberRange for?',
       a: 'Security teams and SOC analysts drilling incident response, learners and students building real skill, universities running hands-on labs, and recruiters who want to see how people think under pressure rather than read a resume.' },
     { q: 'How do I get access?',
-      a: 'CyberRange is in pre-launch. Join the waitlist to reserve your spot and be first in when the arena opens.',
-      links: [{ t: 'Join the waitlist', h: '/#join' }] },
+      a: 'Buy the Individual plan for $20 a month and you are in. Teams and institutions can contact us for a custom plan.',
+      links: [{ t: 'Buy now', h: '/checkout' }, { t: 'See pricing', h: '/pricing' }] },
     { q: 'How do you handle my data and refunds?',
       a: 'We collect only what we need and never sell your data. Subscriptions can be cancelled at any time. See our policies for the full details.',
       links: [{ t: 'Privacy Policy', h: '/privacy.html' }, { t: 'Refund Policy', h: '/returns.html' }] },
@@ -89,7 +89,7 @@
     try { seen = sessionStorage.getItem(NUDGE_KEY) === '1'; } catch (e) {}
     if (seen) return;
     if (badge) badge.classList.add('is-on');
-    bubble.setAttribute('aria-label', 'Open Byte — questions about CyberRange? (1 new)');
+    bubble.setAttribute('aria-label', 'Open Byte: questions about CyberRange? (1 new)');
   };
   (function scheduleNudge() {
     let seen = false;

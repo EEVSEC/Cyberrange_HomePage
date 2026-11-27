@@ -17,10 +17,14 @@ exclude:
   - corrected-snippets.md
   - deployment-notes.md
   - wikipedia-draft.md
+  - TODO-LATER.md
+  - design.md
+  - AGENTS.md
   - visit-collector-setup.md
   - compliance/
   # Dead / non-deployable code (static site has no Node backend)
   - server.js
+  - preview/
   - shot.js
   - make_og.py   # build tool: regenerates media/og/*.png (run locally, commit output)
   - CLOUDFLARE_SETUP.md   # internal ops runbook

@@ -35,9 +35,9 @@
 <meta name="theme-color" content="#f6f4ef" />
 <script>(function(){document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="../css/tokens.css?v=110" />
-<link rel="stylesheet" href="../css/styles.css?v=160" />
+<link rel="stylesheet" href="../css/styles.css?v=170" />
 <link rel="stylesheet" href="../css/pages.css?v=13" />
-<link rel="stylesheet" href="../css/brand.css?v=38" />
+<link rel="stylesheet" href="../css/brand.css?v=55" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -68,8 +68,8 @@
       <a href="../#how">How it works</a>
       <a href="../#coach">AI Coach</a>
       <a href="../#scenarios">Scenarios</a>
-      <a href="../pricing.html">Pricing</a>
-      <a class="btn btn--primary" href="../#join">Request access</a>
+      <a href="../pricing">Pricing</a>
+      <a class="btn btn--primary" href="../pricing">Get Access</a>
     </nav>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
@@ -91,13 +91,13 @@
     <a href="../#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="../pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../pricing"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="../#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="../pricing">Get Access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="main" class="page wrap">
@@ -110,21 +110,21 @@
   <header class="page__head page__head--left">
     <span class="eyebrow">Scenario &middot; <a href="../doctrine.html#ethical-hacking" class="scn-doctrine">Ethical Hacking</a></span>
     <h1>Cloud &amp; Zero Trust <em>Cyber Range Training</em></h1>
-    <p class="scn-lede">In the cloud, the perimeter is identity &mdash; and one over-permissioned role is all the foothold an attacker needs.</p>
+    <p class="scn-lede">In the cloud, the perimeter is identity, and one over-permissioned role is all the foothold an attacker needs.</p>
   </header>
 
   <div class="scn-missions">
     <article class="scn-mission scn-mission--atk">
-      <h2 class="scn-mission__h">ATK &mdash; Attacker mission</h2>
+      <h2 class="scn-mission__h">ATK · Attacker mission</h2>
       <p>Turn a single foothold into account-wide control: abuse the instance metadata service, harvest credentials, walk IAM trust relationships, and reach the data store.</p>
     </article>
     <article class="scn-mission scn-mission--def">
-      <h2 class="scn-mission__h">DEF &mdash; Defender mission</h2>
+      <h2 class="scn-mission__h">DEF · Defender mission</h2>
       <p>Enforce least privilege and zero-trust segmentation, detect anomalous API calls, cut the abused role, and keep the blast radius to one account.</p>
     </article>
     <article class="scn-mission scn-mission--ai">
-      <h2 class="scn-mission__h">AI &mdash; What the Coach reviews</h2>
-      <p>How fast you spotted the metadata call, whether you scoped the over-permissioned role, and the lateral-movement path you did &mdash; and didn&rsquo;t &mdash; see.</p>
+      <h2 class="scn-mission__h">AI · What the Coach reviews</h2>
+      <p>How fast you spotted the metadata call, whether you scoped the over-permissioned role, and the lateral-movement path you did, and didn&rsquo;t, see.</p>
     </article>
   </div>
 
@@ -143,8 +143,8 @@
   <section class="scn-block" aria-labelledby="real-h">
     <h2 id="real-h" class="scn-block__h">Why this matters</h2>
     <ul class="scn-real">
-        <li>Capital One (2019) &mdash; an SSRF reached the instance metadata service, stole a role, and exfiltrated 100M records from S3.</li>
-        <li>Code Spaces (2014) &mdash; an attacker took the AWS console and deleted the business in hours.</li>
+        <li>Capital One (2019): an SSRF reached the instance metadata service, stole a role, and exfiltrated 100M records from S3.</li>
+        <li>Code Spaces (2014): an attacker took the AWS console and deleted the business in hours.</li>
         <li>Recurring IAM mis-configuration and over-broad roles as the cloud lateral-movement highway.</li>
     </ul>
   </section>
@@ -152,7 +152,7 @@
   <section class="scn-cta">
     <p class="scn-cta__tags"><span class="dtag dtag--ethical">Ethical Hacking</span> One match. One real fight.</p>
     <div class="dmap__cta">
-      <a class="btn btn--primary" href="../#join">Request access <span class="arr" aria-hidden="true">&rarr;</span></a>
+      <a class="btn btn--primary" href="../checkout">Buy now <span class="arr" aria-hidden="true">&rarr;</span></a>
       <a class="btn btn--ghost" href="../#scenarios">All scenarios</a>
     </div>
     <p class="scn-cta__end"><span class="accent-c">Attack. Defend. Repeat.</span></p>
@@ -173,7 +173,7 @@
 
       <nav class="foot__col" aria-label="Company">
         <h2 class="foot__col-title">Company</h2>
-        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing">Pricing</a>
         <a href="https://careers.eevsec.com/">Careers</a>
         <a href="../contact.html">Contact</a>
         <a href="../faq.html">FAQ</a>
@@ -208,6 +208,7 @@
   </div>
 </footer>
 
+<script src="../js/pricing.js?v=25" defer></script>
 <script src="../js/nav.js?v=3" defer></script>
 <script src="../js/silk.js?v=1" defer></script>
 <script src="../js/page.js?v=3"></script>
@@ -215,6 +216,6 @@
 <script src="../js/consent.js?v=8" defer></script>
 <script src="../js/analytics.js?v=5" defer></script>
 <script src="../js/recaptcha.js?v=2" defer></script>
-<script src="../js/sentinel.js?v=8" defer></script>
+<script src="../js/sentinel.js?v=13" defer></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Maskirovka: Soviet Deception Doctrine and Living-off-the-Land Intrusions | EEVSEC CyberRange</title>
-<meta name="description" content="How maskirovka — the Soviet doctrine of military deception — explains living-off-the-land intrusions like Volt Typhoon, and why detection has to shift from signature to behaviour." />
+<meta name="description" content="How maskirovka, the Soviet doctrine of military deception, explains living-off-the-land intrusions like Volt Typhoon, and why detection has to shift from signature to behaviour." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="../fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
@@ -33,9 +33,9 @@
 <meta name="theme-color" content="#f6f4ef" />
 <script>(function(){document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="../css/tokens.css?v=110" />
-<link rel="stylesheet" href="../css/styles.css?v=160" />
+<link rel="stylesheet" href="../css/styles.css?v=170" />
 <link rel="stylesheet" href="../css/blog.css?v=4" />
-<link rel="stylesheet" href="../css/brand.css?v=38" />
+<link rel="stylesheet" href="../css/brand.css?v=55" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,8 +100,8 @@
       <a href="../#how">How it works</a>
       <a href="../#coach">AI Coach</a>
       <a href="../#scenarios">Scenarios</a>
-      <a href="../pricing.html">Pricing</a>
-      <a class="btn btn--primary" href="../#join">Request access</a>
+      <a href="../pricing">Pricing</a>
+      <a class="btn btn--primary" href="../pricing">Get Access</a>
     </nav>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
@@ -123,13 +123,13 @@
     <a href="../#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="../pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../pricing"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="../#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="../pricing">Get Access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="main" class="page wrap">
@@ -144,17 +144,17 @@
       <p>The intrusions that keep defenders awake are not the loud ones. A ransomware note on every screen is a failure that announces itself; you know the day it happened. The dangerous adversary is the one who has been inside for months and looks, on every dashboard you own, exactly like your own administrators going about their work. That is not a new problem. It is the oldest idea in the deception playbook, and the Soviets gave it a name.</p>
 
       <h2>Military foundation</h2>
-      <p>Maskirovka is the Russian and Soviet doctrine of military deception &mdash; but the word is broader than the English term. It is not a single ruse; it is a system that runs from camouflaging a tank up to deceiving an entire theatre command about where and when an offensive will fall. Its aim is to deny the adversary an accurate picture of reality until acting on the truth is no longer possible. It works on two faces at once: <em>concealment</em>, hiding what is real, and <em>simulation</em>, showing what is false. Done well, the two merge, and the genuine becomes indistinguishable from the routine.</p>
+      <p>Maskirovka is the Russian and Soviet doctrine of military deception, but the word is broader than the English term. It is not a single ruse; it is a system that runs from camouflaging a tank up to deceiving an entire theatre command about where and when an offensive will fall. Its aim is to deny the adversary an accurate picture of reality until acting on the truth is no longer possible. It works on two faces at once: <em>concealment</em>, hiding what is real, and <em>simulation</em>, showing what is false. Done well, the two merge, and the genuine becomes indistinguishable from the routine.</p>
       <p>The decisive move in maskirovka is rarely a clever fake. It is making the real thing look like nothing worth a second glance. A unit that moves at the same tempo as ordinary traffic, on the same roads, in the same patterns, is hidden not because it cannot be seen but because seeing it tells the observer nothing. The deception is in the <em>interpretation</em>, not the photograph. An analyst who has everything in front of them and still draws the wrong conclusion has been defeated more completely than one who was simply kept in the dark.</p>
 
       <h2>Cyber application</h2>
       <p>Living-off-the-land is maskirovka rendered in code. Instead of dropping custom malware that a scanner can fingerprint, the intruder operates with the tools already present and trusted on the host: PowerShell, WMI, <code>certutil</code>, <code>netsh</code>, scheduled tasks, signed system binaries. Nothing foreign is introduced, so there is no malicious file to flag and little that stands out as an artifact. The operator&rsquo;s activity is camouflaged by being, technically, the same activity your own staff perform every day.</p>
       <p>The clearest public example is Volt Typhoon, the state-sponsored actor that US agencies have described conducting long-dwell intrusions into critical-infrastructure networks using almost entirely living-off-the-land tradecraft. The point of that approach is not stealth for its own sake; it is to deny defenders an accurate picture. There is no signature to write, because the &ldquo;weapon&rdquo; is your own toolset. The deception, exactly as in maskirovka, lives in the interpretation: a SOC analyst can have every relevant log in front of them and still read the session as ordinary administration.</p>
-      <p>This is why signature-based detection loses against a competent living-off-the-land operator, and why the answer is behaviour and context rather than indicators. You cannot ask &ldquo;is this binary malicious&rdquo; when the binary is signed by the operating-system vendor. You have to ask whether <em>this</em> use of it fits the baseline: PowerShell spawned by a process that has no business launching it, <code>certutil</code> reaching out to the internet, a service account suddenly behaving interactively, a scheduled task created at an hour no human keeps. The relevant <a href="../doctrine.html#ethical-hacking">techniques</a> map cleanly onto MITRE ATT&amp;CK &mdash; signed binary proxy execution (T1218), command and scripting interpreters (T1059), and account manipulation among them &mdash; and the contest reduces to a single question: can the defender tell the staged from the genuine before it matters?</p>
+      <p>This is why signature-based detection loses against a competent living-off-the-land operator, and why the answer is behaviour and context rather than indicators. You cannot ask &ldquo;is this binary malicious&rdquo; when the binary is signed by the operating-system vendor. You have to ask whether <em>this</em> use of it fits the baseline: PowerShell spawned by a process that has no business launching it, <code>certutil</code> reaching out to the internet, a service account suddenly behaving interactively, a scheduled task created at an hour no human keeps. The relevant <a href="../doctrine.html#ethical-hacking">techniques</a> map cleanly onto MITRE ATT&amp;CK (signed binary proxy execution (T1218), command and scripting interpreters (T1059), and account manipulation among them), and the contest reduces to a single question: can the defender tell the staged from the genuine before it matters?</p>
 
       <h2>What you practise</h2>
-      <p>In the range this stops being a reading exercise and becomes a match. On the offensive side you run the living-off-the-land playbook against a defended host: accomplish the objective using only what is already there, minimise the artifacts you leave, and keep your activity inside the shape of normal traffic. On the defensive side you do the harder work &mdash; build the baseline first, because you cannot detect a deviation from a normal you never characterised, then hunt the anomaly while a live opponent is actively trying to look ordinary. The <a href="../#coach">AI Coach</a> maps each move to ATT&amp;CK as it happens and shows you, afterwards, the exact moment the genuine and the staged diverged.</p>
-      <p>It is the whole doctrine in one scenario. The <a href="../doctrine.html">three layers</a> are all present: a real adversary&rsquo;s tradecraft drawn from the world (Cyber Crime), the hands-on craft of blending in and of catching what blends in (Ethical Hacking), and above both the strategic contest of deception against counter-deception (WAR). The habit you are building is the analyst&rsquo;s discipline maskirovka was designed to defeat &mdash; refusing to accept that <em>looks routine</em> means <em>is routine</em>, and learning to read the picture instead of the file. Against an opponent whose entire method is to be unremarkable, the defender who has practised seeing through it wins the only contest that counts.</p>
+      <p>In the range this stops being a reading exercise and becomes a match. On the offensive side you run the living-off-the-land playbook against a defended host: accomplish the objective using only what is already there, minimise the artifacts you leave, and keep your activity inside the shape of normal traffic. On the defensive side you do the harder work: build the baseline first, because you cannot detect a deviation from a normal you never characterised, then hunt the anomaly while a live opponent is actively trying to look ordinary. The <a href="../#coach">AI Coach</a> maps each move to ATT&amp;CK as it happens and shows you, afterwards, the exact moment the genuine and the staged diverged.</p>
+      <p>It is the whole doctrine in one scenario. The <a href="../doctrine.html">three layers</a> are all present: a real adversary&rsquo;s tradecraft drawn from the world (Cyber Crime), the hands-on craft of blending in and of catching what blends in (Ethical Hacking), and above both the strategic contest of deception against counter-deception (WAR). The habit you are building is the analyst&rsquo;s discipline maskirovka was designed to defeat: refusing to accept that <em>looks routine</em> means <em>is routine</em>, and learning to read the picture instead of the file. Against an opponent whose entire method is to be unremarkable, the defender who has practised seeing through it wins the only contest that counts.</p>
     </div>
 
     <div class="article__back">
@@ -177,7 +177,7 @@
 
       <nav class="foot__col" aria-label="Company">
         <h2 class="foot__col-title">Company</h2>
-        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing">Pricing</a>
         <a href="https://careers.eevsec.com/">Careers</a>
         <a href="../contact.html">Contact</a>
         <a href="../faq.html">FAQ</a>
@@ -212,6 +212,7 @@
   </div>
 </footer>
 
+<script src="../js/pricing.js?v=25" defer></script>
 <script src="../js/nav.js?v=3" defer></script>
 <script src="../js/silk.js?v=1" defer></script>
 <script src="../js/page.js?v=3"></script>
@@ -219,6 +220,6 @@
 <script src="../js/consent.js?v=8" defer></script>
 <script src="../js/analytics.js?v=5" defer></script>
 <script src="../js/recaptcha.js?v=2" defer></script>
-<script src="../js/sentinel.js?v=8" defer></script>
+<script src="../js/sentinel.js?v=13" defer></script>
 </body>
 </html>

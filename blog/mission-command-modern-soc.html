@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>Mission Command: Auftragstaktik and the Modern SOC | EEVSEC CyberRange</title>
-<meta name="description" content="Why the German doctrine of mission command — leading by intent, not detailed orders — is the model a modern security operations centre needs to keep pace with automated attacks." />
+<meta name="description" content="Why the German doctrine of mission command (leading by intent, not detailed orders) is the model a modern security operations centre needs to keep pace with automated attacks." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="../fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="x-default" href="https://eevsec.com/cyberrange/blog/mission-command-modern-soc" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="Mission Command: Auftragstaktik and the Modern SOC" />
-<meta property="og:description" content="A doctrine study on leading by intent — how Auftragstaktik maps onto a security operations centre that has to decide at machine speed." />
+<meta property="og:description" content="A doctrine study on leading by intent: how Auftragstaktik maps onto a security operations centre that has to decide at machine speed." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eevsec.com/cyberrange/blog/mission-command-modern-soc" />
 <meta property="og:image" content="https://eevsec.com/cyberrange/media/og-eev.png" />
@@ -33,9 +33,9 @@
 <meta name="theme-color" content="#f6f4ef" />
 <script>(function(){document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="../css/tokens.css?v=110" />
-<link rel="stylesheet" href="../css/styles.css?v=160" />
+<link rel="stylesheet" href="../css/styles.css?v=170" />
 <link rel="stylesheet" href="../css/blog.css?v=4" />
-<link rel="stylesheet" href="../css/brand.css?v=38" />
+<link rel="stylesheet" href="../css/brand.css?v=55" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -58,7 +58,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Mission Command: Auftragstaktik and the Modern SOC",
-  "description": "How the doctrine of mission command — leading by intent rather than detailed orders — applies to a security operations centre that must decide at machine speed.",
+  "description": "How the doctrine of mission command (leading by intent rather than detailed orders) applies to a security operations centre that must decide at machine speed.",
   "datePublished": "2026-06-15",
   "dateModified": "2026-06-15",
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://eevsec.com/blog/mission-command-modern-soc.html" },
@@ -100,8 +100,8 @@
       <a href="../#how">How it works</a>
       <a href="../#coach">AI Coach</a>
       <a href="../#scenarios">Scenarios</a>
-      <a href="../pricing.html">Pricing</a>
-      <a class="btn btn--primary" href="../#join">Request access</a>
+      <a href="../pricing">Pricing</a>
+      <a class="btn btn--primary" href="../pricing">Get Access</a>
     </nav>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
@@ -123,13 +123,13 @@
     <a href="../#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="../pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../pricing"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="../#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="../pricing">Get Access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="main" class="page wrap">
@@ -144,17 +144,17 @@
       <p>A security operations centre and a 19th-century field army have the same problem: the people closest to the fight see the truth first, but the authority to act often sits somewhere else. The Prussians solved it on the battlefield with a doctrine they called Auftragstaktik. Most security teams have not solved it at all, and an attacker moving at the speed of a script is exactly the enemy that punishes the gap.</p>
 
       <h2>Military foundation</h2>
-      <p>Auftragstaktik &mdash; mission command &mdash; is the doctrine of leading by intent. A commander tells subordinates what outcome to achieve and why it matters, then leaves the how to the people on the ground. Its opposite, Befehlstaktik, issues detailed orders and expects them followed to the letter. The Prussian and later German armies built a generation of advantage on the first model, because a junior officer who understands the commander's intent can adapt when the plan meets reality &mdash; and the plan always meets reality. The unit that has to radio back for permission at every turn moves at the speed of its slowest approval.</p>
+      <p>Auftragstaktik (mission command) is the doctrine of leading by intent. A commander tells subordinates what outcome to achieve and why it matters, then leaves the how to the people on the ground. Its opposite, Befehlstaktik, issues detailed orders and expects them followed to the letter. The Prussian and later German armies built a generation of advantage on the first model, because a junior officer who understands the commander's intent can adapt when the plan meets reality, and the plan always meets reality. The unit that has to radio back for permission at every turn moves at the speed of its slowest approval.</p>
       <p>The discipline is not the absence of control; it is control exercised through shared understanding rather than micromanagement. Intent is the load-bearing idea. A subordinate who knows the purpose can improvise faithfully; one who has only a checklist can only execute or freeze. The doctrine trades the illusion of central certainty for the reality of decentralised speed, and on a fast-moving battlefield that trade wins.</p>
 
       <h2>Cyber application</h2>
-      <p>The modern SOC lives on the wrong side of that trade. Analysts drown in alerts, every meaningful action waits on an escalation chain, and the rigid playbook &mdash; do exactly these steps, in this order, then hand off &mdash; is Befehlstaktik rendered as a runbook. It is a reasonable design for a slow adversary. It is a losing one against attackers who automate reconnaissance, weaponise newly disclosed vulnerabilities within hours, and run encryption end-to-end faster than a tier-one analyst can finish reading the ticket. When the attack moves at machine speed and the defence moves at approval speed, the gap is the breach.</p>
-      <p>Mission command reframes the SOC around intent. The analyst on the console is the junior officer who sees the truth first; the organisation's job is to give them the context and the authority to act on it &mdash; to isolate a host, kill a session, revoke a credential &mdash; without waiting for a chain that the attacker is not waiting for. Automation is not a replacement for that judgement; it is the doctrine applied to the routine. Detection-as-code and orchestrated response handle the cases whose intent is unambiguous, so that human attention is spent where it is genuinely needed. The goal is the same one Auftragstaktik chased: push decisions down to where the information is, and measure the team by how fast a correct decision becomes a correct action.</p>
-      <p>This is why a state-aware coach matters more than a longer playbook. Guidance framed as intent &mdash; here is what is happening and what it threatens &mdash; produces an operator who can adapt; guidance framed as steps produces one who stalls the moment the situation leaves the script. The relevant doctrine layer is <a href="../doctrine.html#war">WAR</a>: not a tactic, but a philosophy of who is trusted to decide.</p>
+      <p>The modern SOC lives on the wrong side of that trade. Analysts drown in alerts, every meaningful action waits on an escalation chain, and the rigid playbook (do exactly these steps, in this order, then hand off) is Befehlstaktik rendered as a runbook. It is a reasonable design for a slow adversary. It is a losing one against attackers who automate reconnaissance, weaponise newly disclosed vulnerabilities within hours, and run encryption end-to-end faster than a tier-one analyst can finish reading the ticket. When the attack moves at machine speed and the defence moves at approval speed, the gap is the breach.</p>
+      <p>Mission command reframes the SOC around intent. The analyst on the console is the junior officer who sees the truth first; the organisation's job is to give them the context and the authority to act on it (to isolate a host, kill a session, revoke a credential) without waiting for a chain that the attacker is not waiting for. Automation is not a replacement for that judgement; it is the doctrine applied to the routine. Detection-as-code and orchestrated response handle the cases whose intent is unambiguous, so that human attention is spent where it is genuinely needed. The goal is the same one Auftragstaktik chased: push decisions down to where the information is, and measure the team by how fast a correct decision becomes a correct action.</p>
+      <p>This is why a state-aware coach matters more than a longer playbook. Guidance framed as intent (here is what is happening and what it threatens) produces an operator who can adapt; guidance framed as steps produces one who stalls the moment the situation leaves the script. The relevant doctrine layer is <a href="../doctrine.html#war">WAR</a>: not a tactic, but a philosophy of who is trusted to decide.</p>
 
       <h2>What you practise</h2>
-      <p>In the range, defence is never a checklist run against a cooperative target &mdash; it is a live opponent changing the situation faster than any runbook anticipated. You practise operating on intent: reading what the adversary is trying to achieve, deciding under incomplete information, and acting before the picture is comfortable. You learn where rigid procedure helps and where it freezes you, and you build the judgement that lets you improvise without losing discipline. The <a href="../#coach">AI Coach</a> plays the role of the commander's intent &mdash; it tells you what is at stake and why, not which key to press &mdash; and reviews afterward how well your decisions matched the situation you were actually in.</p>
-      <p>All three <a href="../doctrine.html">doctrine layers</a> are present: the command philosophy that decides who acts (WAR), the hands-on craft of the response itself (Ethical Hacking), and the automated, fast-moving threat that makes approval-speed defence untenable (Cyber Crime). The habit you are building is the one Auftragstaktik was invented to instil &mdash; to carry the intent so well that you can be trusted to decide alone, at speed, when the plan meets the enemy. Against an adversary who never asks permission, the defender who has learned to act on intent is the only one moving fast enough to matter.</p>
+      <p>In the range, defence is never a checklist run against a cooperative target. It is a live opponent changing the situation faster than any runbook anticipated. You practise operating on intent: reading what the adversary is trying to achieve, deciding under incomplete information, and acting before the picture is comfortable. You learn where rigid procedure helps and where it freezes you, and you build the judgement that lets you improvise without losing discipline. The <a href="../#coach">AI Coach</a> plays the role of the commander's intent. It tells you what is at stake and why, not which key to press, and reviews afterward how well your decisions matched the situation you were actually in.</p>
+      <p>All three <a href="../doctrine.html">doctrine layers</a> are present: the command philosophy that decides who acts (WAR), the hands-on craft of the response itself (Ethical Hacking), and the automated, fast-moving threat that makes approval-speed defence untenable (Cyber Crime). The habit you are building is the one Auftragstaktik was invented to instil: to carry the intent so well that you can be trusted to decide alone, at speed, when the plan meets the enemy. Against an adversary who never asks permission, the defender who has learned to act on intent is the only one moving fast enough to matter.</p>
     </div>
 
     <div class="article__back">
@@ -177,7 +177,7 @@
 
       <nav class="foot__col" aria-label="Company">
         <h2 class="foot__col-title">Company</h2>
-        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing">Pricing</a>
         <a href="https://careers.eevsec.com/">Careers</a>
         <a href="../contact.html">Contact</a>
         <a href="../faq.html">FAQ</a>
@@ -212,6 +212,7 @@
   </div>
 </footer>
 
+<script src="../js/pricing.js?v=25" defer></script>
 <script src="../js/nav.js?v=3" defer></script>
 <script src="../js/silk.js?v=1" defer></script>
 <script src="../js/page.js?v=3"></script>
@@ -219,6 +220,6 @@
 <script src="../js/consent.js?v=8" defer></script>
 <script src="../js/analytics.js?v=5" defer></script>
 <script src="../js/recaptcha.js?v=2" defer></script>
-<script src="../js/sentinel.js?v=8" defer></script>
+<script src="../js/sentinel.js?v=13" defer></script>
 </body>
 </html>

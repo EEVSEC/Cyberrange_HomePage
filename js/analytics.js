@@ -69,7 +69,7 @@
      Public API: window.track('event_name', { ...params }).
      Event names are snake_case for GA4. Fires only after the visitor
      has consented to analytics; otherwise it is a silent no-op.
-     Standard events: waitlist_submit, waitlist_role_chosen, pricing_view,
+     Standard events: pricing_view,
      contact_message_sent, contact_email_click, ai_bot_open,
      ai_bot_message_sent, ai_bot_handoff_to_human, currency_changed,
      lang_switcher_clicked. */

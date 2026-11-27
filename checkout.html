@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'self' https://checkout.razorpay.com https://www.google.com https://www.gstatic.com; frame-src https://api.razorpay.com https://www.google.com; connect-src 'self' https://cyberrange.eevsec.com https://api.razorpay.com https://www.google.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'">
+  <title>CyberRange Checkout | EEVSEC</title>
+  <link rel="canonical" href="https://eevsec.com/cyberrange/checkout">
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/tokens.css?v=110">
+  <link rel="stylesheet" href="css/styles.css?v=170">
+  <link rel="stylesheet" href="css/brand.css?v=55">
+  <link rel="stylesheet" href="css/checkout.css?v=13">
+  <script src="js/recaptcha.js?v=3" defer></script>
+  <script src="js/silk.js?v=1" defer></script>
+  <script src="js/checkout-countries.js?v=1" defer></script>
+  <script src="js/libphonenumber-max-1.13.17.js" integrity="sha384-CHTtNE9dSqnKY+lCCt5T9PDv1caVzixhhYv2YNyXFpWQIgAFhIokqkDCStCk5pHy" defer></script>
+  <script src="js/checkout-phone-examples.js?v=1" defer></script>
+  <script src="js/checkout-phone.js?v=1" defer></script>
+  <script src="js/checkout.js?v=12" defer></script>
+</head>
+<body class="cr-checkout">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <aside class="checkout-art" aria-label="CyberRange">
+    <img class="checkout-art__image" src="media/checkout-arena.webp" width="1122" height="1402" alt="" fetchpriority="high">
+    <a class="brand-signature" href="./" aria-label="EEVSEC CyberRange home">
+      <img class="brand-signature__icon" src="brand/eevsec-icon-512.png" alt="" width="38" height="38">
+      <span class="brand-signature__name">EEVSEC</span>
+      <span class="brand-signature__separator" aria-hidden="true">/</span>
+      <span class="brand-signature__product"><img src="brand/cyberrange-wordmark.webp" alt="" width="1600" height="560"></span>
+    </a>
+    <p class="checkout-art__line">Attack. Defend. <em>Repeat.</em></p>
+  </aside>
+  <main id="main" class="checkout-main">
+    <div class="field" aria-hidden="true"></div>
+    <a class="checkout-link" href="pricing"><span aria-hidden="true">←</span> Back to pricing</a>
+    <div class="checkout-content">
+      <noscript><p>Enable JavaScript to continue with checkout.</p></noscript>
+      <nav class="checkout-steps" aria-label="Checkout progress">
+        <ol>
+          <li id="checkout-step-account" aria-current="step">Account</li>
+          <li id="checkout-step-payment">Payment</li>
+        </ol>
+      </nav>
+
+      <section id="account-step" class="checkout-panel" aria-labelledby="account-title">
+        <h1 id="account-title" class="checkout-title" tabindex="-1">Create your account</h1>
+        <p id="account-intro" hidden>Use your existing CyberRange account to continue to payment.</p>
+        <div class="checkout-account-actions" aria-label="Account action">
+          <button type="button" id="choose-signup" aria-pressed="true">Create account</button>
+          <button type="button" id="choose-login" aria-pressed="false">Sign in</button>
+        </div>
+        <form id="account-form" method="post">
+          <fieldset id="account-fields" disabled>
+            <label id="full-name-row" for="account-full-name">Full name
+              <input id="account-full-name" name="full_name" autocomplete="name" maxlength="100" required>
+            </label>
+            <label for="account-email">Email address
+              <input id="account-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" maxlength="254" dir="ltr" required>
+            </label>
+            <fieldset id="phone-fields">
+              <div class="checkout-field-pair">
+                <div class="checkout-phone-picker">
+                  <label for="phone-country">Country calling code</label>
+                  <input id="phone-country" name="phone_country_search" type="text" role="combobox" autocomplete="tel-country-code" autocapitalize="off" spellcheck="false" maxlength="100" placeholder="Search country or code" aria-controls="phone-country-results" aria-autocomplete="list" aria-expanded="false" aria-describedby="phone-error">
+                  <div class="checkout-phone-results" id="phone-country-popup" hidden>
+                    <ul id="phone-country-results" role="listbox" aria-label="Country calling codes"></ul>
+                    <p id="phone-country-empty" role="status" hidden>No matching calling codes.</p>
+                  </div>
+                </div>
+                <label for="phone-number">Phone number
+                  <input id="phone-number" name="phone_national" type="tel" inputmode="numeric" autocomplete="tel-national" pattern="[0-9]+" maxlength="15" dir="ltr" aria-describedby="phone-purpose phone-error" required>
+                </label>
+              </div>
+              <p id="phone-purpose" class="checkout-phone-purpose">For billing contact.</p>
+              <p id="phone-error" class="checkout-field-error" aria-live="polite"></p>
+            </fieldset>
+            <div class="checkout-field-pair">
+              <div>
+                <label for="account-password">Password</label>
+                <div class="checkout-password">
+                  <input id="account-password" name="password" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false" dir="ltr" passwordrules="minlength: 15; maxlength: 1024;" aria-describedby="password-requirements password-length-error password-mismatch password-caps-lock" required>
+                  <button type="button" aria-controls="account-password" aria-label="Show password">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path class="checkout-password__eye-closed" d="M3 9a11 11 0 0 0 18 0M6 12l-2 3m8-1v4m6-6 2 3"/>
+                      <g class="checkout-password__eye-open">
+                        <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/>
+                        <circle cx="12" cy="12" r="2.5"/>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div id="confirm-password-row">
+                <label for="confirm-password">Confirm password</label>
+                <div class="checkout-password">
+                  <input id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" autocapitalize="none" spellcheck="false" dir="ltr" aria-describedby="password-mismatch password-caps-lock" required>
+                  <button type="button" aria-controls="confirm-password" aria-label="Show password confirmation">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path class="checkout-password__eye-closed" d="M3 9a11 11 0 0 0 18 0M6 12l-2 3m8-1v4m6-6 2 3"/>
+                      <g class="checkout-password__eye-open">
+                        <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/>
+                        <circle cx="12" cy="12" r="2.5"/>
+                      </g>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p id="password-requirements" class="checkout-phone-purpose">Use at least 15 characters. Spaces are allowed.</p>
+            <p id="password-caps-lock" class="checkout-field-error" aria-live="polite"></p>
+            <p id="password-length-error" class="checkout-field-error" aria-live="polite"></p>
+            <p id="password-mismatch" class="checkout-password-error" aria-live="polite"></p>
+            <fieldset id="billing-fields" class="checkout-field-pair">
+              <label>Country
+                <select name="country" autocomplete="country" required>
+                  <option value="">Select your country</option>
+                </select>
+              </label>
+              <label id="billing-state-row" hidden><span id="billing-state-label">State, province or region</span>
+                <select name="billing_state" id="billing-state" autocomplete="address-level1" disabled></select>
+              </label>
+            </fieldset>
+            <button type="submit" id="account-submit" class="btn btn--primary checkout-primary">Create account</button>
+          </fieldset>
+        </form>
+        <p id="account-status" class="checkout-feedback" role="status" tabindex="-1">Checking checkout availability…</p>
+        <p class="checkout-policy"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy Policy</a></p>
+      </section>
+
+      <section id="payment-step" class="checkout-panel" aria-labelledby="payment-title" hidden>
+        <h1 id="payment-title" class="checkout-title" tabindex="-1">Payment</h1>
+        <p>Review your CyberRange Individual membership before continuing.</p>
+        <form id="coupon-form" method="post">
+          <fieldset id="coupon-fields">
+            <label for="coupon">Coupon code <span>(optional)</span></label>
+            <div class="checkout-coupon">
+              <input id="coupon" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="32">
+              <button type="submit" id="apply-coupon" class="btn btn--ghost">Apply</button>
+            </div>
+          </fieldset>
+        </form>
+        <fieldset id="method-fields">
+          <legend>Payment method</legend>
+          <div id="payment-methods" class="checkout-methods"></div>
+        </fieldset>
+        <dl id="payment-summary" class="checkout-summary" aria-live="polite">
+          <div><dt>Membership</dt><dd id="payment-base"></dd></div>
+          <div id="payment-gst-row" hidden><dt>GST</dt><dd id="payment-gst"></dd></div>
+          <div class="checkout-total"><dt>Amount due today</dt><dd id="payment-total"></dd></div>
+        </dl>
+        <p id="payment-renewal" class="checkout-renewal" aria-live="polite"></p>
+        <p id="payment-status" class="checkout-feedback" role="status"></p>
+        <button type="button" id="pay" class="btn btn--primary checkout-primary" disabled>Continue to Razorpay</button>
+        <button type="button" id="check-payment" class="btn btn--ghost checkout-primary" hidden>Check payment status</button>
+        <p class="checkout-policy"><a href="terms.html">Terms</a> <span aria-hidden="true">·</span> <a href="returns.html">Refund Policy</a></p>
+      </section>
+
+      <section id="complete-step" class="checkout-panel" aria-labelledby="complete-title" hidden>
+        <h1 id="complete-title" class="checkout-title" tabindex="-1">Payment confirmed</h1>
+        <p id="complete-message">Your CyberRange account is active.</p>
+        <a id="enter-arena" class="btn btn--primary checkout-primary" href="https://cyberrange.eevsec.com/">Open CyberRange</a>
+      </section>
+
+      <p class="checkout-help">Need help? <a href="mailto:hi@eevsec.com">hi@eevsec.com</a></p>
+    </div>
+  </main>
+</body>
+</html>

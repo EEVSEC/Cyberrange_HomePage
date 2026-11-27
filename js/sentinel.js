@@ -24,12 +24,15 @@
   const site = new URL('../', document.currentScript.src);
   const FAQ_URL = new URL('faq.html', site).href;
   const PRIVACY_URL = new URL('privacy.html#cookies', site).href;
-  const PRICING_URL = new URL('pricing.html', site).href;
-  const ACCESS_URL = new URL('#join', site).href;
+  const PRICING_URL = new URL('pricing', site).href;
+  const ACCESS_URL = new URL('checkout', site).href;
+  const priceQuestion = /\b(?:prices?|pricing|costs?|how much is it|subscription fee|monthly (?:fee|rate)|discounts?|coupons?|rootaccess|rupees|usd|inr)\b|[$₹]/i;
+  const quotedPrice = /[$₹]|\b(?:usd|inr|dollars?|rupees?)\b|\b\d[\d,.]*\s*(?:\/|per)\s*month\b/i;
+  const asksMatchLimit = question => /\b(?:matches?|1v1s?)\b/i.test(question) &&
+    /\b(?:how many|unlimited|limits?|caps?|weekly|per week|every week|a week)\b/i.test(question);
   const FAQ_TOPICS = [
     [/^what is (?:the )?(?:eevsec )?cyberrange\??$/i, 'What is the EEVSEC CyberRange?', FAQ_URL],
-    [/\b(?:pricing|price|cost)\b/i, 'How much does it cost?', PRICING_URL],
-    [/\b(?:get access|request access|sign up|waitlist|when does it open)\b/i, 'How do I get access?', ACCESS_URL],
+    [/\b(?:get access|request access|sign up|waitlist|when does it open|buy|purchase|subscribe)\b/i, 'How do I get access?', ACCESS_URL],
   ];
 
 
@@ -92,7 +95,7 @@
   // ── markup ────────────────────────────────────────────────────────────────
   const root = document.createElement('div');
   root.innerHTML =
-    '<button id="sentinel-launcher" class="snt-fab" type="button" aria-label="Open Sentinel — ask about CyberRange" aria-expanded="false" aria-controls="sentinel-panel">' +
+    '<button id="sentinel-launcher" class="snt-fab" type="button" aria-label="Open Sentinel: ask about CyberRange" aria-expanded="false" aria-controls="sentinel-panel">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 21l2.1-5.4A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.5" cy="11.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="11.5" r="1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="11.5" r="1" fill="currentColor" stroke="none"/></svg>' +
       '<span class="snt-badge" id="snt-badge" aria-hidden="true"></span>' +
     '</button>' +
@@ -134,7 +137,7 @@
     nudgeTimer = setTimeout(() => {
       if (fab.getAttribute('aria-expanded') === 'true') return;
       if (badge) badge.classList.add('on');
-      fab.setAttribute('aria-label', 'Open Sentinel — questions about CyberRange? (1 new)');
+      fab.setAttribute('aria-label', 'Open Sentinel: questions about CyberRange? (1 new)');
     }, onPricing ? 8000 : 15000);
   })();
 
@@ -154,7 +157,7 @@
     for (const source of links) {
       if (typeof source !== 'string' || !(source.startsWith('https://') || source.startsWith('http://'))) continue;
       const label = source === FAQ_URL ? 'See common questions' :
-        source === PRICING_URL ? 'View pricing' : source === ACCESS_URL ? 'Request access' : source;
+        source === PRICING_URL ? 'View pricing' : source === ACCESS_URL ? 'Buy now' : source;
       addLink(li, source, label);
     }
     if (handoff) addLink(li, MAILTO, 'Email a human');
@@ -172,6 +175,20 @@
   }
 
   let faqAnswers;
+  async function usePlanDetails(question) {
+    if (priceQuestion.test(question)) {
+      const price = await window.crIndividualPrice;
+      const offer = price === '₹1599' ? '50% off (₹799/month)' : '25% off ($15/month)';
+      const answer = price
+        ? `The Individual plan is ${price}/month for your location. Black Friday: use code ROOTACCESS for ${offer}.`
+        : 'See the pricing page for the Individual rate in your location.';
+      return { answer, sources: [PRICING_URL] };
+    }
+    if (asksMatchLimit(question)) {
+      return { answer: 'The Individual plan includes unlimited live 1v1 matches.', sources: [PRICING_URL] };
+    }
+    return null;
+  }
   async function getFAQ() {
     if (faqAnswers) return faqAnswers;
 
@@ -228,7 +245,7 @@
     });
     fab.setAttribute('aria-expanded', 'true');
     clearNudge();
-    if (!greeted) { greeted = true; addBot("Hi — I'm Sentinel. Ask me anything about CyberRange, or pick a common question:"); suggestions(); }
+    if (!greeted) { greeted = true; addBot("Hi, I'm Sentinel. Ask me anything about CyberRange, or pick a common question:"); suggestions(); }
     if (window.track) window.track('ai_bot_open');
   }
   function close() {
@@ -258,11 +275,14 @@
     const timeout = setTimeout(() => controller.abort(), 10000);
     let data;
     try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ q }), signal: controller.signal,
-      });
-      if (res.ok) data = await res.json();
+      data = await usePlanDetails(q);
+      if (!data) {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ q }), signal: controller.signal,
+        });
+        if (res.ok) data = await res.json();
+      }
     } catch {
       // Fall back to the site's published FAQ after a network error or timeout.
     } finally {
@@ -271,6 +291,10 @@
 
     try {
       if (typeof data?.answer !== 'string' || !data.answer.trim()) data = await useFAQ(q);
+      if (!priceQuestion.test(q) && quotedPrice.test(data.answer)) data = await usePlanDetails('What is the Individual price?');
+      if (asksMatchLimit(data.answer) && /\b(?:weekly|per week|every week|a week)\b/i.test(data.answer)) {
+        data = await usePlanDetails('How many matches can I play?');
+      }
       typing.remove();
       addBot(data.answer, data.sources, data.handoff);
       if (data.handoff && window.track) window.track('ai_bot_handoff_to_human');

@@ -70,7 +70,7 @@ html:not(.intro-done) .brand { opacity: 1; }
 /* ── 2 · type: one face, calm headings, uppercase small caps for labels ── */
 .hero__title, .hero__lead, .shead h2, .cta h2, .page__head h1, .legal__head h1,
 .article__head h1, .coach__copy h2, .gap2__intro h2, .contact__h2, .dmap__title,
-.forx-final__h, .dlayer__title, .abt-hero__title, .abt-head h2, .wait__success h3 {
+.forx-final__h, .dlayer__title, .abt-hero__title, .abt-head h2 {
   font-family: var(--display); letter-spacing: -0.02em;
 }
 .scen__card h3, .modecard h3, .who__cell h3, .why__cell h3, .dtri__title, .diff__t,
@@ -115,6 +115,80 @@ html:not(.intro-done) .brand { opacity: 1; }
 .btn[data-state="loading"]::after { border-color: var(--white); border-top-color: transparent; }
 .btn:disabled { opacity: .45; }
 
+/* ── Black Friday promotion ── */
+.promo-pending [data-promo], .promo-pending #individual-price { visibility: hidden; }
+.promo-banner {
+  position: relative; z-index: 51; display: block; overflow: hidden;
+  width: 100%;
+  color: #fff5df; background: radial-gradient(ellipse at 44% 0%, #2b2618, #0b0b0b 72%);
+  border-bottom: 1px solid #be8744;
+}
+.promo-banner__inner {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 5px 14px; font-size: clamp(17px, 1.35vw, 21px); line-height: 1.35; text-align: center;
+}
+.promo-banner__copy b, .promo-banner__copy > strong { color: #ffe0a0; white-space: nowrap; }
+.promo-banner__action {
+  display: inline-block;
+  padding: 2px 8px; border: 1px solid #ffdf9c; border-radius: 99px;
+  color: #111; background: #ffdf9c; font-size: 0.82em; line-height: 1.3; white-space: nowrap;
+}
+.promo-banner:hover .promo-banner__action { background: #fff0c5; }
+/* The alien is flown by js/pricing.js; this is its resting style. */
+.promo-banner__alien {
+  --size: 32px;
+  position: absolute; left: 0; top: 50%; width: var(--size); height: var(--size); margin-top: calc(var(--size) / -2);
+  filter: brightness(1.45) drop-shadow(0 0 5px #b9a2ffb0);
+}
+.promo-banner__glitter { position: absolute; inset: 0; pointer-events: none; color: #f7cc7e; }
+.promo-banner__glitter span {
+  position: absolute; left: var(--x); top: var(--y); line-height: 1; font-size: 12px;
+  text-shadow: 0 0 8px #f2bd6480; animation: promo-glint 2s ease-in-out 2;
+  animation-delay: var(--delay);
+}
+.promo-banner__glitter span:nth-child(even) { font-size: 9px; color: #ffe9b8; }
+.promo-banner code, .promo-offer code {
+  font: 700 0.8em ui-monospace, monospace; letter-spacing: 0.04em; white-space: nowrap;
+  border: 1px dashed currentColor; border-radius: 4px; padding: 2px 5px;
+}
+.promo-banner:hover code { background: #f7cc7e25; }
+.promo-banner:focus-visible { outline: 2px solid #fff0b5; outline-offset: -4px; }
+.promo-offer::before, .promo-offer::after {
+  content: '✦'; position: absolute; pointer-events: none; color: #f2bd64;
+  animation: promo-glint 2.2s ease-in-out 2;
+}
+.promo-offer {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: grid; grid-template-columns: minmax(42px, 60px) 1fr; align-items: center;
+  gap: 10px; padding: 8px 12px; margin-block: 4px 16px;
+  border: 1px solid #d9ab74; border-radius: 12px;
+  background: linear-gradient(123deg, #0b0b0b, #2b2618 72%); color: #fff5df;
+}
+.promo-offer::before { inset: 8px 9px auto auto; font-size: 13px; }
+.promo-offer::after { inset: auto 9px 7px auto; font-size: 9px; animation-delay: 0.6s; }
+.promo-offer img { width: 100%; height: auto; }
+.promo-offer p { margin: 0; line-height: 1.35; }
+.promo-offer__label { font-size: var(--text-sm); font-weight: 700; color: #ffe0a0; }
+.promo-offer__price { font-size: var(--text-sm); }
+.promo-offer__price strong { font-size: var(--text-xl); }
+.promo-offer .promo-offer__code { margin-top: 4px; font-size: var(--text-sm); }
+.promo-offer:target { outline: 2px solid #f2bd64; outline-offset: 3px; }
+@keyframes promo-glint {
+  0%, 100% { opacity: 0.5; transform: scale(0.78); }
+  45% { opacity: 1; transform: scale(1.2); }
+}
+@media (max-width: 620px) {
+  .promo-banner__inner { display: block; padding: 3px 6px; font-size: 16px; }
+  .promo-banner__alien { --size: 42px; }
+  .promo-banner__copy > strong { white-space: normal; }
+  .promo-banner__glitter span { opacity: 0.7; font-size: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .promo-banner__glitter span,
+  .promo-offer::before, .promo-offer::after { animation: none; }
+}
+
 /* ── 4 · EEVSEC header ── */
 .brand-header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: transparent;
@@ -130,6 +204,7 @@ html:not(.intro-done) .brand { opacity: 1; }
   display: flex; align-items: center; gap: 32px;
 }
 .brand-signature { display: inline-flex; align-items: center; gap: 11px; min-width: 0; color: #000; }
+.brand-header-inner > .brand-signature { margin-inline-start: calc(-1 * clamp(6px, 1.2vw, 20px)); }
 .brand-signature__icon { flex: none; width: 38px; height: 38px; background: #000; border-radius: 7px; object-fit: contain; }
 .brand-signature__name { font-family: "Times New Roman", Times, serif; font-size: 30px; line-height: 1; }
 .brand-signature__separator { font-size: 25px; line-height: 1; color: var(--muted); }
@@ -157,16 +232,16 @@ html:not(.intro-done) .brand { opacity: 1; }
 .menu-lines { width: 15px; display: grid; gap: 4px; }
 .menu-lines i { display: block; height: 1px; background: currentColor; }
 
-/* slide-in panel */
+/* Keep the open menu above the cookie notice. */
 .menu-scrim {
-  position: fixed; inset: 0; z-index: 60; background: rgb(27 53 87 / 28%);
+  position: fixed; inset: 0; z-index: 160; background: rgb(27 53 87 / 28%);
   -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
   opacity: 0; transition: opacity .35s var(--ease-out);
 }
 .menu-scrim[hidden] { display: none; }
 .menu-scrim.is-open { opacity: 1; }
 .brand-menu {
-  position: fixed; top: 0; right: 0; bottom: 0; z-index: 70;
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 170;
   width: min(520px, 100%); padding: 38px 42px 32px; overflow-y: auto;
   display: flex; flex-direction: column; background: var(--white); color: var(--ink);
   transform: translateX(100%); visibility: hidden;
@@ -345,7 +420,7 @@ html.menu-open .snt-fab { opacity: 0; pointer-events: none; }
 }
 @media (min-width: 941px) {
   .coach__grid {
-    grid-template-areas: "head ." "feats panel" ". note";
+    grid-template-areas: "head head" "feats panel" ". note";
     grid-template-rows: auto auto auto;
     align-items: stretch;
     row-gap: 0;
@@ -469,28 +544,21 @@ html.menu-open .snt-fab { opacity: 0; pointer-events: none; }
 }
 .contrast__no s { text-decoration-color: var(--navy); }
 
-/* ── 13 · call to action + waitlist form ── */
+/* ── 13 · call to action ── */
 .cta::before { background: radial-gradient(55% 42% at 50% 48%, rgb(27 53 87 / 6%) 0%, transparent 72%); }
 .cta h2 { font-size: var(--text-xxl); line-height: 1.06; }
 .cta p { color: var(--muted); }
 .cta__eyebrow { color: var(--navy); }
 .cta__eyebrow::before { background: var(--navy); }
-.wait__label { font-family: var(--sans); font-size: var(--text-xs); letter-spacing: 0.12em; color: var(--muted); }
-.wait__input, .wait__select, .cform__input {
+.cform__input {
   font-family: var(--sans); font-size: var(--text-base); letter-spacing: 0; color: var(--ink);
   background: var(--white); border: 1px solid var(--input); border-radius: var(--r-md); padding: 13px 16px;
 }
-.wait__input::placeholder, .cform__input::placeholder { color: #7b8794; }
-.wait__input:focus, .wait__select:focus, .cform__input:focus-visible {
+.cform__input::placeholder { color: #7b8794; }
+.cform__input:focus-visible {
   outline: none; border-color: var(--navy);
   box-shadow: 0 0 0 3px rgb(27 53 87 / 14%);
 }
-.wait__err, .wait__msg { font-family: var(--sans); font-size: var(--text-xs); letter-spacing: 0; }
-.wait__msg.ok { color: var(--navy); }
-.wait__submit:hover { box-shadow: none; }
-.wait__check { color: var(--white); background: var(--navy); box-shadow: none; }
-.wait__success h3 { font-size: var(--text-xl); }
-.wait__success strong { color: var(--navy); }
 .cta__feat + .cta__feat::before { background: var(--line); }
 .cta__feat h3 { font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.14em; color: var(--ink); }
 .cta__feat p { color: var(--muted); }

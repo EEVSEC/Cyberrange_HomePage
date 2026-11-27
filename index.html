@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
-<title>Live-Fire Cyber Range Training — Attack &amp; Defend Real Systems | EEVSEC</title>
+<title>Live-Fire Cyber Range Training: Attack &amp; Defend Real Systems | EEVSEC</title>
 <meta name="description" content="CyberRange is a live, browser-based arena where you learn cybersecurity by attacking and defending real systems against a real opponent, with a state-aware AI coach in your corner." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
@@ -34,8 +34,8 @@
 <meta name="twitter:image" content="https://eevsec.com/cyberrange/media/og/home.png" />
 <script>(function(){if('scrollRestoration' in history)history.scrollRestoration='manual';}());</script>
 <link rel="stylesheet" href="css/tokens.css?v=110" />
-<link rel="stylesheet" href="css/styles.css?v=167" />
-<link rel="stylesheet" href="css/brand.css?v=38" />
+<link rel="stylesheet" href="css/styles.css?v=172" />
+<link rel="stylesheet" href="css/brand.css?v=56" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -113,8 +113,8 @@
       <a href="#how">How it works</a>
       <a href="#coach">AI Coach</a>
       <a href="#scenarios">Scenarios</a>
-      <a href="pricing.html">Pricing</a>
-      <a class="btn btn--primary" href="#join">Request access</a>
+      <a href="pricing">Pricing</a>
+      <a class="btn btn--primary" href="pricing">Get Access</a>
     </nav>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
@@ -136,13 +136,13 @@
     <a href="./#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="./#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="./#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="pricing"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="./#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="./pricing">Get Access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="top">
@@ -161,7 +161,7 @@
         <span id="heroType" aria-hidden="true"></span><span class="caret" id="heroCaret" aria-hidden="true"></span>
       </p>
       <div class="hero__cta reveal" data-d="2">
-        <a class="btn btn--primary" href="#join">Reserve your spot <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--primary" href="pricing">Enter the arena <span class="arr" aria-hidden="true">→</span></a>
         <a class="btn btn--ghost" href="#how">See how it works</a>
       </div>
     </div>
@@ -300,6 +300,24 @@
           <img class="modes-reel__frame" src="media/modes-poster.jpg" width="1920" height="1080" alt="CyberRange modes: Battle, Practice, Learn, and Analyze" loading="lazy" decoding="async" draggable="false">
         </picture>
       </div>
+      <ul class="modecard-list" role="list" aria-label="CyberRange modes">
+        <li class="modecard">
+          <h3>Battle</h3>
+          <p>Fight live attacker-vs-defender matches on real, browser-based machines.</p>
+        </li>
+        <li class="modecard">
+          <h3>Practice</h3>
+          <p>Drill specific skills across scenarios, again and again until they're reflex.</p>
+        </li>
+        <li class="modecard">
+          <h3>Learn</h3>
+          <p>Follow guided labs built to take you from beginner to confident.</p>
+        </li>
+        <li class="modecard">
+          <h3>Analyze</h3>
+          <p>Replay every match with AI feedback on your commands, decisions, and mistakes.</p>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -462,20 +480,20 @@
     <div class="shead reveal">
       <span class="eyebrow">What ties it together?</span>
       <h2>Six domains. <em>Three layers.</em></h2>
-      <p>Every scenario runs on all three doctrine layers at once — and the AI Coach reviews your match through the same three lenses.</p>
+      <p>Every scenario runs on all three doctrine layers at once, and the AI Coach reviews your match through the same three lenses.</p>
     </div>
     <div class="dtri reveal" data-d="1">
       <article class="dtri__card">
         <p class="dtri__tag">Layer 01 · WAR</p>
         <h3 class="dtri__title">Strategy</h3>
         <p class="dtri__role">How you think</p>
-        <p class="dtri__body">Kill-chain thinking, OODA loops, defence-in-depth. The engagement is won or lost in how you frame it — before a single command runs.</p>
+        <p class="dtri__body">Kill-chain thinking, OODA loops, defence-in-depth. The engagement is won or lost in how you frame it, before a single command runs.</p>
       </article>
       <article class="dtri__card">
         <p class="dtri__tag">Layer 02 · Ethical Hacking</p>
         <h3 class="dtri__title">Craft</h3>
         <p class="dtri__role">How you execute</p>
-        <p class="dtri__body">Enumeration, exploitation, lateral movement — and the defensive counter-moves that blunt them, on real machines against a live opponent.</p>
+        <p class="dtri__body">Enumeration, exploitation, lateral movement, and the defensive counter-moves that blunt them, on real machines against a live opponent.</p>
       </article>
       <article class="dtri__card">
         <p class="dtri__tag">Layer 03 · Cyber Crime</p>
@@ -727,50 +745,11 @@
   <!-- ── cta / join ──────────────────────────────────── -->
   <section class="cta" id="join">
     <div class="cta__inner wrap reveal">
-      <span class="eyebrow eyebrow--center cta__eyebrow">Request access</span>
-      <h2>Reserve your spot <em>in the arena.</em></h2>
-      <p>Tell us a little about yourself to request access.</p>
-      <form class="wait" id="waitForm" method="post" autocomplete="off" novalidate>
-        <div class="wait__group">
-          <label class="wait__label" for="waitName">Name</label>
-          <input class="wait__input" id="waitName" type="text" placeholder="Your name" required maxlength="100" aria-describedby="waitNameErr" />
-          <span class="wait__err" id="waitNameErr" role="alert"></span>
-        </div>
-        <div class="wait__group">
-          <label class="wait__label" for="waitEmail">Email address</label>
-          <input class="wait__input" id="waitEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required maxlength="254" aria-describedby="waitEmailErr" />
-          <span class="wait__err" id="waitEmailErr" role="alert"></span>
-        </div>
-        <div class="wait__group">
-          <label class="wait__label" for="waitRole">What best describes you?</label>
-          <div class="wait__selwrap">
-            <select class="wait__select" id="waitRole" required aria-describedby="waitRoleErr">
-              <option value="" disabled selected>Select an option</option>
-              <option value="pentester">Penetration Tester</option>
-              <option value="student">Student / Learning</option>
-              <option value="ctf">CTF Player</option>
-              <option value="blueteam">Blue Team / Defender</option>
-              <option value="soc">SOC Analyst</option>
-              <option value="researcher">Security Researcher</option>
-              <option value="engineer">Security Engineer</option>
-              <option value="other">Other</option>
-            </select>
-            <span class="wait__selarrow" aria-hidden="true">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-          <span class="wait__err" id="waitRoleErr" role="alert"></span>
-        </div>
-        <input type="text" id="waitHoneypot" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
-        <button class="btn btn--primary wait__submit" type="submit" id="waitBtn">
-          <span class="btn-label">Request access</span><span class="arr" aria-hidden="true">→</span>
-        </button>
-      </form>
-      <p class="wait__msg" id="waitMsg" role="status" aria-live="polite"></p>
-      <div class="wait__success" id="waitSuccess" aria-live="polite" hidden>
-        <div class="wait__check" aria-hidden="true">✓</div>
-        <h3>Request received.</h3>
-        <p>Thanks, <strong id="waitSuccessName">operator</strong>. We'll be in touch about your access request.</p>
+      <span class="eyebrow eyebrow--center cta__eyebrow">Individual plan</span>
+      <h2>Ready to step <em>into the arena?</em></h2>
+      <p>Unlimited live 1v1 matches on isolated machines, with an AI Coach review of every move.</p>
+      <div class="cta__buy">
+        <a class="btn btn--primary" href="pricing">See pricing <span class="arr" aria-hidden="true">→</span></a>
       </div>
     </div>
 
@@ -795,7 +774,7 @@
 
   <!-- ── cited-by strip ──────────────────────────────── -->
   <section class="cited wrap reveal" aria-labelledby="cited-title">
-    <p class="cited__eyebrow" id="cited-title">— Why this matters</p>
+    <p class="cited__eyebrow" id="cited-title">Why this matters</p>
     <ul class="cited__row">
       <li class="cited__item">
         <span class="cited__big">4.7M</span>
@@ -836,7 +815,7 @@
 
       <nav class="foot__col" aria-label="Company">
         <h2 class="foot__col-title">Company</h2>
-        <a href="pricing.html">Pricing</a>
+        <a href="pricing">Pricing</a>
         <a href="https://careers.eevsec.com/">Careers</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
@@ -871,15 +850,15 @@
   </div>
 </footer>
 
-<canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
+<script src="js/pricing.js?v=25" defer></script>
 <script src="js/nav.js?v=3" defer></script>
 <script src="js/silk.js?v=1" defer></script>
-<script src="js/main.js?v=148"></script>
+<script src="js/main.js?v=151"></script>
 <script src="js/cookies.js?v=1" defer></script>
 <script src="js/consent.js?v=8" defer></script>
 <script src="js/analytics.js?v=5" defer></script>
 <script src="js/recaptcha.js?v=3" defer></script>
-<script src="js/sentinel.js?v=8" defer></script>
+<script src="js/sentinel.js?v=13" defer></script>
 </body>
 </html>

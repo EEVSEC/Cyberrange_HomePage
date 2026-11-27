@@ -18,7 +18,7 @@
         scenarios: "Six scenario worlds to fight in. Different threat environments, all of them real.",
         who:       "Who CyberRange is built for. Spoiler: if you're here, probably you.",
         why:       "Why this works where other training doesn't. Evidence-based, not vibes-based.",
-        join:      "Ready? Drop your email and reserve your spot. See you on the range.",
+        join:      "Ready? Grab the Individual plan. See you on the range.",
       }
     },
     sarcastic: {
@@ -33,7 +33,7 @@
         scenarios: "Six scenarios. Each one harder than whatever you've been calling 'practice.' Cute setup though.",
         who:       "Who this is for. If you're reading this far, you already know the answer.",
         why:       "Why this approach works. Science-y section. I won't summarise it, you can read.",
-        join:      "The waitlist. Put the email in before you talk yourself out of it. I'll wait.",
+        join:      "The buy button. Hit it before you talk yourself out of it. I'll wait.",
       }
     },
     savage: {
@@ -48,7 +48,7 @@
         scenarios: "Six environments that will humble you. That's kind of the point. You're welcome.",
         who:       "Built for people who want to actually get better. That's it. That's the vibe.",
         why:       "Why it works: you fight real threats instead of watching slides. Simple math.",
-        join:      "Reserve your spot. Or keep scrolling and pretending you will. Your call, champ.",
+        join:      "Buy now. Or keep scrolling and pretending you will. Your call, champ.",
       }
     }
   };

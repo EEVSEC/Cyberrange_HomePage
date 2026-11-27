@@ -3,7 +3,7 @@
 > EEVSEC CyberRange is a competitive, live-fire cybersecurity training arena. Two people enter one live scenario on separate isolated virtual machines (one attacks, one defends) in real time, with a state-aware AI Coach watching each side. It is not a course and not a CTF: there are no scripted walkthroughs, no fake boxes, and no passive videos. Operated by EEVSEC PRIVATE LIMITED, Ahmedabad, India (CIN U62013GJ2026PTC177190, GSTIN 24AAJCE6671K1Z9).
 
 ## Status
-Use Request access on the CyberRange site to submit your name, email address, and role. Submitting an access request is free.
+CyberRange is on sale now. Buy the Individual plan ($20 a month) at https://eevsec.com/cyberrange/checkout, or contact hi@eevsec.com for a custom team or institutional plan.
 
 ## What it is
 CyberRange replaces passive lectures and predictable Capture-the-Flag puzzles with real-time, high-pressure defensive and offensive simulations on isolated virtual machines, guided by an AI Coach. The platform is browser-based with zero setup.

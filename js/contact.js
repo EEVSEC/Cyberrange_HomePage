@@ -72,7 +72,7 @@
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.success) {
         form.reset();
-        setStatus("Sent. We'll reply to your email — usually within one business day.", 'ok');
+        setStatus("Sent. We'll reply to your email, usually within one business day.", 'ok');
         if (window.track) window.track('contact_message_sent', { topic: selectedTopic });
       } else {
         setStatus("Couldn't send that. Email us directly at hi@eevsec.com.", 'err');

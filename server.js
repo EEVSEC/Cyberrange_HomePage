@@ -6,6 +6,7 @@ const { URL: NodeURL } = require("url");
 
 const root = process.cwd();
 const port = 8000;
+const checkoutPreview = process.argv.includes("--checkout-preview");
 // Google's public reCAPTCHA v2 test site key, served only by the loopback preview.
 const RECAPTCHA_DEV_SITE_KEY = "6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI";
 const sentinelEndpoint = process.env.SENTINEL_DEV_ENDPOINT
@@ -181,6 +182,12 @@ async function handleJoin(req, res) {
 http.createServer(async (req, res) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
 
+  // Block DNS rebinding: only answer requests addressed to this machine.
+  if (req.headers.host !== `127.0.0.1:${port}` && req.headers.host !== `localhost:${port}`) {
+    res.writeHead(421);
+    return res.end("Misdirected request");
+  }
+
   if (req.url === "/api/join" || req.url.startsWith("/api/join?")) {
     return handleJoin(req, res);
   }
@@ -202,6 +209,12 @@ http.createServer(async (req, res) => {
     return res.end("Not found");
   }
   if (filePath === "/") filePath = "/index.html";
+  if (filePath === "/pricing") filePath = "/pricing.html";
+  if (filePath === "/checkout") filePath = "/checkout.html";
+  if (filePath.startsWith("/preview/") && !checkoutPreview) {
+    res.writeHead(404);
+    return res.end("Not found");
+  }
 
   const fullPath = path.join(root, filePath);
   const rootWithSep = root + path.sep;
@@ -216,7 +229,7 @@ http.createServer(async (req, res) => {
 
     const ext         = path.extname(fullPath).toLowerCase();
     const contentType = mime[ext] || "application/octet-stream";
-    const cc          = cacheControl[ext] || "public, max-age=86400";
+    const cc          = filePath.startsWith("/preview/") ? "no-store" : cacheControl[ext] || "public, max-age=86400";
 
     if (ext === ".mp4") {
       const headers = { "Content-Type": contentType, "Accept-Ranges": "bytes", "Cache-Control": cc };
@@ -254,7 +267,10 @@ http.createServer(async (req, res) => {
       // forces subresources to https (no TLS here) → strip it so CSS/JS load.
       let html = fs.readFileSync(fullPath, "utf8")
         .replace(/\s*;?\s*upgrade-insecure-requests/g, "");
-      if (html.includes("js/recaptcha.js")) {
+      if (filePath === "/checkout.html" && checkoutPreview) {
+        html = html.replace('<script src="js/checkout.js', '<script src="preview/checkout.js?v=4" defer></script>\n  <script src="js/checkout.js');
+      }
+      if (html.includes("js/recaptcha.js") && filePath !== "/checkout.html") {
         html = html.replace("</head>", `<script>window.CR_DEV_RECAPTCHA_SITE_KEY = ${JSON.stringify(RECAPTCHA_DEV_SITE_KEY)};</script>\n</head>`);
       }
       if (sentinelEndpoint && html.includes("js/sentinel.js")) {

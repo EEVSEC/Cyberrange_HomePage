@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'self' https://www.google.com; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://eevsec-sentinel.hi-e2a.workers.dev https://www.google.com https://app.loops.so https://api.web3forms.com https://cloudflareinsights.com https://static.cloudflareinsights.com https://plausible.io https://cloud.umami.is https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; form-action 'self' https://app.loops.so https://api.web3forms.com; upgrade-insecure-requests" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <title>The Culminating Point: Clausewitz and Ransomware Dwell Time | EEVSEC CyberRange</title>
-<meta name="description" content="Clausewitz's culminating point of the attack explains why the defender's real window against ransomware is the quiet dwell time before encryption — and why an overextended attacker is a detectable one." />
+<meta name="description" content="Clausewitz's culminating point of the attack explains why the defender's real window against ransomware is the quiet dwell time before encryption, and why an overextended attacker is a detectable one." />
 <meta name="color-scheme" content="light" />
 <link rel="preload" href="../fonts/EEVSECSerif.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="../fonts/EEVSECSerif-Display.woff2" as="font" type="font/woff2" crossorigin />
@@ -15,7 +15,7 @@
 <link rel="alternate" hreflang="x-default" href="https://eevsec.com/cyberrange/blog/culminating-point-ransomware-dwell-time" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content="The Culminating Point: Clausewitz and Ransomware Dwell Time" />
-<meta property="og:description" content="A doctrine study on timing the defence — the attacker's strength peaks, then breaks, and the dwell time before encryption is where the match is won." />
+<meta property="og:description" content="A doctrine study on timing the defence: the attacker's strength peaks, then breaks, and the dwell time before encryption is where the match is won." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://eevsec.com/cyberrange/blog/culminating-point-ransomware-dwell-time" />
 <meta property="og:image" content="https://eevsec.com/cyberrange/media/og-eev.png" />
@@ -33,9 +33,9 @@
 <meta name="theme-color" content="#f6f4ef" />
 <script>(function(){document.documentElement.classList.add('intro-done');}());</script>
 <link rel="stylesheet" href="../css/tokens.css?v=110" />
-<link rel="stylesheet" href="../css/styles.css?v=160" />
+<link rel="stylesheet" href="../css/styles.css?v=170" />
 <link rel="stylesheet" href="../css/blog.css?v=4" />
-<link rel="stylesheet" href="../css/brand.css?v=38" />
+<link rel="stylesheet" href="../css/brand.css?v=55" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -100,8 +100,8 @@
       <a href="../#how">How it works</a>
       <a href="../#coach">AI Coach</a>
       <a href="../#scenarios">Scenarios</a>
-      <a href="../pricing.html">Pricing</a>
-      <a class="btn btn--primary" href="../#join">Request access</a>
+      <a href="../pricing">Pricing</a>
+      <a class="btn btn--primary" href="../pricing">Get Access</a>
     </nav>
     <button class="menu-trigger" id="menuTrigger" type="button" aria-expanded="false" aria-controls="siteMenu">
       Menu
@@ -123,13 +123,13 @@
     <a href="../#how"><span class="menu-number">01</span>How it works<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#coach"><span class="menu-number">02</span>AI Coach<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../#scenarios"><span class="menu-number">03</span>Scenarios<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    <a href="../pricing.html"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    <a href="../pricing"><span class="menu-number">04</span>Pricing<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </nav>
   <div class="menu-secondary">
     <a href="https://eevsec.com/#products">Ecosystem <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     <a href="../careers.html">Careers <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
   </div>
-  <a class="btn btn--primary menu-contact" href="../#join">Request access <span class="arr" aria-hidden="true">→</span></a>
+  <a class="btn btn--primary menu-contact" href="../pricing">Get Access <span class="arr" aria-hidden="true">→</span></a>
 </aside>
 
 <main id="main" class="page wrap">
@@ -141,20 +141,20 @@
     </header>
 
     <div class="article__body">
-      <p>Every offensive has a high-water mark &mdash; a moment when it is as strong as it will ever be, and after which it can only weaken. Clausewitz named it the culminating point, and treated finding it as the central problem of both attack and defence. A ransomware crew that detonates encryption across a network has reached theirs. The question that decides the incident is whether the defender understood, before that moment arrived, that the attacker was already inside and already past the point of safety.</p>
+      <p>Every offensive has a high-water mark, a moment when it is as strong as it will ever be, and after which it can only weaken. Clausewitz named it the culminating point, and treated finding it as the central problem of both attack and defence. A ransomware crew that detonates encryption across a network has reached theirs. The question that decides the incident is whether the defender understood, before that moment arrived, that the attacker was already inside and already past the point of safety.</p>
 
       <h2>Military foundation</h2>
-      <p>Clausewitz observed that an attack does not grow stronger the longer it runs. It consumes itself &mdash; supply lines stretch, troops tire, the defender's territory works against the invader. There is a point at which the offensive's remaining strength exactly equals the resistance in front of it, and one step beyond it the attacker is weaker than the defender. That is the culminating point. The art, for the attacker, is to achieve the decisive result <em>before</em> reaching it. The art, for the defender, is to recognise where it lies and to strike in the window where the offensive has overextended but not yet won.</p>
-      <p>The deeper insight is that the culminating point is reached quietly. An army does not announce that it has overextended; it simply finds, one morning, that it can no longer advance. The commander who waits for an obvious signal has already missed it. The defender's advantage is knowledge of the timeline &mdash; understanding that every additional step the attacker takes deeper into hostile ground is a step closer to vulnerability.</p>
+      <p>Clausewitz observed that an attack does not grow stronger the longer it runs. It consumes itself: supply lines stretch, troops tire, the defender's territory works against the invader. There is a point at which the offensive's remaining strength exactly equals the resistance in front of it, and one step beyond it the attacker is weaker than the defender. That is the culminating point. The art, for the attacker, is to achieve the decisive result <em>before</em> reaching it. The art, for the defender, is to recognise where it lies and to strike in the window where the offensive has overextended but not yet won.</p>
+      <p>The deeper insight is that the culminating point is reached quietly. An army does not announce that it has overextended; it simply finds, one morning, that it can no longer advance. The commander who waits for an obvious signal has already missed it. The defender's advantage is knowledge of the timeline, understanding that every additional step the attacker takes deeper into hostile ground is a step closer to vulnerability.</p>
 
       <h2>Cyber application</h2>
-      <p>A ransomware operation is an offensive with a long, quiet approach march and one loud, decisive act. Initial access, reconnaissance, credential theft, lateral movement, privilege escalation, the staging of exfiltration &mdash; all of it happens in the dwell time, the days or hours an intruder spends inside before the payload fires. Encryption is the culminating point: the single irreversible blow the entire operation exists to deliver. Everything before it is the attacker advancing across your ground, getting stronger; everything after it is recovery, not defence.</p>
-      <p>This reframes where the contest is actually decided. Industry incident data has shown median dwell times falling from months to days as ransomware-as-a-service crews industrialise the approach march &mdash; but days is still a window, and a window is all the defence needs. During dwell time the attacker is committed, exposed, and generating signal: anomalous lateral movement, mass credential use, the quiet disabling of backups and shadow copies, reconnaissance against file shares. These map onto MITRE ATT&amp;CK across lateral movement, defence evasion, and impact, and they are loudest precisely when the operator is overextending &mdash; touching too many hosts, escalating too fast, reaching for the backups that tell you encryption is next.</p>
-      <p>The defender who treats the encryption note as the start of the incident has met the offensive at its strongest. The defender who reads the approach march meets it past its <a href="../doctrine.html#cyber-crime">culminating point</a> &mdash; committed, noisy, and not yet finished. The same overextension that makes the attack powerful makes it visible. The whole discipline is to act inside that window rather than after it closes.</p>
+      <p>A ransomware operation is an offensive with a long, quiet approach march and one loud, decisive act. Initial access, reconnaissance, credential theft, lateral movement, privilege escalation, the staging of exfiltration: all of it happens in the dwell time, the days or hours an intruder spends inside before the payload fires. Encryption is the culminating point: the single irreversible blow the entire operation exists to deliver. Everything before it is the attacker advancing across your ground, getting stronger; everything after it is recovery, not defence.</p>
+      <p>This reframes where the contest is actually decided. Industry incident data has shown median dwell times falling from months to days as ransomware-as-a-service crews industrialise the approach march, but days is still a window, and a window is all the defence needs. During dwell time the attacker is committed, exposed, and generating signal: anomalous lateral movement, mass credential use, the quiet disabling of backups and shadow copies, reconnaissance against file shares. These map onto MITRE ATT&amp;CK across lateral movement, defence evasion, and impact, and they are loudest precisely when the operator is overextending: touching too many hosts, escalating too fast, reaching for the backups that tell you encryption is next.</p>
+      <p>The defender who treats the encryption note as the start of the incident has met the offensive at its strongest. The defender who reads the approach march meets it past its <a href="../doctrine.html#cyber-crime">culminating point</a>: committed, noisy, and not yet finished. The same overextension that makes the attack powerful makes it visible. The whole discipline is to act inside that window rather than after it closes.</p>
 
       <h2>What you practise</h2>
-      <p>In the range this becomes a race against a clock the attacker controls. On the offensive side you run the approach march and learn how little noise it takes to give yourself away &mdash; how each extra host, each backup you reach for, each privilege you grab, shortens your own runway. On the defensive side you practise the harder discipline: reading the quiet phase, recognising the shape of an offensive that has committed but not yet culminated, and striking in the window rather than waiting for the obvious blow. The <a href="../#coach">AI Coach</a> reconstructs the timeline afterwards and marks the exact moment the attacker passed their culminating point &mdash; the moment you could have won, whether or not you took it. It is the same instinct the <a href="../blog/ooda-loop-ransomware.html">OODA loop</a> trains, read through Clausewitz instead of Boyd.</p>
-      <p>The three <a href="../doctrine.html">doctrine layers</a> are all in the room: the strategy of timing the counter-stroke (WAR), the craft of detecting an offensive mid-advance (Ethical Hacking), and the real ransomware economy whose tempo sets the clock (Cyber Crime). The habit you build is Clausewitz's own &mdash; to stop measuring an attack by how strong it looks and start measuring it by how close it is to breaking. Against an adversary whose whole plan is one decisive blow, the defender who knows where the high-water mark lies is the one still standing on dry ground.</p>
+      <p>In the range this becomes a race against a clock the attacker controls. On the offensive side you run the approach march and learn how little noise it takes to give yourself away: how each extra host, each backup you reach for, each privilege you grab, shortens your own runway. On the defensive side you practise the harder discipline: reading the quiet phase, recognising the shape of an offensive that has committed but not yet culminated, and striking in the window rather than waiting for the obvious blow. The <a href="../#coach">AI Coach</a> reconstructs the timeline afterwards and marks the exact moment the attacker passed their culminating point, the moment you could have won, whether or not you took it. It is the same instinct the <a href="../blog/ooda-loop-ransomware.html">OODA loop</a> trains, read through Clausewitz instead of Boyd.</p>
+      <p>The three <a href="../doctrine.html">doctrine layers</a> are all in the room: the strategy of timing the counter-stroke (WAR), the craft of detecting an offensive mid-advance (Ethical Hacking), and the real ransomware economy whose tempo sets the clock (Cyber Crime). The habit you build is Clausewitz's own: to stop measuring an attack by how strong it looks and start measuring it by how close it is to breaking. Against an adversary whose whole plan is one decisive blow, the defender who knows where the high-water mark lies is the one still standing on dry ground.</p>
     </div>
 
     <div class="article__back">
@@ -177,7 +177,7 @@
 
       <nav class="foot__col" aria-label="Company">
         <h2 class="foot__col-title">Company</h2>
-        <a href="../pricing.html">Pricing</a>
+        <a href="../pricing">Pricing</a>
         <a href="https://careers.eevsec.com/">Careers</a>
         <a href="../contact.html">Contact</a>
         <a href="../faq.html">FAQ</a>
@@ -212,6 +212,7 @@
   </div>
 </footer>
 
+<script src="../js/pricing.js?v=25" defer></script>
 <script src="../js/nav.js?v=3" defer></script>
 <script src="../js/silk.js?v=1" defer></script>
 <script src="../js/page.js?v=3"></script>
@@ -219,6 +220,6 @@
 <script src="../js/consent.js?v=8" defer></script>
 <script src="../js/analytics.js?v=5" defer></script>
 <script src="../js/recaptcha.js?v=2" defer></script>
-<script src="../js/sentinel.js?v=8" defer></script>
+<script src="../js/sentinel.js?v=13" defer></script>
 </body>
 </html>

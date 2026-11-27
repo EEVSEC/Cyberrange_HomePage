@@ -1,7 +1,7 @@
-/* Invisible reCAPTCHA v2 helper for CyberRange forms (waitlist + Byte contact).
+/* Invisible reCAPTCHA v2 helper for CyberRange forms (checkout + Byte contact).
 
    LAZY: Google's script is fetched only when a visitor actually engages a form
-   (focuses the waitlist, or opens the Byte contact flow) via prime(), so the
+   (starts checkout, or opens the Byte contact flow) via prime(), so the
    third-party _GRECAPTCHA cookie is set only for people who use a form, never
    on a plain page view.
 
